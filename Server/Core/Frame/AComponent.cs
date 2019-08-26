@@ -5,8 +5,22 @@ namespace Core.Frame
 {
     public abstract class AComponent:ISupportInitialize,IDisposable
     {
-        public long Id;
+        private long id;
+
+        public long Id
+        {
+            get => id;
+            set => id = value;
+        }
+
         private AComponent parent;
+
+        public AComponent Parent
+        {
+            get => parent;
+            set => parent = value;
+        }
+
         protected bool IsDisposed;
         
         protected AComponent()
