@@ -18,6 +18,15 @@
       <e p="EcsProject.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Server" t="IncludeRecursive">
+        <e p="App" t="Include">
+          <e p="obj" t="Include">
+            <e p="App.csproj.nuget.cache" t="Include" />
+            <e p="App.csproj.nuget.g.props" t="Include" />
+            <e p="App.csproj.nuget.g.targets" t="Include" />
+            <e p="project.assets.json" t="Include" />
+          </e>
+          <e p="Program.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
