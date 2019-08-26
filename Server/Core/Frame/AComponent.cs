@@ -5,23 +5,10 @@ namespace Core.Frame
 {
     public abstract class AComponent:ISupportInitialize,IDisposable
     {
-        private long id;
+        public long Id { get; set; }
+        public AComponent Parent { get; set; }
 
-        public long Id
-        {
-            get => id;
-            set => id = value;
-        }
-
-        private AComponent parent;
-
-        public AComponent Parent
-        {
-            get => parent;
-            set => parent = value;
-        }
-
-        protected bool IsDisposed;
+        public bool IsDisposed { get; set; }
         
         protected AComponent()
         {
@@ -51,7 +38,7 @@ namespace Core.Frame
         
         public T GetParent<T>() where T : AComponent
         {
-            return this.parent as T;
+            return this.Parent as T;
         }
 
    

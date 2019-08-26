@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\EcsProject\\Client\\Client.csproj",
-      "projectName": "Client",
-      "projectPath": "D:\\GitHub\\EcsProject\\Client\\Client.csproj",
+      "projectUniqueName": "D:\\GitHub\\EcsProject\\Log\\Log.csproj",
+      "projectName": "Log",
+      "projectPath": "D:\\GitHub\\EcsProject\\Log\\Log.csproj",
       "packagesPath": "C:\\Users\\Boil\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\EcsProject\\Client\\obj\\",
+      "outputPath": "D:\\GitHub\\EcsProject\\Log\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

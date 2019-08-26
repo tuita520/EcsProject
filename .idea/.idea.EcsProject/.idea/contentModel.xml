@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\WanXin\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_EcsProject.1773862023.00" t="ExcludeRecursive" />
-    <e p="D:\code\EcsProject" t="IncludeFlat">
+    <e p="C:\Users\Boil\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Boil\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_EcsProject.-726406595.00" t="ExcludeRecursive" />
+    <e p="D:\GitHub\EcsProject" t="IncludeFlat">
       <e p="Client" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Client.csproj" t="IncludeRecursive" />
@@ -16,18 +17,49 @@
         <e p="Program.cs" t="Include" />
       </e>
       <e p="EcsProject.sln" t="IncludeFlat" />
+      <e p="Helper" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Helper.csproj" t="IncludeRecursive" />
+        <e p="IdGenerateHelper.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Helper.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ObjectHelper.cs" t="Include" />
+      </e>
+      <e p="Log" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DefaultLogger.cs" t="Include" />
+        <e p="ILog.cs" t="Include" />
+        <e p="Log.cs" t="Include" />
+        <e p="Log.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Log.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="Server" t="IncludeRecursive">
-        <e p="App" t="Include">
-          <e p="obj" t="Include">
-            <e p="App.csproj.nuget.cache" t="Include" />
-            <e p="App.csproj.nuget.g.props" t="Include" />
-            <e p="App.csproj.nuget.g.targets" t="Include" />
-            <e p="project.assets.json" t="Include" />
-          </e>
-          <e p="Program.cs" t="Include" />
-        </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Core" t="Include">
+          <e p="Frame" t="Include">
+            <e p="AComponent.cs" t="Include" />
+            <e p="AEntity.cs" t="Include" />
+            <e p="ALoadSystem.cs" t="Include" />
+            <e p="ComponentFactory.cs" t="Include" />
+            <e p="EventSystem.cs" t="Include" />
+            <e p="ISystem.cs" t="Include" />
+          </e>
+          <e p="utility" t="Include">
+            <e p="UnOrderMultiMap.cs" t="Include" />
+          </e>
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.2" t="Include">

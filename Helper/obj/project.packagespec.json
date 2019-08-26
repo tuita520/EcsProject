@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\GitHub\\EcsProject\\Server\\Server.csproj",
-    "projectName": "Server",
-    "projectPath": "D:\\GitHub\\EcsProject\\Server\\Server.csproj",
-    "outputPath": "D:\\GitHub\\EcsProject\\Server\\obj\\",
+    "projectUniqueName": "D:\\GitHub\\EcsProject\\Helper\\Helper.csproj",
+    "projectName": "Helper",
+    "projectPath": "D:\\GitHub\\EcsProject\\Helper\\Helper.csproj",
+    "outputPath": "D:\\GitHub\\EcsProject\\Helper\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -18,14 +18,7 @@
     },
     "frameworks": {
       "netcoreapp2.2": {
-        "projectReferences": {
-          "D:\\GitHub\\EcsProject\\Helper\\Helper.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Helper\\Helper.csproj"
-          },
-          "D:\\GitHub\\EcsProject\\Log\\Log.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Log\\Log.csproj"
-          }
-        }
+        "projectReferences": {}
       }
     },
     "warningProperties": {
