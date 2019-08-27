@@ -7,9 +7,9 @@ namespace Core.Frame
     {
         public static T Create<T>() where T : AComponent
         {
-            Type type = typeof (T);
+            var type = typeof (T);
 			
-            T component=(T)Activator.CreateInstance(type);
+            var component=(T)Activator.CreateInstance(type);
             component.Id = IdGenerateHelper.GenerateComponentId();
             return component;
         }

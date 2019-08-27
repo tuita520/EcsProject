@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\GitHub\\EcsProject\\Log\\Log.csproj",
+    "projectUniqueName": "D:\\code\\EcsProject\\Log\\Log.csproj",
     "projectName": "Log",
-    "projectPath": "D:\\GitHub\\EcsProject\\Log\\Log.csproj",
-    "outputPath": "D:\\GitHub\\EcsProject\\Log\\obj\\",
+    "projectPath": "D:\\code\\EcsProject\\Log\\Log.csproj",
+    "outputPath": "D:\\code\\EcsProject\\Log\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12,10 +12,6 @@
     "originalTargetFrameworks": [
       "netcoreapp2.2"
     ],
-    "sources": {
-      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-      "https://api.nuget.org/v3/index.json": {}
-    },
     "frameworks": {
       "netcoreapp2.2": {
         "projectReferences": {}
