@@ -10,7 +10,9 @@
     <OutputPath>..\Bin\Release\netcoreapp2.2\netcoreapp2.2\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Frame\Frame.csproj" />
     <ProjectReference Include="..\Helper\Helper.csproj" />
     <ProjectReference Include="..\Log\Log.csproj" />
+    <ProjectReference Include="..\Utility\Utility.csproj" />
   </ItemGroup>
 </Project>

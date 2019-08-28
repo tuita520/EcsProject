@@ -8,11 +8,23 @@
     ".NETCoreApp,Version=v2.2": {
       "Server/1.0.0": {
         "dependencies": {
+          "Frame": "1.0.0",
           "Helper": "1.0.0",
-          "Log": "1.0.0"
+          "Log": "1.0.0",
+          "Utility": "1.0.0"
         },
         "runtime": {
           "Server.dll": {}
+        }
+      },
+      "Frame/1.0.0": {
+        "dependencies": {
+          "Helper": "1.0.0",
+          "Log": "1.0.0",
+          "Utility": "1.0.0"
+        },
+        "runtime": {
+          "Frame.dll": {}
         }
       },
       "Helper/1.0.0": {
@@ -24,11 +36,21 @@
         "runtime": {
           "Log.dll": {}
         }
+      },
+      "Utility/1.0.0": {
+        "runtime": {
+          "Utility.dll": {}
+        }
       }
     }
   },
   "libraries": {
     "Server/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Frame/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -39,6 +61,11 @@
       "sha512": ""
     },
     "Log/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Utility/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

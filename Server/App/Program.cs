@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Frame.Core.Base;
+using RDLog;
+using Server.Core.NetWork;
 
-namespace App
+namespace Server
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            App.Inst.Init();
+            App.Inst.Run();
+            Log.Info("..........................");
         }
     }
 }
