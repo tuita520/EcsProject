@@ -1,0 +1,9 @@
+D:\code\EcsProject\Log\bin\Debug\netcoreapp2.2\Log.deps.json
+D:\code\EcsProject\Log\bin\Debug\netcoreapp2.2\Log.dll
+D:\code\EcsProject\Log\bin\Debug\netcoreapp2.2\Log.pdb
+D:\code\EcsProject\Log\obj\Debug\netcoreapp2.2\Log.csprojAssemblyReference.cache
+D:\code\EcsProject\Log\obj\Debug\netcoreapp2.2\Log.csproj.CoreCompileInputs.cache
+D:\code\EcsProject\Log\obj\Debug\netcoreapp2.2\Log.AssemblyInfoInputs.cache
+D:\code\EcsProject\Log\obj\Debug\netcoreapp2.2\Log.AssemblyInfo.cs
+D:\code\EcsProject\Log\obj\Debug\netcoreapp2.2\Log.dll
+D:\code\EcsProject\Log\obj\Debug\netcoreapp2.2\Log.pdb
