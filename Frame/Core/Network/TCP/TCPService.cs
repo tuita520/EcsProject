@@ -17,10 +17,10 @@ namespace Server.Core.Network.TCP
             PacketSizeLength = packetSizeLength;
             AcceptCallback += acceptCallback;
 			
+            sockeArgs.Completed += OnAccepteComplete;
+            
             socktAcceptor = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socktAcceptor.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            sockeArgs.Completed += OnAccepteComplete;
-			
             socktAcceptor.Bind(ipEndPoint);
             socktAcceptor.Listen(1000);
             AcceptAsync();

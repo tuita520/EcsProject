@@ -45,11 +45,13 @@
             <e p="AChannel.cs" t="Include" />
             <e p="AService.cs" t="Include" />
             <e p="Helper" t="Include">
+              <e p="ByteHelper.cs" t="Include" />
               <e p="NetworkHelper.cs" t="Include" />
             </e>
             <e p="NetworkComponent.cs" t="Include" />
             <e p="Session.cs" t="Include" />
             <e p="TCP" t="Include">
+              <e p="CircularBuffer.cs" t="Include" />
               <e p="PacketParser.cs" t="Include" />
               <e p="TCPChannel.cs" t="Include" />
               <e p="TCPService.cs" t="Include" />

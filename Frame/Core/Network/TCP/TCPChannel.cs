@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using Server.Core.Network.Helper;
 
 namespace Server.Core.Network.TCP
 {
@@ -9,6 +10,8 @@ namespace Server.Core.Network.TCP
     {
         private Socket socket;
         private SocketAsyncEventArgs accpeterArgs = new SocketAsyncEventArgs();
+        
+        private readonly CircularBuffer sendBuffer = new CircularBuffer();
         
         private bool isSending;
 
