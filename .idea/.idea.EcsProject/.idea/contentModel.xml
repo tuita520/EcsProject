@@ -30,6 +30,7 @@
               <e p="AEntity.cs" t="Include" />
             </e>
             <e p="EventSystem.cs" t="Include" />
+            <e p="MainThreadSynchronizationContext.cs" t="Include" />
             <e p="system" t="Include">
               <e p="AAwakeSystem.cs" t="Include" />
               <e p="ADestroySystem.cs" t="Include" />

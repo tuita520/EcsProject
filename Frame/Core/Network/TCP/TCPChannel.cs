@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using Frame.Core.Base;
 using Server.Core.Network.Helper;
 
 namespace Server.Core.Network.TCP
@@ -9,7 +10,8 @@ namespace Server.Core.Network.TCP
     public class TCPChannel:AChannel
     {
         private Socket socket;
-        private SocketAsyncEventArgs accpeterArgs = new SocketAsyncEventArgs();
+        private SocketAsyncEventArgs sendArgs = new SocketAsyncEventArgs();
+        private SocketAsyncEventArgs recvArgs = new SocketAsyncEventArgs();
         
         private readonly CircularBuffer sendBuffer = new CircularBuffer();
         
@@ -32,8 +34,8 @@ namespace Server.Core.Network.TCP
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.NoDelay = true;
             parser = new PacketParser(packetSize, this.recvBuffer, this.memoryStream);
-            this.innArgs.Completed += this.OnComplete;
-            outArgs.Completed += this.OnComplete;
+            sendArgs.Completed += this.OnComplete;
+            recvArgs.Completed += this.OnComplete;
 
             RemoteAddress = ipEndPoint;
 
@@ -41,9 +43,22 @@ namespace Server.Core.Network.TCP
             isSending = false;
         }
         
-        public TCPChannel(AService service, Socket socket ) : base(service, ChannelType.Connect)
+        public TCPChannel(AService service, Socket socket ) : base(service, ChannelType.Accept)
         {
-            
+            int packetSize = service.PacketSizeLength;
+            this.packetSizeCache = new byte[packetSize];
+            this.memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
+			
+            this.socket = socket;
+            this.socket.NoDelay = true;
+            this.parser = new PacketParser(packetSize, this.recvBuffer, this.memoryStream);
+            this.innArgs.Completed += this.OnComplete;
+            this.outArgs.Completed += this.OnComplete;
+
+            this.RemoteAddress = (IPEndPoint)socket.RemoteEndPoint;
+			
+            this.isConnected = true;
+            this.isSending = false;
         }
 
         private TCPService GetService()
@@ -51,6 +66,112 @@ namespace Server.Core.Network.TCP
             return (TCPService)Service;
         }
 
+        private void OnComplete(object sender, SocketAsyncEventArgs eventArgs)
+        {
+            switch (eventArgs.LastOperation)
+            {
+                case SocketAsyncOperation.Connect:
+                    MainThreadSynchronizationContext.Inst.Post(OnConnectComplete, eventArgs);
+                    break;
+                case SocketAsyncOperation.Receive:
+                    MainThreadSynchronizationContext.Inst.Post(OnRecvComplete, eventArgs);
+                    break;
+                case SocketAsyncOperation.Send:
+                    MainThreadSynchronizationContext.Inst.Post(OnSendComplete, eventArgs);
+                    break;
+                case SocketAsyncOperation.Disconnect:
+                    MainThreadSynchronizationContext.Inst.Post(OnDisconnectComplete, eventArgs);
+                    break;
+                default:
+                    throw new Exception($"socket error: {eventArgs.LastOperation}");
+            }
+        }
+
+
+
+        private void OnConnectComplete(object state)
+        {
+            if (socket == null)
+            {
+                return;
+            }
+            SocketAsyncEventArgs e = (SocketAsyncEventArgs) state;
+			
+            if (e.SocketError != SocketError.Success)
+            {
+                OnError((int)e.SocketError);	
+                return;
+            }
+
+            e.RemoteEndPoint = null;
+            isConnected = true;
+			
+            Start();
+        }
+
+        private void OnRecvComplete(object state)
+        {
+            if (this.socket == null)
+            {
+                return;
+            }
+            SocketAsyncEventArgs e = (SocketAsyncEventArgs) state;
+
+            if (e.SocketError != SocketError.Success)
+            {
+                this.OnError((int)e.SocketError);
+                return;
+            }
+
+            if (e.BytesTransferred == 0)
+            {
+                this.OnError(ErrorCode.ERR_PeerDisconnect);
+                return;
+            }
+
+            this.recvBuffer.LastIndex += e.BytesTransferred;
+            if (this.recvBuffer.LastIndex == this.recvBuffer.ChunkSize)
+            {
+                this.recvBuffer.AddLast();
+                this.recvBuffer.LastIndex = 0;
+            }
+
+            // 收到消息回调
+            while (true)
+            {
+                try
+                {
+                    if (!this.parser.Parse())
+                    {
+                        break;
+                    }
+                }
+                catch (Exception ee)
+                {
+                    Log.Error(ee);
+                    this.OnError(ErrorCode.ERR_SocketError);
+                    return;
+                }
+
+                try
+                {
+                    this.OnRead(this.parser.GetPacket());
+                }
+                catch (Exception ee)
+                {
+                    Log.Error(ee);
+                }
+            }
+
+            if (this.socket == null)
+            {
+                return;
+            }
+			
+            this.StartRecv();
+        }
+        
+        
         public override void Start()
         {
             if (!this.isConnected)
