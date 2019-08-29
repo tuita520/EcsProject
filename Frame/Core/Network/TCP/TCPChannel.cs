@@ -3,18 +3,20 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using Frame.Core.Base;
+using RDLog;
 using Server.Core.Network.Helper;
 
 namespace Server.Core.Network.TCP
 {
-    public class TCPChannel:AChannel
+    public class TCPChannel : AChannel
     {
         private Socket socket;
-        private SocketAsyncEventArgs sendArgs = new SocketAsyncEventArgs();
-        private SocketAsyncEventArgs recvArgs = new SocketAsyncEventArgs();
-        
+        private SocketAsyncEventArgs writeArgs = new SocketAsyncEventArgs();
+        private SocketAsyncEventArgs readArgs = new SocketAsyncEventArgs();
+
         private readonly CircularBuffer sendBuffer = new CircularBuffer();
-        
+        private readonly CircularBuffer recvBuffer = new CircularBuffer();
+
         private bool isSending;
 
         private bool isRecving;
@@ -24,46 +26,46 @@ namespace Server.Core.Network.TCP
         private readonly PacketParser parser;
 
         private readonly byte[] packetSizeCache;
-        
-        public TCPChannel(AService service,IPEndPoint ipEndPoint ) : base(service, ChannelType.Connect)
+
+        public TCPChannel(AService service, IPEndPoint ipEndPoint) : base(service, ChannelType.Connect)
         {
             int packetSize = service.PacketSizeLength;
             packetSizeCache = new byte[packetSize];
             this.memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
-			
+
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.NoDelay = true;
-            parser = new PacketParser(packetSize, this.recvBuffer, this.memoryStream);
-            sendArgs.Completed += this.OnComplete;
-            recvArgs.Completed += this.OnComplete;
+            parser = new PacketParser(packetSize, recvBuffer, this.memoryStream);
+            sendArgs.Completed += OnComplete;
+            recvArgs.Completed += OnComplete;
 
             RemoteAddress = ipEndPoint;
 
             isConnected = false;
             isSending = false;
         }
-        
-        public TCPChannel(AService service, Socket socket ) : base(service, ChannelType.Accept)
+
+        public TCPChannel(AService service, Socket socket) : base(service, ChannelType.Accept)
         {
             int packetSize = service.PacketSizeLength;
-            this.packetSizeCache = new byte[packetSize];
+            packetSizeCache = new byte[packetSize];
             this.memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
-			
+
             this.socket = socket;
             this.socket.NoDelay = true;
-            this.parser = new PacketParser(packetSize, this.recvBuffer, this.memoryStream);
-            this.innArgs.Completed += this.OnComplete;
-            this.outArgs.Completed += this.OnComplete;
+            parser = new PacketParser(packetSize, recvBuffer, this.memoryStream);
+            sendArgs.Completed += OnComplete;
+            recvArgs.Completed += OnComplete;
 
-            this.RemoteAddress = (IPEndPoint)socket.RemoteEndPoint;
-			
-            this.isConnected = true;
-            this.isSending = false;
+            RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
+
+            isConnected = true;
+            isSending = false;
         }
 
         private TCPService GetService()
         {
-            return (TCPService)Service;
+            return (TCPService) Service;
         }
 
         private void OnComplete(object sender, SocketAsyncEventArgs eventArgs)
@@ -87,106 +89,10 @@ namespace Server.Core.Network.TCP
             }
         }
 
-
-
-        private void OnConnectComplete(object state)
+        private void OnDisconnectComplete(object state)
         {
-            if (socket == null)
-            {
-                return;
-            }
-            SocketAsyncEventArgs e = (SocketAsyncEventArgs) state;
-			
-            if (e.SocketError != SocketError.Success)
-            {
-                OnError((int)e.SocketError);	
-                return;
-            }
-
-            e.RemoteEndPoint = null;
-            isConnected = true;
-			
-            Start();
-        }
-
-        private void OnRecvComplete(object state)
-        {
-            if (this.socket == null)
-            {
-                return;
-            }
-            SocketAsyncEventArgs e = (SocketAsyncEventArgs) state;
-
-            if (e.SocketError != SocketError.Success)
-            {
-                this.OnError((int)e.SocketError);
-                return;
-            }
-
-            if (e.BytesTransferred == 0)
-            {
-                this.OnError(ErrorCode.ERR_PeerDisconnect);
-                return;
-            }
-
-            this.recvBuffer.LastIndex += e.BytesTransferred;
-            if (this.recvBuffer.LastIndex == this.recvBuffer.ChunkSize)
-            {
-                this.recvBuffer.AddLast();
-                this.recvBuffer.LastIndex = 0;
-            }
-
-            // 收到消息回调
-            while (true)
-            {
-                try
-                {
-                    if (!this.parser.Parse())
-                    {
-                        break;
-                    }
-                }
-                catch (Exception ee)
-                {
-                    Log.Error(ee);
-                    this.OnError(ErrorCode.ERR_SocketError);
-                    return;
-                }
-
-                try
-                {
-                    this.OnRead(this.parser.GetPacket());
-                }
-                catch (Exception ee)
-                {
-                    Log.Error(ee);
-                }
-            }
-
-            if (this.socket == null)
-            {
-                return;
-            }
-			
-            this.StartRecv();
-        }
-        
-        
-        public override void Start()
-        {
-            if (!this.isConnected)
-            {
-                this.ConnectAsync(this.RemoteAddress);
-                return;
-            }
-
-            if (!this.isRecving)
-            {
-                this.isRecving = true;
-                this.StartRecv();
-            }
-
-            this.GetService().MarkNeedStartSend(this.Id);
+            SocketAsyncEventArgs eventArgs = (SocketAsyncEventArgs) state;
+            OnError((int) eventArgs.SocketError);
         }
 
         public override void Send(MemoryStream stream)
@@ -203,6 +109,7 @@ namespace Server.Core.Network.TCP
                     {
                         throw new Exception($"send packet too large: {stream.Length}");
                     }
+
                     packetSizeCache.WriteTo(0, (int) stream.Length);
                     break;
                 case Packet.PacketSizeLength2:
@@ -210,16 +117,231 @@ namespace Server.Core.Network.TCP
                     {
                         throw new Exception($"send packet too large: {stream.Length}");
                     }
+
                     packetSizeCache.WriteTo(0, (ushort) stream.Length);
                     break;
                 default:
                     throw new Exception("packet size must be 2 or 4!");
             }
 
-            this.sendBuffer.Write(packetSizeCache, 0, packetSizeCache.Length);
-            this.sendBuffer.Write(stream);
+            sendBuffer.Write(packetSizeCache, 0, packetSizeCache.Length);
+            sendBuffer.Write(stream);
 
             GetService().MarkNeedStartSend(Id);
         }
+        private void OnSendComplete(object state)
+        {
+            if (socket == null)
+            {
+                return;
+            }
+
+            SocketAsyncEventArgs eventArgs = (SocketAsyncEventArgs) state;
+
+            if (eventArgs.SocketError != SocketError.Success)
+            {
+                OnError((int) eventArgs.SocketError);
+                return;
+            }
+
+            if (eventArgs.BytesTransferred == 0)
+            {
+                OnError(NetworkErrorCode.PeerDisconnect);
+                return;
+            }
+
+            sendBuffer.FirstIndex += eventArgs.BytesTransferred;
+            if (sendBuffer.FirstIndex == sendBuffer.ChunkSize)
+            {
+                sendBuffer.FirstIndex = 0;
+                sendBuffer.RemoveFirst();
+            }
+
+            StartSend();
+        }
+
+        private void StartSend()
+        {
+            if (!isConnected)
+            {
+                return;
+            }
+
+            // 没有数据需要发送
+            if (sendBuffer.Length == 0)
+            {
+                isSending = false;
+                return;
+            }
+
+            isSending = true;
+
+            int sendSize = sendBuffer.ChunkSize - sendBuffer.FirstIndex;
+            if (sendSize > sendBuffer.Length)
+            {
+                sendSize = (int) sendBuffer.Length;
+            }
+
+            SendAsync(sendBuffer.First, sendBuffer.FirstIndex, sendSize);
+        }
+
+        private void SendAsync(byte[] buffer, int offset, int count)
+        {
+            try
+            {
+                writeArgs.SetBuffer(buffer, offset, count);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"socket set buffer error: {buffer.Length}, {offset}, {count}", e);
+            }
+
+            if (socket.SendAsync(writeArgs))
+            {
+                return;
+            }
+
+            OnSendComplete(writeArgs);
+        }
+
+        private void OnRecvComplete(object state)
+        {
+            if (socket == null)
+            {
+                return;
+            }
+
+            SocketAsyncEventArgs eventArgs = (SocketAsyncEventArgs) state;
+
+            if (eventArgs.SocketError != SocketError.Success)
+            {
+                OnError((int) eventArgs.SocketError);
+                return;
+            }
+
+            if (eventArgs.BytesTransferred == 0)
+            {
+                OnError(NetworkErrorCode.PeerDisconnect);
+                return;
+            }
+
+            recvBuffer.LastIndex += eventArgs.BytesTransferred;
+            if (recvBuffer.LastIndex == recvBuffer.ChunkSize)
+            {
+                recvBuffer.AddLast();
+                recvBuffer.LastIndex = 0;
+            }
+
+            // 收到消息回调
+            while (true)
+            {
+                try
+                {
+                    if (!parser.Parse())
+                    {
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                    OnError(NetworkErrorCode.SocketError);
+                    return;
+                }
+
+                try
+                {
+                    OnRead(parser.GetPacket());
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                }
+            }
+
+            if (socket == null)
+            {
+                return;
+            }
+
+            StartRecv();
+        }
+
+        private void StartRecv()
+        {
+            int size = recvBuffer.ChunkSize - recvBuffer.LastIndex;
+            RecvAsync(recvBuffer.Last, recvBuffer.LastIndex, size);
+        }
+
+        private void RecvAsync(byte[] buffer, int offset, int count)
+        {
+            try
+            {
+                readArgs.SetBuffer(buffer, offset, count);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"socket set buffer error: {buffer.Length}, {offset}, {count}", e);
+            }
+
+            if (socket.ReceiveAsync(readArgs))
+            {
+                return;
+            }
+
+            OnRecvComplete(readArgs);
+        }
+
+
+        private void OnConnectComplete(object state)
+        {
+            if (socket == null)
+            {
+                return;
+            }
+
+            SocketAsyncEventArgs eventArgs = (SocketAsyncEventArgs) state;
+
+            if (eventArgs.SocketError != SocketError.Success)
+            {
+                OnError((int) eventArgs.SocketError);
+                return;
+            }
+
+            eventArgs.RemoteEndPoint = null;
+            isConnected = true;
+
+            StartConnect();
+        }
+
+        public override void StartConnect()
+        {
+            if (!isConnected)
+            {
+                ConnectAsync(RemoteAddress);
+                return;
+            }
+
+            if (!isRecving)
+            {
+                isRecving = true;
+                StartRecv();
+            }
+
+            GetService().MarkNeedStartSend(Id);
+        }
+
+        private void ConnectAsync(IPEndPoint ipEndPoint)
+        {
+            sendArgs.RemoteEndPoint = ipEndPoint;
+            if (socket.ConnectAsync(sendArgs))
+            {
+                return;
+            }
+
+            OnConnectComplete(sendArgs);
+        }
+
+
     }
 }

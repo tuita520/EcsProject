@@ -1,16 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using Frame.Core.Base;
-using RDHelper;
 
 namespace Server.Core.Network
 {
     public enum ChannelType
     {
         Connect,
-        Accept,
+        Accept
     }
     
     public abstract class AChannel:AComponent
@@ -30,11 +28,11 @@ namespace Server.Core.Network
         {
             add
             {
-                this.readCallback += value;
+                readCallback += value;
             }
             remove
             {
-                this.readCallback -= value;
+                readCallback -= value;
             }
         }
 
@@ -47,31 +45,31 @@ namespace Server.Core.Network
         {
             add
             {
-                this.errorCallback += value;
+                errorCallback += value;
             }
             remove
             {
-                this.errorCallback -= value;
+                errorCallback -= value;
             }
         }
 
         
         protected AChannel(AService service, ChannelType channelType)
         {
-            this.ChannelType = channelType;
+            ChannelType = channelType;
         }
         
-        public abstract void Start();
+        public abstract void StartConnect();
         
         protected void OnRead(MemoryStream memoryStream)
         {
-            this.readCallback.Invoke(memoryStream);
+            readCallback.Invoke(memoryStream);
         }
         
         protected void OnError(int e)
         {
-            this.Error = e;
-            this.errorCallback?.Invoke(this, e);
+            Error = e;
+            errorCallback?.Invoke(this, e);
         }
 
         public abstract void Send(MemoryStream stream);

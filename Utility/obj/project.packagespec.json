@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\code\\EcsProject\\Utility\\Utility.csproj",
+    "projectUniqueName": "D:\\GitHub\\EcsProject\\Utility\\Utility.csproj",
     "projectName": "Utility",
-    "projectPath": "D:\\code\\EcsProject\\Utility\\Utility.csproj",
-    "outputPath": "D:\\code\\EcsProject\\Utility\\obj\\",
+    "projectPath": "D:\\GitHub\\EcsProject\\Utility\\Utility.csproj",
+    "outputPath": "D:\\GitHub\\EcsProject\\Utility\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12,6 +12,10 @@
     "originalTargetFrameworks": [
       "netcoreapp2.2"
     ],
+    "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+      "https://api.nuget.org/v3/index.json": {}
+    },
     "frameworks": {
       "netcoreapp2.2": {
         "projectReferences": {}

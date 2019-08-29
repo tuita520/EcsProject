@@ -116,6 +116,10 @@ namespace Server.Core.Network.TCP
             AcceptAsync();
         }
 
-        
+
+        public void MarkNeedStartSend(long id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

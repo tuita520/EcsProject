@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using RDLog;
 
 namespace Server.Core.Network.TCP
 {
@@ -21,7 +20,7 @@ namespace Server.Core.Network.TCP
 
         public CircularBuffer()
         {
-            this.AddLast();
+            AddLast();
         }
 
         public override long Length
@@ -29,13 +28,13 @@ namespace Server.Core.Network.TCP
             get
             {
                 int c = 0;
-                if (this.bufferQueue.Count == 0)
+                if (bufferQueue.Count == 0)
                 {
                     c = 0;
                 }
                 else
                 {
-                    c = (this.bufferQueue.Count - 1) * ChunkSize + this.LastIndex - this.FirstIndex;
+                    c = (bufferQueue.Count - 1) * ChunkSize + LastIndex - FirstIndex;
                 }
 
 //                if (c < 0)
@@ -51,34 +50,34 @@ namespace Server.Core.Network.TCP
         public void AddLast()
         {
             byte[] buffer;
-            if (this.bufferCache.Count > 0)
+            if (bufferCache.Count > 0)
             {
-                buffer = this.bufferCache.Dequeue();
+                buffer = bufferCache.Dequeue();
             }
             else
             {
                 buffer = new byte[ChunkSize];
             }
 
-            this.bufferQueue.Enqueue(buffer);
-            this.lastBuffer = buffer;
+            bufferQueue.Enqueue(buffer);
+            lastBuffer = buffer;
         }
 
         public void RemoveFirst()
         {
-            this.bufferCache.Enqueue(bufferQueue.Dequeue());
+            bufferCache.Enqueue(bufferQueue.Dequeue());
         }
 
         public byte[] First
         {
             get
             {
-                if (this.bufferQueue.Count == 0)
+                if (bufferQueue.Count == 0)
                 {
-                    this.AddLast();
+                    AddLast();
                 }
 
-                return this.bufferQueue.Peek();
+                return bufferQueue.Peek();
             }
         }
 
@@ -86,12 +85,12 @@ namespace Server.Core.Network.TCP
         {
             get
             {
-                if (this.bufferQueue.Count == 0)
+                if (bufferQueue.Count == 0)
                 {
-                    this.AddLast();
+                    AddLast();
                 }
 
-                return this.lastBuffer;
+                return lastBuffer;
             }
         }
 
@@ -122,7 +121,7 @@ namespace Server.Core.Network.TCP
         // 从CircularBuffer读到stream
         public void Read(Stream stream, int count)
         {
-            if (count > this.Length)
+            if (count > Length)
             {
                 throw new Exception($"bufferList length < count, {Length} {count}");
             }
@@ -131,18 +130,18 @@ namespace Server.Core.Network.TCP
             while (alreadyCopyCount < count)
             {
                 int n = count - alreadyCopyCount;
-                if (ChunkSize - this.FirstIndex > n)
+                if (ChunkSize - FirstIndex > n)
                 {
-                    stream.Write(this.First, this.FirstIndex, n);
-                    this.FirstIndex += n;
+                    stream.Write(First, FirstIndex, n);
+                    FirstIndex += n;
                     alreadyCopyCount += n;
                 }
                 else
                 {
-                    stream.Write(this.First, this.FirstIndex, ChunkSize - this.FirstIndex);
-                    alreadyCopyCount += ChunkSize - this.FirstIndex;
-                    this.FirstIndex = 0;
-                    this.RemoveFirst();
+                    stream.Write(First, FirstIndex, ChunkSize - FirstIndex);
+                    alreadyCopyCount += ChunkSize - FirstIndex;
+                    FirstIndex = 0;
+                    RemoveFirst();
                 }
             }
         }
@@ -155,24 +154,24 @@ namespace Server.Core.Network.TCP
             int alreadyCopyCount = 0;
             while (alreadyCopyCount < count)
             {
-                if (this.LastIndex == ChunkSize)
+                if (LastIndex == ChunkSize)
                 {
-                    this.AddLast();
-                    this.LastIndex = 0;
+                    AddLast();
+                    LastIndex = 0;
                 }
 
                 int n = count - alreadyCopyCount;
-                if (ChunkSize - this.LastIndex > n)
+                if (ChunkSize - LastIndex > n)
                 {
-                    stream.Read(this.lastBuffer, this.LastIndex, n);
-                    this.LastIndex += count - alreadyCopyCount;
+                    stream.Read(lastBuffer, LastIndex, n);
+                    LastIndex += count - alreadyCopyCount;
                     alreadyCopyCount += n;
                 }
                 else
                 {
-                    stream.Read(this.lastBuffer, this.LastIndex, ChunkSize - this.LastIndex);
-                    alreadyCopyCount += ChunkSize - this.LastIndex;
-                    this.LastIndex = ChunkSize;
+                    stream.Read(lastBuffer, LastIndex, ChunkSize - LastIndex);
+                    alreadyCopyCount += ChunkSize - LastIndex;
+                    LastIndex = ChunkSize;
                 }
             }
         }
@@ -213,7 +212,7 @@ namespace Server.Core.Network.TCP
                 throw new Exception($"bufferList length < coutn, buffer length: {buffer.Length} {offset} {count}");
             }
 
-            long length = this.Length;
+            long length = Length;
             if (length < count)
             {
                 count = (int) length;
@@ -223,19 +222,19 @@ namespace Server.Core.Network.TCP
             while (alreadyCopyCount < count)
             {
                 int n = count - alreadyCopyCount;
-                if (ChunkSize - this.FirstIndex > n)
+                if (ChunkSize - FirstIndex > n)
                 {
-                    Array.Copy(this.First, this.FirstIndex, buffer, alreadyCopyCount + offset, n);
-                    this.FirstIndex += n;
+                    Array.Copy(First, FirstIndex, buffer, alreadyCopyCount + offset, n);
+                    FirstIndex += n;
                     alreadyCopyCount += n;
                 }
                 else
                 {
-                    Array.Copy(this.First, this.FirstIndex, buffer, alreadyCopyCount + offset,
-                        ChunkSize - this.FirstIndex);
-                    alreadyCopyCount += ChunkSize - this.FirstIndex;
-                    this.FirstIndex = 0;
-                    this.RemoveFirst();
+                    Array.Copy(First, FirstIndex, buffer, alreadyCopyCount + offset,
+                        ChunkSize - FirstIndex);
+                    alreadyCopyCount += ChunkSize - FirstIndex;
+                    FirstIndex = 0;
+                    RemoveFirst();
                 }
             }
 
@@ -248,25 +247,25 @@ namespace Server.Core.Network.TCP
             int alreadyCopyCount = 0;
             while (alreadyCopyCount < count)
             {
-                if (this.LastIndex == ChunkSize)
+                if (LastIndex == ChunkSize)
                 {
-                    this.AddLast();
-                    this.LastIndex = 0;
+                    AddLast();
+                    LastIndex = 0;
                 }
 
                 int n = count - alreadyCopyCount;
-                if (ChunkSize - this.LastIndex > n)
+                if (ChunkSize - LastIndex > n)
                 {
-                    Array.Copy(buffer, alreadyCopyCount + offset, this.lastBuffer, this.LastIndex, n);
-                    this.LastIndex += count - alreadyCopyCount;
+                    Array.Copy(buffer, alreadyCopyCount + offset, lastBuffer, LastIndex, n);
+                    LastIndex += count - alreadyCopyCount;
                     alreadyCopyCount += n;
                 }
                 else
                 {
-                    Array.Copy(buffer, alreadyCopyCount + offset, this.lastBuffer, this.LastIndex,
-                        ChunkSize - this.LastIndex);
-                    alreadyCopyCount += ChunkSize - this.LastIndex;
-                    this.LastIndex = ChunkSize;
+                    Array.Copy(buffer, alreadyCopyCount + offset, lastBuffer, LastIndex,
+                        ChunkSize - LastIndex);
+                    alreadyCopyCount += ChunkSize - LastIndex;
+                    LastIndex = ChunkSize;
                 }
             }
         }

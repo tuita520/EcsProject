@@ -14,17 +14,17 @@ namespace Server.Core.Network
         {
             add
             {
-                this.acceptCallback += value;
+                acceptCallback += value;
             }
             remove
             {
-                this.acceptCallback -= value;
+                acceptCallback -= value;
             }
         }
 		
         protected void OnAccept(AChannel channel)
         {
-            this.acceptCallback.Invoke(channel);
+            acceptCallback.Invoke(channel);
         }
 
         public abstract AChannel Connect(IPEndPoint ipEndPoint);
@@ -34,5 +34,6 @@ namespace Server.Core.Network
         public abstract void Remove(long channelId);
 
         public abstract void Update();
+        public int PacketSizeLength { get; set; }
     }
 }
