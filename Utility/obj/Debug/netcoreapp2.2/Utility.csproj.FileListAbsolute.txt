@@ -1,0 +1,8 @@
+D:\code\EcsProject\Utility\bin\Debug\netcoreapp2.2\Utility.deps.json
+D:\code\EcsProject\Utility\bin\Debug\netcoreapp2.2\Utility.dll
+D:\code\EcsProject\Utility\bin\Debug\netcoreapp2.2\Utility.pdb
+D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.csproj.CoreCompileInputs.cache
+D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.AssemblyInfoInputs.cache
+D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.AssemblyInfo.cs
+D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.dll
+D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.pdb
