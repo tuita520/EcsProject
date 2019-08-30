@@ -8,7 +8,7 @@ using Server.Core.Network.Helper;
 
 namespace Server.Core.Network.TCP
 {
-    public class TCPChannel : AChannel
+    public class TcpChannel : AChannel
     {
         private readonly Socket _socket;
         private readonly SocketAsyncEventArgs _writeArgs = new SocketAsyncEventArgs();
@@ -29,14 +29,14 @@ namespace Server.Core.Network.TCP
 
         private readonly byte[] packetSizeCache;
 
-        public TCPChannel(TCPService service, IPEndPoint ipEndPoint) : base(service, ChannelType.Connect)
+        public TcpChannel(TcpService service, IPEndPoint ipEndPoint) : base(service, ChannelType.Connect)
         {
             int packetSize = service.PacketSizeLength;
             packetSizeCache = new byte[packetSize];
             _memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
 
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _socket.NoDelay = true;
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) {NoDelay = true};
+            
             _parser = new PacketParser(packetSize, _recvBuffer, _memoryStream);
             _writeArgs.Completed += OnComplete;
             _readArgs.Completed += OnComplete;
@@ -47,7 +47,7 @@ namespace Server.Core.Network.TCP
             isSending = false;
         }
 
-        public TCPChannel(TCPService service, Socket socket) : base(service, ChannelType.Accept)
+        public TcpChannel(TcpService service, Socket socket) : base(service, ChannelType.Accept)
         {
             int packetSize = service.PacketSizeLength;
             packetSizeCache = new byte[packetSize];
@@ -67,18 +67,15 @@ namespace Server.Core.Network.TCP
 
         public bool IsSending => isSending;
 
-        private TCPService GetService()
+        private TcpService GetService()
         {
-            return (TCPService) Service;
+            return (TcpService) Service;
         }
 
         private void OnComplete(object sender, SocketAsyncEventArgs eventArgs)
         {
             switch (eventArgs.LastOperation)
             {
-                case SocketAsyncOperation.Connect:
-                    MainThreadSynchronizationContext.Inst.Post(OnConnectComplete, eventArgs);
-                    break;
                 case SocketAsyncOperation.Receive:
                     MainThreadSynchronizationContext.Inst.Post(OnRecvComplete, eventArgs);
                     break;
@@ -294,26 +291,6 @@ namespace Server.Core.Network.TCP
             }
 
             OnRecvComplete(_readArgs);
-        }
-
-
-        private void OnConnectComplete(object state)
-        {
-            if (_socket == null)
-            {
-                return;
-            }
-
-            SocketAsyncEventArgs eventArgs = (SocketAsyncEventArgs) state;
-
-            if (eventArgs.SocketError != SocketError.Success)
-            {
-                OnError((int) eventArgs.SocketError);
-                return;
-            }
-
-            eventArgs.RemoteEndPoint = null;
-            isConnected = true;
         }
 
         public override void Start()

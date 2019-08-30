@@ -18,7 +18,7 @@ namespace Server.Core.Network
 
         public void Connect(NetworkProtocol protocol)
         {
-            Service = new TCPService( Packet.PacketSizeLength2 ,OnConnect) {Parent = this};
+            Service = new TcpService( Packet.PacketSizeLength2 ,OnConnect) {Parent = this};
         }
 
         public void Bind(NetworkProtocol protocol, string address)
@@ -26,7 +26,7 @@ namespace Server.Core.Network
             try
             {
                 var ipEndPoint = NetworkHelper.ToIPEndPoint(address);
-                Service = new TCPService(Packet.PacketSizeLength2, OnAccept) {Parent = this};
+                Service = new TcpService(Packet.PacketSizeLength2, OnAccept) {Parent = this};
             }
             catch (Exception e)
             {

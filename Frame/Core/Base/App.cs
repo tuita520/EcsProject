@@ -18,11 +18,13 @@ namespace Frame.Core.Base
 
         public void Init()
         {
+            // 异步方法全部会回掉到主线程
+            SynchronizationContext.SetSynchronizationContext(MainThreadSynchronizationContext.Inst);
+            
             _eventSystem = new EventSystem();
             _zone = new ZoneEntity();
-
-            _zone.AddComponent<NetworkComponent, string>("127.0.0.1:");
         }
+
 
         public K AddComponent<K>() where K : AComponent, new()
         {
@@ -36,6 +38,7 @@ namespace Frame.Core.Base
                 try
                 {
                     Thread.Sleep(1);
+                    MainThreadSynchronizationContext.Inst.Update();
                     _eventSystem.Update();
                 }
                 catch (Exception e)

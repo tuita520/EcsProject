@@ -8,34 +8,32 @@ using RDLog;
 
 namespace Server.Core.Network.TCP
 {
-    public class TCPService:AService
+    public class TcpService:AService
     {
-        private readonly Dictionary<long, TCPChannel> _idChannels = new Dictionary<long, TCPChannel>();
-
-        public int PacketSizeLength { get; }
+        private readonly Dictionary<long, TcpChannel> _idChannels = new Dictionary<long, TcpChannel>();
         
-        private readonly Socket _sockt;
+        private readonly Socket _socket;
  
         private readonly SocketAsyncEventArgs _eventArgs = new SocketAsyncEventArgs();
         
         private readonly HashSet<long> _needStartSendChannel = new HashSet<long>();
         
-        public RecyclableMemoryStreamManager MemoryStreamManager = new RecyclableMemoryStreamManager();
+        public readonly RecyclableMemoryStreamManager MemoryStreamManager = new RecyclableMemoryStreamManager();
 
         //Server
-        public TCPService(int packetSizeLength, Action<AChannel> callback):base(callback)
+        public TcpService(int packetSizeLength, Action<AChannel> callback):base(callback)
         {
             PacketSizeLength = packetSizeLength;
-            _sockt = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _sockt.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             
             _eventArgs.Completed += OnComplete;
         }
 
         public void Bind(IPEndPoint ipEndPoint)
         {
-            _sockt.Bind(ipEndPoint);
-            _sockt.Listen(1000);
+            _socket.Bind(ipEndPoint);
+            _socket.Listen(1000);
             AcceptAsync();
         }
 
@@ -48,7 +46,7 @@ namespace Server.Core.Network.TCP
         private void AcceptAsync()
         {
             _eventArgs.AcceptSocket = null;
-            if (_sockt.AcceptAsync(_eventArgs))
+            if (_socket.AcceptAsync(_eventArgs))
             {
                 return;
             }
@@ -57,7 +55,7 @@ namespace Server.Core.Network.TCP
 
         private void ConnectAsync()
         {
-            if (_sockt.ConnectAsync(_eventArgs))
+            if (_socket.ConnectAsync(_eventArgs))
             {
                 return;
             }
@@ -130,7 +128,7 @@ namespace Server.Core.Network.TCP
 
         private void OnAcceptComplete(object o)
         {
-            if (_sockt == null)
+            if (_socket == null)
             {
                 return;
             }
@@ -142,7 +140,7 @@ namespace Server.Core.Network.TCP
                 AcceptAsync();
                 return;
             }
-            var channel = new TCPChannel(this,e.AcceptSocket);
+            var channel = new TcpChannel(this,e.AcceptSocket);
             _idChannels[channel.Id] = channel;
 
             try
@@ -154,7 +152,7 @@ namespace Server.Core.Network.TCP
                 Log.Error(exception);
             }
 
-            if (_sockt == null)
+            if (_socket == null)
             {
                 return;
             }
@@ -164,7 +162,7 @@ namespace Server.Core.Network.TCP
         
         private void OnConnectComplete(object o)
         {
-            if (_sockt == null)
+            if (_socket == null)
             {
                 return;
             }
@@ -177,7 +175,7 @@ namespace Server.Core.Network.TCP
                 ConnectAsync();
                 return;
             }
-            TCPChannel channel = new TCPChannel(this,e.ConnectSocket);
+            TcpChannel channel = new TcpChannel(this,e.ConnectSocket);
             _idChannels[channel.Id] = channel;
 
             try

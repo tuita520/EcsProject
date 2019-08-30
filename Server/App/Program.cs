@@ -1,4 +1,5 @@
-﻿using Frame.Core.Base;
+﻿using System;
+using Frame.Core.Base;
 using RDLog;
 
 namespace Server
@@ -7,9 +8,16 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            App.Inst.Init();
-            App.Inst.Run();
-            Log.Info("..........................");
+            try
+            {
+                App.Inst.Init();
+                App.Inst.Run();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                throw;
+            }
         }
     }
 }
