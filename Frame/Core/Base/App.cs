@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using RDLog;
+using Server.Core.Network;
 using Utility;
 
 namespace Frame.Core.Base
@@ -19,6 +20,8 @@ namespace Frame.Core.Base
         {
             _eventSystem = new EventSystem();
             _zone = new ZoneEntity();
+
+            _zone.AddComponent<NetworkComponent, string>("127.0.0.1:");
         }
 
         public K AddComponent<K>() where K : AComponent, new()

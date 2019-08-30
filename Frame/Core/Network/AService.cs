@@ -6,30 +6,19 @@ namespace Server.Core.Network
 {
     public abstract class AService:AComponent
     {
+        private Action<AChannel> callback;
+        
+        public AService(Action<AChannel> callback)
+        {
+            this.callback += callback;
+        }
+        
         public abstract AChannel GetChannel(long id);
 
-        private Action<AChannel> acceptCallback;
-
-        public event Action<AChannel> AcceptCallback
+        protected void OnAction(AChannel channel)
         {
-            add
-            {
-                acceptCallback += value;
-            }
-            remove
-            {
-                acceptCallback -= value;
-            }
-        }
-		
-        protected void OnAccept(AChannel channel)
-        {
-            acceptCallback.Invoke(channel);
-        }
-
-        public abstract AChannel Connect(IPEndPoint ipEndPoint);
-		
-        public abstract AChannel Connect(string address);
+            callback.Invoke(channel);
+        } 
 
         public abstract void Remove(long channelId);
 

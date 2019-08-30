@@ -24,8 +24,22 @@ namespace Frame.Core.Base
                 throw new Exception($"AddComponent, component already exist, id: {this.Id}, component: {typeof(K).Name}");
             }
 
-            K component = ComponentFactory.Create<K>();
+            K component = ComponentFactory.Create<K>(this);
             this.componentDict.Add(type, component);
+            return component;
+        }
+        
+        public virtual K AddComponent<K, P1>(P1 p1) where K :AComponent, new()
+        {
+            Type type = typeof (K);
+            if (this.componentDict.ContainsKey(type))
+            {
+                throw new Exception($"AddComponent, component already exist, id: {this.Id}, component: {typeof(K).Name}");
+            }
+
+            K component = ComponentFactory.Create<K, P1>(this, p1);
+			
+            componentDict.Add(type, component);
             return component;
         }
         

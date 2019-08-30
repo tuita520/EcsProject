@@ -8,7 +8,7 @@ namespace Server.Core.Network
         
         public void Start()
         {
-            channel.StartConnect();
+            channel.Start();
         }
 
     }

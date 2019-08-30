@@ -10,34 +10,36 @@ namespace Server.Core.Network.TCP
 {
     public class TCPChannel : AChannel
     {
-        private Socket socket;
-        private SocketAsyncEventArgs writeArgs = new SocketAsyncEventArgs();
-        private SocketAsyncEventArgs readArgs = new SocketAsyncEventArgs();
+        private readonly Socket _socket;
+        private readonly SocketAsyncEventArgs _writeArgs = new SocketAsyncEventArgs();
+        private readonly SocketAsyncEventArgs _readArgs = new SocketAsyncEventArgs();
 
-        private readonly CircularBuffer sendBuffer = new CircularBuffer();
-        private readonly CircularBuffer recvBuffer = new CircularBuffer();
+        private readonly CircularBuffer _sendBuffer = new CircularBuffer();
+        private readonly CircularBuffer _recvBuffer = new CircularBuffer();
 
+        private readonly MemoryStream _memoryStream;
+        
         private bool isSending;
 
         private bool isRecving;
 
         private bool isConnected;
 
-        private readonly PacketParser parser;
+        private readonly PacketParser _parser;
 
         private readonly byte[] packetSizeCache;
 
-        public TCPChannel(AService service, IPEndPoint ipEndPoint) : base(service, ChannelType.Connect)
+        public TCPChannel(TCPService service, IPEndPoint ipEndPoint) : base(service, ChannelType.Connect)
         {
             int packetSize = service.PacketSizeLength;
             packetSizeCache = new byte[packetSize];
-            this.memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
+            _memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
 
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.NoDelay = true;
-            parser = new PacketParser(packetSize, recvBuffer, this.memoryStream);
-            sendArgs.Completed += OnComplete;
-            recvArgs.Completed += OnComplete;
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _socket.NoDelay = true;
+            _parser = new PacketParser(packetSize, _recvBuffer, _memoryStream);
+            _writeArgs.Completed += OnComplete;
+            _readArgs.Completed += OnComplete;
 
             RemoteAddress = ipEndPoint;
 
@@ -45,23 +47,25 @@ namespace Server.Core.Network.TCP
             isSending = false;
         }
 
-        public TCPChannel(AService service, Socket socket) : base(service, ChannelType.Accept)
+        public TCPChannel(TCPService service, Socket socket) : base(service, ChannelType.Accept)
         {
             int packetSize = service.PacketSizeLength;
             packetSizeCache = new byte[packetSize];
-            this.memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
+            _memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
 
-            this.socket = socket;
-            this.socket.NoDelay = true;
-            parser = new PacketParser(packetSize, recvBuffer, this.memoryStream);
-            sendArgs.Completed += OnComplete;
-            recvArgs.Completed += OnComplete;
+            _socket = socket;
+            _socket.NoDelay = true;
+            _parser = new PacketParser(packetSize, _recvBuffer, _memoryStream);
+            _writeArgs.Completed += OnComplete;
+            _readArgs.Completed += OnComplete;
 
             RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
 
             isConnected = true;
             isSending = false;
         }
+
+        public bool IsSending => isSending;
 
         private TCPService GetService()
         {
@@ -124,14 +128,14 @@ namespace Server.Core.Network.TCP
                     throw new Exception("packet size must be 2 or 4!");
             }
 
-            sendBuffer.Write(packetSizeCache, 0, packetSizeCache.Length);
-            sendBuffer.Write(stream);
+            _sendBuffer.Write(packetSizeCache, 0, packetSizeCache.Length);
+            _sendBuffer.Write(stream);
 
             GetService().MarkNeedStartSend(Id);
         }
         private void OnSendComplete(object state)
         {
-            if (socket == null)
+            if (_socket == null)
             {
                 return;
             }
@@ -150,17 +154,17 @@ namespace Server.Core.Network.TCP
                 return;
             }
 
-            sendBuffer.FirstIndex += eventArgs.BytesTransferred;
-            if (sendBuffer.FirstIndex == sendBuffer.ChunkSize)
+            _sendBuffer.FirstIndex += eventArgs.BytesTransferred;
+            if (_sendBuffer.FirstIndex == _sendBuffer.ChunkSize)
             {
-                sendBuffer.FirstIndex = 0;
-                sendBuffer.RemoveFirst();
+                _sendBuffer.FirstIndex = 0;
+                _sendBuffer.RemoveFirst();
             }
 
             StartSend();
         }
 
-        private void StartSend()
+        public void StartSend()
         {
             if (!isConnected)
             {
@@ -168,7 +172,7 @@ namespace Server.Core.Network.TCP
             }
 
             // 没有数据需要发送
-            if (sendBuffer.Length == 0)
+            if (_sendBuffer.Length == 0)
             {
                 isSending = false;
                 return;
@@ -176,37 +180,37 @@ namespace Server.Core.Network.TCP
 
             isSending = true;
 
-            int sendSize = sendBuffer.ChunkSize - sendBuffer.FirstIndex;
-            if (sendSize > sendBuffer.Length)
+            int sendSize = _sendBuffer.ChunkSize - _sendBuffer.FirstIndex;
+            if (sendSize > _sendBuffer.Length)
             {
-                sendSize = (int) sendBuffer.Length;
+                sendSize = (int) _sendBuffer.Length;
             }
 
-            SendAsync(sendBuffer.First, sendBuffer.FirstIndex, sendSize);
+            SendAsync(_sendBuffer.First, _sendBuffer.FirstIndex, sendSize);
         }
 
         private void SendAsync(byte[] buffer, int offset, int count)
         {
             try
             {
-                writeArgs.SetBuffer(buffer, offset, count);
+                _writeArgs.SetBuffer(buffer, offset, count);
             }
             catch (Exception e)
             {
                 throw new Exception($"socket set buffer error: {buffer.Length}, {offset}, {count}", e);
             }
 
-            if (socket.SendAsync(writeArgs))
+            if (_socket.SendAsync(_writeArgs))
             {
                 return;
             }
 
-            OnSendComplete(writeArgs);
+            OnSendComplete(_writeArgs);
         }
 
         private void OnRecvComplete(object state)
         {
-            if (socket == null)
+            if (_socket == null)
             {
                 return;
             }
@@ -225,11 +229,11 @@ namespace Server.Core.Network.TCP
                 return;
             }
 
-            recvBuffer.LastIndex += eventArgs.BytesTransferred;
-            if (recvBuffer.LastIndex == recvBuffer.ChunkSize)
+            _recvBuffer.LastIndex += eventArgs.BytesTransferred;
+            if (_recvBuffer.LastIndex == _recvBuffer.ChunkSize)
             {
-                recvBuffer.AddLast();
-                recvBuffer.LastIndex = 0;
+                _recvBuffer.AddLast();
+                _recvBuffer.LastIndex = 0;
             }
 
             // 收到消息回调
@@ -237,7 +241,7 @@ namespace Server.Core.Network.TCP
             {
                 try
                 {
-                    if (!parser.Parse())
+                    if (!_parser.Parse())
                     {
                         break;
                     }
@@ -251,7 +255,7 @@ namespace Server.Core.Network.TCP
 
                 try
                 {
-                    OnRead(parser.GetPacket());
+                    OnRead(_parser.GetPacket());
                 }
                 catch (Exception e)
                 {
@@ -259,7 +263,7 @@ namespace Server.Core.Network.TCP
                 }
             }
 
-            if (socket == null)
+            if (_socket == null)
             {
                 return;
             }
@@ -269,33 +273,33 @@ namespace Server.Core.Network.TCP
 
         private void StartRecv()
         {
-            int size = recvBuffer.ChunkSize - recvBuffer.LastIndex;
-            RecvAsync(recvBuffer.Last, recvBuffer.LastIndex, size);
+            int size = _recvBuffer.ChunkSize - _recvBuffer.LastIndex;
+            RecvAsync(_recvBuffer.Last, _recvBuffer.LastIndex, size);
         }
 
         private void RecvAsync(byte[] buffer, int offset, int count)
         {
             try
             {
-                readArgs.SetBuffer(buffer, offset, count);
+                _readArgs.SetBuffer(buffer, offset, count);
             }
             catch (Exception e)
             {
                 throw new Exception($"socket set buffer error: {buffer.Length}, {offset}, {count}", e);
             }
 
-            if (socket.ReceiveAsync(readArgs))
+            if (_socket.ReceiveAsync(_readArgs))
             {
                 return;
             }
 
-            OnRecvComplete(readArgs);
+            OnRecvComplete(_readArgs);
         }
 
 
         private void OnConnectComplete(object state)
         {
-            if (socket == null)
+            if (_socket == null)
             {
                 return;
             }
@@ -310,38 +314,16 @@ namespace Server.Core.Network.TCP
 
             eventArgs.RemoteEndPoint = null;
             isConnected = true;
-
-            StartConnect();
         }
 
-        public override void StartConnect()
+        public override void Start()
         {
-            if (!isConnected)
-            {
-                ConnectAsync(RemoteAddress);
-                return;
-            }
-
             if (!isRecving)
             {
                 isRecving = true;
                 StartRecv();
             }
-
             GetService().MarkNeedStartSend(Id);
         }
-
-        private void ConnectAsync(IPEndPoint ipEndPoint)
-        {
-            sendArgs.RemoteEndPoint = ipEndPoint;
-            if (socket.ConnectAsync(sendArgs))
-            {
-                return;
-            }
-
-            OnConnectComplete(sendArgs);
-        }
-
-
     }
 }

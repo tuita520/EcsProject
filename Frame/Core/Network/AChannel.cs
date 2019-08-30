@@ -59,7 +59,7 @@ namespace Server.Core.Network
             ChannelType = channelType;
         }
         
-        public abstract void StartConnect();
+        public abstract void Start();
         
         protected void OnRead(MemoryStream memoryStream)
         {
