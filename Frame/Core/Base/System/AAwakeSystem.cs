@@ -4,7 +4,7 @@ namespace Frame.Core.Base
 {
     public interface IAwakeSystem
     {
-        Type GetType();
+        Type Type();
     }
     
     public interface IAwakeRun
@@ -19,7 +19,7 @@ namespace Frame.Core.Base
 	
     public abstract class AAwakeSystem<T>:IAwakeSystem,IAwakeRun
     {
-        public new Type GetType()
+        public new Type Type()
         {
             return typeof(T);
         }
@@ -33,7 +33,7 @@ namespace Frame.Core.Base
     }
     
     
-    public abstract class AwakeSystem<T, A> : IAwakeSystem,IAwakeRun<A>
+    public abstract class AAwakeSystem<T, A> : IAwakeSystem,IAwakeRun<A>
     {
         public Type Type()
         {

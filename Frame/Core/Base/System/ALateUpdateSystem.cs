@@ -2,13 +2,20 @@ using System;
 
 namespace Frame.Core.Base
 {
-    public abstract class ALateUpdateSystem<T>:ISystem
+    public interface ILateUpdateSystem
     {
-        public new Type GetType()
+        Type Type();
+        void Run(object o);
+    }
+
+    
+    public abstract class ALateUpdateSystem<T>:ILateUpdateSystem
+    {
+        public Type Type()
         {
             return typeof(T);
         }
-        
+
         public void Run(object o)
         {
             this.LateUpdate((T)o);

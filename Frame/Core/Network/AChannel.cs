@@ -15,7 +15,6 @@ namespace Server.Core.Network
     {
         public ChannelType ChannelType { get; }
 
-
         public AService Service { get; private set; }
 
         
@@ -26,14 +25,8 @@ namespace Server.Core.Network
 
         public event Action<MemoryStream> ReadCallback
         {
-            add
-            {
-                readCallback += value;
-            }
-            remove
-            {
-                readCallback -= value;
-            }
+            add => readCallback += value;
+            remove => readCallback -= value;
         }
 
         public int Error { get; set; }
@@ -43,23 +36,15 @@ namespace Server.Core.Network
 
         public event Action<AChannel, int> ErrorCallback
         {
-            add
-            {
-                errorCallback += value;
-            }
-            remove
-            {
-                errorCallback -= value;
-            }
+            add => errorCallback += value;
+            remove => errorCallback -= value;
         }
 
-        
         protected AChannel(AService service, ChannelType channelType)
         {
             ChannelType = channelType;
+            Service = service;
         }
-        
-        public abstract void Start();
         
         protected void OnRead(MemoryStream memoryStream)
         {
@@ -74,5 +59,6 @@ namespace Server.Core.Network
 
         public abstract void Send(MemoryStream stream);
 
+        public abstract void Start();
     }
 }

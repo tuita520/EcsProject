@@ -2,13 +2,20 @@ using System;
 
 namespace Frame.Core.Base
 {
-    public abstract class AUpdateSystem<T>:ISystem
+    
+    public interface IUpdateSystem
     {
-        public new Type GetType()
+        Type Type();
+        void Run(object o);
+    }
+    
+    public abstract class AUpdateSystem<T>:IUpdateSystem
+    {
+        public Type Type()
         {
             return typeof(T);
         }
-        
+
         public void Run(object o)
         {
             this.Update((T)o);

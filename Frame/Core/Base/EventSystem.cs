@@ -12,27 +12,27 @@ namespace Frame.Core.Base
         private readonly Dictionary<long, AComponent> allComponents = new Dictionary<long, AComponent>();
         
         private readonly UnOrderMultiMap<Type, IAwakeSystem> awakeSystems = new UnOrderMultiMap<Type, IAwakeSystem>();
-        
-        private readonly UnOrderMultiMap<Type, ISystem> startSystems = new UnOrderMultiMap<Type, ISystem>();
-        private readonly UnOrderMultiMap<Type, ISystem> destroySystems = new UnOrderMultiMap<Type, ISystem>();
-        
-        private readonly UnOrderMultiMap<Type, ISystem> loadSystems = new UnOrderMultiMap<Type, ISystem>();
-        
-        private readonly UnOrderMultiMap<Type, ISystem> updateSystems = new UnOrderMultiMap<Type, ISystem>();
-        private readonly UnOrderMultiMap<Type, ISystem> lateUpdateSystems = new UnOrderMultiMap<Type, ISystem>();
-        
-        
+
+        private readonly UnOrderMultiMap<Type, IStartSystem> startSystems = new UnOrderMultiMap<Type, IStartSystem>();
+        private readonly UnOrderMultiMap<Type, IDestroySystem> destroySystems = new UnOrderMultiMap<Type, IDestroySystem>();
+
+        private readonly UnOrderMultiMap<Type, ILoadSystem> loadSystems = new UnOrderMultiMap<Type, ILoadSystem>();
+
+        private readonly UnOrderMultiMap<Type, IUpdateSystem> updateSystems = new UnOrderMultiMap<Type, IUpdateSystem>();
+        private readonly UnOrderMultiMap<Type, ILateUpdateSystem> lateUpdateSystems = new UnOrderMultiMap<Type, ILateUpdateSystem>();
+
+
         private readonly Queue<long> starts = new Queue<long>();
 
         private Queue<long> loaders = new Queue<long>();
         private Queue<long> loaders2 = new Queue<long>();
-        
+
         private Queue<long> updates = new Queue<long>();
         private Queue<long> updates2 = new Queue<long>();
-        
+
         private Queue<long> lateUpdates = new Queue<long>();
         private Queue<long> lateUpdates2 = new Queue<long>();
-        
+
         public void Add(AComponent component)
         {
             this.allComponents.Add(component.Id, component);
@@ -60,18 +60,47 @@ namespace Frame.Core.Base
             }
         }
 
+        public void AddSystem<T>()
+        {
+                object obj = Activator.CreateInstance(typeof(T));
+
+                switch (obj)
+                {
+                    case IAwakeSystem objectSystem:
+                        this.awakeSystems.Add(objectSystem.Type(), objectSystem);
+                        break;
+                    case IUpdateSystem updateSystem:
+                        this.updateSystems.Add(updateSystem.Type(), updateSystem);
+                        break;
+                    case ILateUpdateSystem lateUpdateSystem:
+                        this.lateUpdateSystems.Add(lateUpdateSystem.Type(), lateUpdateSystem);
+                        break;
+                    case IStartSystem startSystem:
+                        this.startSystems.Add(startSystem.Type(), startSystem);
+                        break;
+                    case IDestroySystem destroySystem:
+                        this.destroySystems.Add(destroySystem.Type(), destroySystem);
+                        break;
+                    case ILoadSystem loadSystem:
+                        this.loadSystems.Add(loadSystem.Type(), loadSystem);
+                        break;
+            }
+
+            this.Load();
+        }
+
         public void Remove(long id)
         {
             this.allComponents.Remove(id);
         }
-        
+
         public AComponent Get(long id)
         {
             AComponent component = null;
             this.allComponents.TryGetValue(id, out component);
             return component;
         }
-        
+
         public void Awake(AComponent component)
         {
             var iAwakeSystems = this.awakeSystems[component.GetType()];
@@ -93,7 +122,7 @@ namespace Frame.Core.Base
                 }
             }
         }
-        
+
         public void Awake<P1>(AComponent component, P1 p1)
         {
             var iAwakeSystems = this.awakeSystems[component.GetType()];
@@ -115,7 +144,7 @@ namespace Frame.Core.Base
                 }
             }
         }
-        
+
         public void Load()
         {
             while (this.loaders.Count > 0)
@@ -125,11 +154,12 @@ namespace Frame.Core.Base
                 {
                     continue;
                 }
+
                 if (component.IsDisposed)
                 {
                     continue;
                 }
-				
+
                 var iSystemList = this.loadSystems[component.GetType()];
                 if (iSystemList == null)
                 {
@@ -168,7 +198,7 @@ namespace Frame.Core.Base
                 {
                     continue;
                 }
-				
+
                 foreach (var iStartSystem in iStartSystems)
                 {
                     try
@@ -182,7 +212,7 @@ namespace Frame.Core.Base
                 }
             }
         }
-        
+
         public void Destroy(Component component)
         {
             var iDestroySystems = this.destroySystems[component.GetType()];
@@ -212,7 +242,7 @@ namespace Frame.Core.Base
         public void Update()
         {
             this.Start();
-			
+
             while (this.updates.Count > 0)
             {
                 var id = this.updates.Dequeue();
@@ -220,11 +250,12 @@ namespace Frame.Core.Base
                 {
                     continue;
                 }
+
                 if (component.IsDisposed)
                 {
                     continue;
                 }
-				
+
                 var iUpdateSystems = this.updateSystems[component.GetType()];
                 if (iUpdateSystems == null)
                 {
@@ -258,6 +289,7 @@ namespace Frame.Core.Base
                 {
                     continue;
                 }
+
                 if (component.IsDisposed)
                 {
                     continue;
@@ -286,6 +318,5 @@ namespace Frame.Core.Base
 
             ObjectHelper.Swap(ref this.lateUpdates, ref this.lateUpdates2);
         }
-
     }
 }

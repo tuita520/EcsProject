@@ -26,9 +26,19 @@ namespace Frame.Core.Base
         }
 
 
-        public K AddComponent<K>() where K : AComponent, new()
+        public T AddComponent<T>() where T : AComponent, new()
         {
-           return _zone.AddComponent<K>();
+           return _zone.AddComponent<T>();
+        }
+
+        public T AddComponent<T,A>(A a) where T : AComponent, new()
+        {
+            return _zone.AddComponent<T,A>(a);
+        }
+        
+        public void AddSystem<T>()
+        {
+            _eventSystem.AddSystem<T>();
         }
 
         public void Run()

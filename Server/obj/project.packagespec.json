@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\GitHub\\EcsProject\\Server\\Server.csproj",
+    "projectUniqueName": "D:\\code\\EcsProject\\Server\\Server.csproj",
     "projectName": "Server",
-    "projectPath": "D:\\GitHub\\EcsProject\\Server\\Server.csproj",
-    "outputPath": "D:\\GitHub\\EcsProject\\Server\\obj\\",
+    "projectPath": "D:\\code\\EcsProject\\Server\\Server.csproj",
+    "outputPath": "D:\\code\\EcsProject\\Server\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12,24 +12,20 @@
     "originalTargetFrameworks": [
       "netcoreapp2.2"
     ],
-    "sources": {
-      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-      "https://api.nuget.org/v3/index.json": {}
-    },
     "frameworks": {
       "netcoreapp2.2": {
         "projectReferences": {
-          "D:\\GitHub\\EcsProject\\Frame\\Frame.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Frame\\Frame.csproj"
+          "D:\\code\\EcsProject\\Frame\\Frame.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Frame\\Frame.csproj"
           },
-          "D:\\GitHub\\EcsProject\\Helper\\Helper.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Helper\\Helper.csproj"
+          "D:\\code\\EcsProject\\Helper\\Helper.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Helper\\Helper.csproj"
           },
-          "D:\\GitHub\\EcsProject\\Log\\Log.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Log\\Log.csproj"
+          "D:\\code\\EcsProject\\Log\\Log.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Log\\Log.csproj"
           },
-          "D:\\GitHub\\EcsProject\\Utility\\Utility.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Utility\\Utility.csproj"
+          "D:\\code\\EcsProject\\Utility\\Utility.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Utility\\Utility.csproj"
           }
         }
       }

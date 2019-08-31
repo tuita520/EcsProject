@@ -29,47 +29,49 @@ namespace Server.Core.Network.TCP
 
         private readonly byte[] packetSizeCache;
 
-        public TcpChannel(TcpService service, IPEndPoint ipEndPoint) : base(service, ChannelType.Connect)
+        public TcpChannel(AService connectService, Socket socket) : base(connectService, ChannelType.Connect)
         {
-            int packetSize = service.PacketSizeLength;
+            int packetSize = Service.PacketSizeLength;
             packetSizeCache = new byte[packetSize];
-            _memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
-
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) {NoDelay = true};
-            
+            _memoryStream = Service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
             _parser = new PacketParser(packetSize, _recvBuffer, _memoryStream);
+            
             _writeArgs.Completed += OnComplete;
             _readArgs.Completed += OnComplete;
-
-            RemoteAddress = ipEndPoint;
-
-            isConnected = false;
+            
+            RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
             isSending = false;
-        }
-
-        public TcpChannel(TcpService service, Socket socket) : base(service, ChannelType.Accept)
-        {
-            int packetSize = service.PacketSizeLength;
-            packetSizeCache = new byte[packetSize];
-            _memoryStream = service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
-
+            
+            isConnected = false;
+            //_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) {NoDelay = true};
             _socket = socket;
             _socket.NoDelay = true;
+        }
+
+        public TcpChannel(TcpListenService listenService, Socket socket) : base(listenService, ChannelType.Accept)
+        {
+            int packetSize = Service.PacketSizeLength;
+            packetSizeCache = new byte[packetSize];
+            _memoryStream = Service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
             _parser = new PacketParser(packetSize, _recvBuffer, _memoryStream);
+            
             _writeArgs.Completed += OnComplete;
             _readArgs.Completed += OnComplete;
 
             RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
-
-            isConnected = true;
             isSending = false;
+            
+            isConnected = true;
+            _socket = socket;
+            _socket.NoDelay = true;
         }
+
 
         public bool IsSending => isSending;
 
-        private TcpService GetService()
+        private TcpListenService GetService()
         {
-            return (TcpService) Service;
+            return (TcpListenService) Service;
         }
 
         private void OnComplete(object sender, SocketAsyncEventArgs eventArgs)
@@ -95,6 +97,7 @@ namespace Server.Core.Network.TCP
             SocketAsyncEventArgs eventArgs = (SocketAsyncEventArgs) state;
             OnError((int) eventArgs.SocketError);
         }
+
 
         public override void Send(MemoryStream stream)
         {

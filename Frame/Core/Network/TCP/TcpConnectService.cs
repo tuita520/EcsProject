@@ -8,7 +8,7 @@ using RDLog;
 
 namespace Server.Core.Network.TCP
 {
-    public class TcpService:AService
+    public class TcpConnectService:AService
     {
         private readonly Dictionary<long, TcpChannel> _idChannels = new Dictionary<long, TcpChannel>();
         
@@ -18,23 +18,13 @@ namespace Server.Core.Network.TCP
         
         private readonly HashSet<long> _needStartSendChannel = new HashSet<long>();
         
-        public readonly RecyclableMemoryStreamManager MemoryStreamManager = new RecyclableMemoryStreamManager();
-
         //Server
-        public TcpService(int packetSizeLength, Action<AChannel> callback):base(callback)
+        public TcpConnectService(Action<AChannel> callback):base(callback)
         {
-            PacketSizeLength = packetSizeLength;
+            PacketSizeLength = Packet.PacketSizeLength2;
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            
             _eventArgs.Completed += OnComplete;
-        }
-
-        public void Bind(IPEndPoint ipEndPoint)
-        {
-            _socket.Bind(ipEndPoint);
-            _socket.Listen(1000);
-            AcceptAsync();
         }
 
         public void Connect(IPEndPoint ipEndPoint)
@@ -43,16 +33,6 @@ namespace Server.Core.Network.TCP
             ConnectAsync();
         }
         
-        private void AcceptAsync()
-        {
-            _eventArgs.AcceptSocket = null;
-            if (_socket.AcceptAsync(_eventArgs))
-            {
-                return;
-            }
-            OnAcceptComplete(_eventArgs);
-        }
-
         private void ConnectAsync()
         {
             if (_socket.ConnectAsync(_eventArgs))
@@ -62,6 +42,11 @@ namespace Server.Core.Network.TCP
             OnConnectComplete(_eventArgs);
         }
         
+        
+        public void MarkNeedStartSend(long id)
+        {
+            _needStartSendChannel.Add(id);
+        }
         
         public override AChannel GetChannel(long id)
         {
@@ -115,51 +100,14 @@ namespace Server.Core.Network.TCP
         {
             switch (eventArgs.LastOperation)
             {
-                case SocketAsyncOperation.Accept:
-                    MainThreadSynchronizationContext.Inst.Post(OnAcceptComplete, eventArgs);
-                    break;
                 case SocketAsyncOperation.Connect:
                     MainThreadSynchronizationContext.Inst.Post(OnConnectComplete,eventArgs);
                     break;
                 default:
-                    throw new Exception($"socket accept error: {eventArgs.LastOperation}");
+                    throw new Exception($"socket connect error: {eventArgs.LastOperation}");
             }
         }
 
-        private void OnAcceptComplete(object o)
-        {
-            if (_socket == null)
-            {
-                return;
-            }
-            var e = (SocketAsyncEventArgs)o;
-			
-            if (e.SocketError != SocketError.Success)
-            {
-                Log.Error($"accept error {e.SocketError}");
-                AcceptAsync();
-                return;
-            }
-            var channel = new TcpChannel(this,e.AcceptSocket);
-            _idChannels[channel.Id] = channel;
-
-            try
-            {
-                OnAction(channel);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception);
-            }
-
-            if (_socket == null)
-            {
-                return;
-            }
-			
-            AcceptAsync();
-        }
-        
         private void OnConnectComplete(object o)
         {
             if (_socket == null)
@@ -188,9 +136,6 @@ namespace Server.Core.Network.TCP
             }
         }
 
-        public void MarkNeedStartSend(long id)
-        {
-            _needStartSendChannel.Add(id);
-        }
+ 
     }
 }

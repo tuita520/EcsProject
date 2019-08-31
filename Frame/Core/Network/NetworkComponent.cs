@@ -11,41 +11,51 @@ namespace Server.Core.Network
         TCP
     }
 
+  
+
+    
     public class NetworkComponent : AComponent
     {
-        protected AService Service;
+        private AService Service;
         private readonly Dictionary<long, Session> sessions = new Dictionary<long, Session>();
 
-        public void Connect(NetworkProtocol protocol)
-        {
-            Service = new TcpService( Packet.PacketSizeLength2 ,OnConnect) {Parent = this};
-        }
+//        public IMessagePacker MessagePacker { get; set; }
 
-        public void Bind(NetworkProtocol protocol, string address)
+        
+        public void Awake(object protocol)
         {
-            try
-            {
-                var ipEndPoint = NetworkHelper.ToIPEndPoint(address);
-                Service = new TcpService(Packet.PacketSizeLength2, OnAccept) {Parent = this};
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"NetworkComponent Awake Error {address}", e);
-            }
+            Service = new TcpConnectService(OnConnect) {Parent = this};
+        }
+        
+        public void Awake(object protocol,string address)
+        {
+            var ipEndPoint = NetworkHelper.ToIPEndPoint(address);
+            Service = new TcpListenService(ipEndPoint, OnAccept) {Parent = this};
         }
         
         public void OnAccept(AChannel channel)
         {
             Session session = ComponentFactory.Create<Session, AChannel>(this, channel);
             sessions.Add(session.Id, session);
-            session.Start();
+//            session.Start();
         }
         
         public void OnConnect(AChannel channel)
         {
             Session session = ComponentFactory.Create<Session, AChannel>(this, channel);
             sessions.Add(session.Id, session);
-            session.Start();
+//            session.Start();
+        }
+
+    }
+    
+    public class NetworkComponentAwakeSystem : AAwakeSystem<NetworkComponent, string>
+    {
+        public override void Awake(NetworkComponent self, string address)
+        {
+            self.Awake(NetworkProtocol.TCP, address);
+//            self.MessagePacker = new ProtobufPacker();
+//            self.MessageDispatcher = new OuterMessageDispatcher();
         }
     }
 }
