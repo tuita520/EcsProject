@@ -207,6 +207,51 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "Frame/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Helper": "1.0.0",
+          "Log": "1.0.0",
+          "Utility": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Frame.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Frame.dll": {}
+        }
+      },
+      "Helper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Helper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Helper.dll": {}
+        }
+      },
+      "Log/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Log.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Log.dll": {}
+        }
+      },
+      "Utility/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Utility.dll": {}
+        }
       }
     }
   },
@@ -679,11 +724,35 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "Frame/1.0.0": {
+      "type": "project",
+      "path": "../Frame/Frame.csproj",
+      "msbuildProject": "../Frame/Frame.csproj"
+    },
+    "Helper/1.0.0": {
+      "type": "project",
+      "path": "../Helper/Helper.csproj",
+      "msbuildProject": "../Helper/Helper.csproj"
+    },
+    "Log/1.0.0": {
+      "type": "project",
+      "path": "../Log/Log.csproj",
+      "msbuildProject": "../Log/Log.csproj"
+    },
+    "Utility/1.0.0": {
+      "type": "project",
+      "path": "../Utility/Utility.csproj",
+      "msbuildProject": "../Utility/Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Microsoft.NETCore.App >= 2.2.0"
+      "Frame >= 1.0.0",
+      "Helper >= 1.0.0",
+      "Log >= 1.0.0",
+      "Microsoft.NETCore.App >= 2.2.0",
+      "Utility >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -715,7 +784,20 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\code\\EcsProject\\Frame\\Frame.csproj": {
+              "projectPath": "D:\\code\\EcsProject\\Frame\\Frame.csproj"
+            },
+            "D:\\code\\EcsProject\\Helper\\Helper.csproj": {
+              "projectPath": "D:\\code\\EcsProject\\Helper\\Helper.csproj"
+            },
+            "D:\\code\\EcsProject\\Log\\Log.csproj": {
+              "projectPath": "D:\\code\\EcsProject\\Log\\Log.csproj"
+            },
+            "D:\\code\\EcsProject\\Utility\\Utility.csproj": {
+              "projectPath": "D:\\code\\EcsProject\\Utility\\Utility.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -14,7 +14,20 @@
     ],
     "frameworks": {
       "netcoreapp2.2": {
-        "projectReferences": {}
+        "projectReferences": {
+          "D:\\code\\EcsProject\\Frame\\Frame.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Frame\\Frame.csproj"
+          },
+          "D:\\code\\EcsProject\\Helper\\Helper.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Helper\\Helper.csproj"
+          },
+          "D:\\code\\EcsProject\\Log\\Log.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Log\\Log.csproj"
+          },
+          "D:\\code\\EcsProject\\Utility\\Utility.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\Utility\\Utility.csproj"
+          }
+        }
       }
     },
     "warningProperties": {
