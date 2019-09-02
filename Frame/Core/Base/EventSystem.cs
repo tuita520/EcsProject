@@ -201,7 +201,7 @@ namespace Frame.Core.Base
             }
         }
 
-        public void Awake<P1>(AComponent component, P1 p1)
+        public void Awake<A>(AComponent component, A a)
         {
             var iAwakeSystems = this.awakeSystems[component.GetType()];
             if (iAwakeSystems == null)
@@ -211,10 +211,32 @@ namespace Frame.Core.Base
 
             foreach (var aAwakeSystem in iAwakeSystems)
             {
-                if (!(aAwakeSystem is IAwakeRun<P1> iAwake)) continue;
+                if (!(aAwakeSystem is IAwakeRun<A> iAwake)) continue;
                 try
                 {
-                    iAwake.Run(component, p1);
+                    iAwake.Run(component, a);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                }
+            }
+        }
+        
+        public void Awake<A,B>(AComponent component, A a,B b)
+        {
+            var iAwakeSystems = this.awakeSystems[component.GetType()];
+            if (iAwakeSystems == null)
+            {
+                return;
+            }
+
+            foreach (var aAwakeSystem in iAwakeSystems)
+            {
+                if (!(aAwakeSystem is IAwakeRun<A,B> iAwake)) continue;
+                try
+                {
+                    iAwake.Run(component, a,b);
                 }
                 catch (Exception e)
                 {

@@ -43,6 +43,11 @@ namespace Frame.Core.Base
             return _zone.AddComponent<T,A>(a);
         }
         
+        public T AddComponent<T,A,B>(A a,B b) where T : AComponent, new()
+        {
+            return _zone.AddComponent<T,A,B>(a,b);
+        }
+        
         public void Run()
         {
             while (true)

@@ -13,7 +13,7 @@ namespace Server
             {
                 App.Inst.Init();
                 App.Inst.AddDll(DLLType.Frame,typeof(App).Assembly);
-                App.Inst.AddComponent<NetListenerComponent,string>("127.0.0.1:50000");
+                App.Inst.AddComponent<NetworkListenerComponent,NetworkProtocol,string>(NetworkProtocol.TCP,"127.0.0.1:50000");
                 App.Inst.Run();
             }
             catch (Exception e)

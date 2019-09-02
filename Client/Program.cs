@@ -10,7 +10,7 @@ namespace Client
         {
             App.Inst.Init();
             App.Inst.AddDll(DLLType.Frame,typeof(App).Assembly);
-            App.Inst.AddComponent<NetConnecterComponent,string>("127.0.0.1:50000");
+            App.Inst.AddComponent<NetworkConnecterComponent,NetworkProtocol,string>(NetworkProtocol.TCP ,"127.0.0.1:50000");
             App.Inst.Run();
         }
     }
