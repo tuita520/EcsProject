@@ -12,8 +12,8 @@ namespace Server
             try
             {
                 App.Inst.Init();
-                App.Inst.AddSystem<NetworkComponentAwakeSystem>();
-                App.Inst.AddComponent<NetworkComponent,string>("127.0.0.1:50000");
+                App.Inst.AddDll(DLLType.Frame,typeof(App).Assembly);
+                App.Inst.AddComponent<NetListenerComponent,string>("127.0.0.1:50000");
                 App.Inst.Run();
             }
             catch (Exception e)

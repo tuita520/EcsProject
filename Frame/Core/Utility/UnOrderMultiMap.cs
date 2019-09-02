@@ -36,6 +36,15 @@ namespace Frame.Core.Utility
             }
             return this.dictionary.Remove(t);
         }
+        
+        public void Clear()
+        {
+            foreach (KeyValuePair<T, List<K>> keyValuePair in this.dictionary)
+            {
+                this.RecycleList(keyValuePair.Value);
+            }
+            this.dictionary.Clear();
+        }
 
 
         /// <summary>

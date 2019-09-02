@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading;
 using RDLog;
 using Server.Core.Network;
@@ -23,8 +24,14 @@ namespace Frame.Core.Base
             
             _eventSystem = new EventSystem();
             _zone = new ZoneEntity();
+            
+      
         }
 
+        public void  AddDll(DLLType dllType, Assembly assembly)
+        {
+            _eventSystem.AddDll(dllType, assembly);
+        }
 
         public T AddComponent<T>() where T : AComponent, new()
         {
@@ -36,11 +43,6 @@ namespace Frame.Core.Base
             return _zone.AddComponent<T,A>(a);
         }
         
-        public void AddSystem<T>()
-        {
-            _eventSystem.AddSystem<T>();
-        }
-
         public void Run()
         {
             while (true)

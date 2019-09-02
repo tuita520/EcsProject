@@ -22,6 +22,11 @@
         <e p="Core" t="Include">
           <e p="Base" t="Include">
             <e p="App.cs" t="Include" />
+            <e p="Attributes" t="Include">
+              <e p="BaseAttribute.cs" t="Include" />
+              <e p="EventAttribute.cs" t="Include" />
+              <e p="SystemAttribute.cs" t="Include" />
+            </e>
             <e p="Component" t="Include">
               <e p="AComponent.cs" t="Include" />
             </e>
@@ -42,6 +47,11 @@
             </e>
             <e p="ZoneEntity.cs" t="Include" />
           </e>
+          <e p="Message" t="Include">
+            <e p="IMessage.cs" t="Include" />
+            <e p="IMessagePacker.cs" t="Include" />
+            <e p="StringPacker.cs" t="Include" />
+          </e>
           <e p="NetWork" t="Include">
             <e p="AChannel.cs" t="Include" />
             <e p="AService.cs" t="Include" />
@@ -50,12 +60,13 @@
               <e p="NetworkHelper.cs" t="Include" />
             </e>
             <e p="NetworkComponent.cs" t="Include" />
+            <e p="NetworkConnecterComponent.cs" t="Include" />
             <e p="NetworkErrorCode.cs" t="Include" />
+            <e p="NetworkListenerComponent.cs" t="Include" />
+            <e p="NetworkProtocol.cs" t="Include" />
             <e p="Session.cs" t="Include" />
             <e p="TCP" t="Include">
               <e p="CircularBuffer.cs" t="Include" />
-              <e p="ITcpConnecter.cs" t="Include" />
-              <e p="ITcpListener.cs" t="Include" />
               <e p="PacketParser.cs" t="Include" />
               <e p="SocketAsyncEventArgsPool.cs" t="Include" />
               <e p="TCPChannel.cs" t="Include" />

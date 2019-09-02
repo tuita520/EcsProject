@@ -1,14 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
+using Frame.Core.Base.Attributes;
 using Frame.Core.Utility;
 using RDHelper;
 using RDLog;
 
 namespace Frame.Core.Base
 {
+    
+    public enum DLLType
+    {
+        Frame,
+        Hotfix,
+        Editor,
+    }
+    
     public sealed class EventSystem
     {
+        private readonly Dictionary<DLLType, Assembly> assemblies = new Dictionary<DLLType, Assembly>();
+        private readonly UnOrderMultiMap<Type, Type> types = new UnOrderMultiMap<Type, Type>();
+        
         private readonly Dictionary<long, AComponent> allComponents = new Dictionary<long, AComponent>();
         
         private readonly UnOrderMultiMap<Type, IAwakeSystem> awakeSystems = new UnOrderMultiMap<Type, IAwakeSystem>();
@@ -33,7 +46,72 @@ namespace Frame.Core.Base
         private Queue<long> lateUpdates = new Queue<long>();
         private Queue<long> lateUpdates2 = new Queue<long>();
 
-        public void Add(AComponent component)
+        
+        public void AddDll(DLLType dllType, Assembly assembly)
+		{
+			this.assemblies[dllType] = assembly;
+			this.types.Clear();
+			foreach (Assembly value in this.assemblies.Values)
+			{
+				foreach (Type type in value.GetTypes())
+				{
+					object[] objects = type.GetCustomAttributes(typeof(BaseAttribute), false);
+					if (objects.Length == 0)
+					{
+						continue;
+					}
+
+					BaseAttribute baseAttribute = (BaseAttribute) objects[0];
+					this.types.Add(baseAttribute.AttributeType, type);
+				}
+			}
+
+			this.awakeSystems.Clear();
+			this.lateUpdateSystems.Clear();
+			this.updateSystems.Clear();
+			this.startSystems.Clear();
+			this.loadSystems.Clear();
+			this.destroySystems.Clear();
+
+			foreach (Type type in types[typeof(SystemAttribute)])
+			{
+				object[] attrs = type.GetCustomAttributes(typeof(SystemAttribute), false);
+
+				if (attrs.Length == 0)
+				{
+					continue;
+				}
+
+				object obj = Activator.CreateInstance(type);
+
+				switch (obj)
+				{
+					case IAwakeSystem objectSystem:
+						this.awakeSystems.Add(objectSystem.Type(), objectSystem);
+						break;
+					case IUpdateSystem updateSystem:
+						this.updateSystems.Add(updateSystem.Type(), updateSystem);
+						break;
+					case ILateUpdateSystem lateUpdateSystem:
+						this.lateUpdateSystems.Add(lateUpdateSystem.Type(), lateUpdateSystem);
+						break;
+					case IStartSystem startSystem:
+						this.startSystems.Add(startSystem.Type(), startSystem);
+						break;
+					case IDestroySystem destroySystem:
+						this.destroySystems.Add(destroySystem.Type(), destroySystem);
+						break;
+					case ILoadSystem loadSystem:
+						this.loadSystems.Add(loadSystem.Type(), loadSystem);
+						break;
+				}
+			}
+
+			this.Load();
+		}
+        
+        
+        public void AddComponent(AComponent component)
         {
             this.allComponents.Add(component.Id, component);
 
