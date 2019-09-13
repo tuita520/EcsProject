@@ -29,7 +29,7 @@ namespace Frame.Core.Base
             return component;
         }
         
-        public virtual K AddComponent<K, P1>(P1 p1) where K :AComponent, new()
+        public virtual K AddComponent<K, A>(A a) where K :AComponent, new()
         {
             Type type = typeof (K);
             if (this.componentDict.ContainsKey(type))
@@ -37,11 +37,26 @@ namespace Frame.Core.Base
                 throw new Exception($"AddComponent, component already exist, id: {this.Id}, component: {typeof(K).Name}");
             }
 
-            K component = ComponentFactory.Create<K, P1>(this, p1);
+            K component = ComponentFactory.Create<K, A>(this, a);
 			
             componentDict.Add(type, component);
             return component;
         }
+                
+        public virtual K AddComponent<K, A,B>(A a,B b) where K :AComponent, new()
+        {
+            Type type = typeof (K);
+            if (this.componentDict.ContainsKey(type))
+            {
+                throw new Exception($"AddComponent, component already exist, id: {this.Id}, component: {typeof(K).Name}");
+            }
+
+            K component = ComponentFactory.Create<K,A,B>(this, a,b);
+			
+            componentDict.Add(type, component);
+            return component;
+        }
+        
         
         public virtual void RemoveComponent<K>() where K : AComponent
         {

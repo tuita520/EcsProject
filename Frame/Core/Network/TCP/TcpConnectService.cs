@@ -19,20 +19,16 @@ namespace Server.Core.Network.TCP
         private readonly HashSet<long> _needStartSendChannel = new HashSet<long>();
         
         //Server
-        public TcpConnectService(Action<AChannel> callback):base(callback)
+        public TcpConnectService(IPEndPoint ipEndPoint,Action<AChannel> callback):base(callback)
         {
             PacketSizeLength = Packet.PacketSizeLength2;
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             _eventArgs.Completed += OnComplete;
-        }
-
-        public void Connect(IPEndPoint ipEndPoint)
-        {
             _eventArgs.RemoteEndPoint = ipEndPoint;
             ConnectAsync();
         }
-        
+
         private void ConnectAsync()
         {
             if (_socket.ConnectAsync(_eventArgs))
@@ -41,7 +37,6 @@ namespace Server.Core.Network.TCP
             }
             OnConnectComplete(_eventArgs);
         }
-        
         
         public void MarkNeedStartSend(long id)
         {

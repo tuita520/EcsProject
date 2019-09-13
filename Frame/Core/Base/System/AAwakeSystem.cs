@@ -16,6 +16,11 @@ namespace Frame.Core.Base
     {
         void Run(object o, A a);
     }
+   
+    public interface IAwakeRun<A,B>
+    {
+        void Run(object o, A a,B b);
+    }
 	
     public abstract class AAwakeSystem<T>:IAwakeSystem,IAwakeRun
     {
@@ -28,8 +33,8 @@ namespace Frame.Core.Base
         {
             this.Awake((T)o);
         }
-        
-        public abstract void Awake(T self);
+
+        protected abstract void Awake(T self);
     }
     
     
@@ -45,6 +50,21 @@ namespace Frame.Core.Base
             this.Awake((T)o, a);
         }
 
-        public abstract void Awake(T self, A a);
+        protected abstract void Awake(T self, A a);
+    }
+    
+    public abstract class AAwakeSystem<T, A,B> : IAwakeSystem,IAwakeRun<A,B>
+    {
+        public Type Type()
+        {
+            return typeof(T);
+        }
+
+        public void Run(object o, A a,B b)
+        {
+            Awake((T)o, a,b);
+        }
+
+        protected abstract void Awake(T self, A a,B b);
     }
 }
