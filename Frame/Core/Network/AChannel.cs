@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using Frame.Core.Base;
+using Server.Core.Network.TCP;
 
 namespace Server.Core.Network
 {
@@ -16,11 +17,9 @@ namespace Server.Core.Network
         public ChannelType ChannelType { get; }
 
         public AService Service { get; private set; }
-
         
         public IPEndPoint RemoteAddress { get; protected set; }
         
-
         private Action<MemoryStream> readCallback;
 
         public event Action<MemoryStream> ReadCallback

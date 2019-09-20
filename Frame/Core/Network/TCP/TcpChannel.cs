@@ -10,14 +10,14 @@ namespace Server.Core.Network.TCP
 {
     public class TcpChannel : AChannel
     {
-        private readonly Socket _socket;
-        private readonly SocketAsyncEventArgs _writeArgs = new SocketAsyncEventArgs();
-        private readonly SocketAsyncEventArgs _readArgs = new SocketAsyncEventArgs();
+        private Socket _socket;
+        private SocketAsyncEventArgs _writeArgs = new SocketAsyncEventArgs();
+        private SocketAsyncEventArgs _readArgs = new SocketAsyncEventArgs();
 
         private readonly CircularBuffer _sendBuffer = new CircularBuffer();
         private readonly CircularBuffer _recvBuffer = new CircularBuffer();
 
-        private readonly MemoryStream _memoryStream;
+        private MemoryStream _memoryStream;
         
         private bool isSending;
 
@@ -25,56 +25,60 @@ namespace Server.Core.Network.TCP
 
         private bool isConnected;
 
-        private readonly PacketParser _parser;
+        private PacketParser _parser;
 
-        private readonly byte[] packetSizeCache;
+        private byte[] packetSizeCache;
 
-        public TcpChannel(AService connectService, Socket socket) : base(connectService, ChannelType.Connect)
+        public TcpChannel(ATcpService connectService, Socket socket,ChannelType channelType) : base(connectService, channelType)
         {
-            int packetSize = Service.PacketSizeLength;
-            packetSizeCache = new byte[packetSize];
-            _memoryStream = Service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
-            _parser = new PacketParser(packetSize, _recvBuffer, _memoryStream);
-            
-            _writeArgs.Completed += OnComplete;
-            _readArgs.Completed += OnComplete;
-            
-            RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
-            isSending = false;
-            
-            isConnected = false;
-            //_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp) {NoDelay = true};
-            _socket = socket;
-            _socket.NoDelay = true;
+            Init(socket);
         }
 
-        public TcpChannel(TcpListenService listenService, Socket socket) : base(listenService, ChannelType.Accept)
+        private void Init(Socket socket)
         {
             int packetSize = Service.PacketSizeLength;
             packetSizeCache = new byte[packetSize];
             _memoryStream = Service.MemoryStreamManager.GetStream("message", ushort.MaxValue);
             _parser = new PacketParser(packetSize, _recvBuffer, _memoryStream);
             
-            _writeArgs.Completed += OnComplete;
-            _readArgs.Completed += OnComplete;
-
-            RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
-            isSending = false;
+            _writeArgs.Completed += OnIOComplete;
+            _readArgs.Completed += OnIOComplete;
             
+            _socket = socket;
+            _socket.NoDelay = true;
+            RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
+
+            isSending = false;
             isConnected = true;
-            _socket = socket;
-            _socket.NoDelay = true;
         }
-
+        
+        public override void Dispose()
+        {
+            if (IsDisposed)
+            {
+                return;
+            }
+			
+            base.Dispose();
+			
+            _socket.Close();
+            _writeArgs.Dispose();
+            _readArgs.Dispose();
+            _writeArgs = null;
+            _readArgs = null;
+            _socket = null;
+            _memoryStream.Dispose();
+        }
+        
 
         public bool IsSending => isSending;
 
-        private TcpListenService GetService()
+        private ATcpService GetService()
         {
-            return (TcpListenService) Service;
+            return Service as ATcpService;
         }
 
-        private void OnComplete(object sender, SocketAsyncEventArgs eventArgs)
+        private void OnIOComplete(object sender, SocketAsyncEventArgs eventArgs)
         {
             switch (eventArgs.LastOperation)
             {
@@ -97,7 +101,6 @@ namespace Server.Core.Network.TCP
             SocketAsyncEventArgs eventArgs = (SocketAsyncEventArgs) state;
             OnError((int) eventArgs.SocketError);
         }
-
 
         public override void Send(MemoryStream stream)
         {
@@ -133,6 +136,7 @@ namespace Server.Core.Network.TCP
 
             GetService().MarkNeedStartSend(Id);
         }
+        
         private void OnSendComplete(object state)
         {
             if (_socket == null)

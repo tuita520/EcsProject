@@ -9,8 +9,6 @@ using Server.Core.Network.TCP;
 
 namespace Server.Core.Network
 {
-
-
     public sealed class Session : AEntity
     {
         private AChannel channel;
@@ -18,7 +16,7 @@ namespace Server.Core.Network
         private NetworkComponent network => GetParent<NetworkComponent>();
 
         private readonly Dictionary<int, Action<IResponse>> requestCallback = new Dictionary<int, Action<IResponse>>();
-        
+
         public void Send(MemoryStream stream)
         {
             channel.Send(stream);
@@ -49,12 +47,12 @@ namespace Server.Core.Network
         {
             memoryStream.Seek(0, SeekOrigin.Begin);
             ushort opcode = BitConverter.ToUInt16(memoryStream.GetBuffer(), Packet.OpcodeIndex);
-			
+
             object message;
             try
             {
-                message = network.MessagePacker.DeserializeFrom(opcode, memoryStream);
-				
+//                message = network.MessagePacker.DeserializeFrom(opcode, memoryStream);
+
 //                if (OpcodeHelper.IsNeedDebugLogMessage(opcode))
 //                {
 //                    Log.Msg(message);
@@ -68,7 +66,7 @@ namespace Server.Core.Network
                 network.RemoveSession(Id);
                 return;
             }
-				
+
 //            IResponse response = message as IResponse;
 //            if (response == null)
 //            {
@@ -92,7 +90,7 @@ namespace Server.Core.Network
             channel.Start();
         }
     }
-    
+
     [System]
     public class SessionAwakeSystem : AAwakeSystem<Session, AChannel>
     {

@@ -66,6 +66,7 @@
             <e p="NetworkProtocol.cs" t="Include" />
             <e p="Session.cs" t="Include" />
             <e p="TCP" t="Include">
+              <e p="ATcpService.cs" t="Include" />
               <e p="CircularBuffer.cs" t="Include" />
               <e p="PacketParser.cs" t="Include" />
               <e p="SocketAsyncEventArgsPool.cs" t="Include" />

@@ -10,7 +10,7 @@ namespace Frame.Core.Base
 
         public bool IsDisposed { get; set; }
         
-        protected AComponent()
+        public AComponent()
         {
             IsDisposed = false;
         }
@@ -25,14 +25,16 @@ namespace Frame.Core.Base
             throw new NotImplementedException();
         }
         
-        public void Dispose()
+        public virtual void Dispose()
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
             {
                 return;
             }
-
             IsDisposed = true;
+            App.Inst.EventSystem.Destroy(this);
+            App.Inst.EventSystem.Remove(Id);
+            Id = 0;
             //TODO:BOIL dispose
         }
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Frame.Core.Base;
 using Frame.Core.Base.Attributes;
 using Frame.Core.Message;
@@ -10,7 +11,7 @@ namespace Server.Core.Network
 {
     public class NetworkComponent : AComponent
     {
-        protected AService Service;
+        protected AService service;
         private readonly Dictionary<long, Session> sessions = new Dictionary<long, Session>();
 
         public IMessagePacker MessagePacker { get; set; }
@@ -32,10 +33,32 @@ namespace Server.Core.Network
 
         public Session Get(long id)
         {
-            Session session;
-            this.sessions.TryGetValue(id, out session);
+            sessions.TryGetValue(id, out var session);
             return session;
         }
+        
+        public void Update()
+        {
+            service?.Update();
+        }
+        
+        public override void Dispose()
+        {
+            if (IsDisposed)
+            {
+                return;
+            }
+
+            base.Dispose();
+
+            foreach (var item in sessions)
+            {
+                item.Value.Dispose();
+            }
+
+            service.Dispose();
+        }
+        
     }
     
 }

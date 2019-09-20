@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Frame.Core.Base;
 using Frame.Core.Base.Attributes;
 using Frame.Core.Message;
+using RDLog;
 using Server.Core.Network.Helper;
 using Server.Core.Network.TCP;
 
@@ -13,7 +14,7 @@ namespace Server.Core.Network
         public void Awake(object protocol,string address)
         {
             var ipEndPoint = NetworkHelper.ToIPEndPoint(address);
-            Service = new TcpListenService(ipEndPoint, OnAccept) {Parent = this};
+            service = new TcpListenService(ipEndPoint, OnAccept) {Parent = this};
         }
 
         private void OnAccept(AChannel channel)
@@ -25,11 +26,11 @@ namespace Server.Core.Network
     }
     
     [System]
-    public class NetListenerComponentAwakeSystem : AAwakeSystem<NetworkListenerComponent, string>
+    public class NetListenerComponentAwakeSystem : AAwakeSystem<NetworkListenerComponent,NetworkProtocol, string>
     {
-        protected override void Awake(NetworkListenerComponent self, string address)
+        protected override void Awake(NetworkListenerComponent self, NetworkProtocol protocol,string address)
         {
-            self.Awake(NetworkProtocol.TCP, address);
+            self.Awake(protocol, address);
             self.MessagePacker = new StringPacker();
 //            self.MessageDispatcher = new OuterMessageDispatcher();
         }

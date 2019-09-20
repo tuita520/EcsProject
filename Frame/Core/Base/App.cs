@@ -24,8 +24,6 @@ namespace Frame.Core.Base
             
             _eventSystem = new EventSystem();
             _zone = new ZoneEntity();
-            
-      
         }
 
         public void  AddDll(DLLType dllType, Assembly assembly)

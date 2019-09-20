@@ -7,12 +7,13 @@ namespace Server.Core.Network
 {
     public abstract class AService:AComponent
     {
-        public readonly RecyclableMemoryStreamManager MemoryStreamManager = new RecyclableMemoryStreamManager();
-        
+        public readonly RecyclableMemoryStreamManager MemoryStreamManager;
+
         private Action<AChannel> callback;
         
         public AService(Action<AChannel> callback)
         {
+            MemoryStreamManager = new RecyclableMemoryStreamManager();
             this.callback += callback;
         }
         
@@ -28,5 +29,6 @@ namespace Server.Core.Network
         public abstract void Update();
         
         public int PacketSizeLength { get; set; }
+
     }
 }

@@ -313,7 +313,7 @@ namespace Frame.Core.Base
             }
         }
 
-        public void Destroy(Component component)
+        public void Destroy(AComponent component)
         {
             var iDestroySystems = this.destroySystems[component.GetType()];
             if (iDestroySystems == null)

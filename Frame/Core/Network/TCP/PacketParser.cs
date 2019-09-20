@@ -37,7 +37,7 @@ namespace Server.Core.Network.TCP
 
         public bool Parse()
         {
-            if (this.isOK)
+            if (isOK)
             {
                 return true;
             }
@@ -45,33 +45,33 @@ namespace Server.Core.Network.TCP
             bool finish = false;
             while (!finish)
             {
-                switch (this.state)
+                switch (state)
                 {
                     case ParserState.PacketSize:
-                        if (this.buffer.Length < this.packetSizeLength)
+                        if (buffer.Length < packetSizeLength)
                         {
                             finish = true;
                         }
                         else
                         {
-                            this.buffer.Read(this.memoryStream.GetBuffer(), 0, this.packetSizeLength);
+                            buffer.Read(memoryStream.GetBuffer(), 0, packetSizeLength);
 
-                            switch (this.packetSizeLength)
+                            switch (packetSizeLength)
                             {
                                 case Packet.PacketSizeLength4:
-                                    this.packetSize = BitConverter.ToInt32(this.memoryStream.GetBuffer(), 0);
-                                    if (this.packetSize > ushort.MaxValue * 16 ||
-                                        this.packetSize < Packet.MinPacketSize)
+                                    packetSize = BitConverter.ToInt32(memoryStream.GetBuffer(), 0);
+                                    if (packetSize > ushort.MaxValue * 16 ||
+                                        packetSize < Packet.MinPacketSize)
                                     {
-                                        throw new Exception($"recv packet size error: {this.packetSize}");
+                                        throw new Exception($"recv packet size error: {packetSize}");
                                     }
 
                                     break;
                                 case Packet.PacketSizeLength2:
-                                    this.packetSize = BitConverter.ToUInt16(this.memoryStream.GetBuffer(), 0);
-                                    if (this.packetSize > ushort.MaxValue || this.packetSize < Packet.MinPacketSize)
+                                    packetSize = BitConverter.ToUInt16(memoryStream.GetBuffer(), 0);
+                                    if (packetSize > ushort.MaxValue || packetSize < Packet.MinPacketSize)
                                     {
-                                        throw new Exception($"recv packet size error: {this.packetSize}");
+                                        throw new Exception($"recv packet size error: {packetSize}");
                                     }
 
                                     break;
@@ -79,23 +79,23 @@ namespace Server.Core.Network.TCP
                                     throw new Exception("packet size byte count must be 2 or 4!");
                             }
 
-                            this.state = ParserState.PacketBody;
+                            state = ParserState.PacketBody;
                         }
 
                         break;
                     case ParserState.PacketBody:
-                        if (this.buffer.Length < this.packetSize)
+                        if (buffer.Length < packetSize)
                         {
                             finish = true;
                         }
                         else
                         {
-                            this.memoryStream.Seek(0, SeekOrigin.Begin);
-                            this.memoryStream.SetLength(this.packetSize);
-                            byte[] bytes = this.memoryStream.GetBuffer();
-                            this.buffer.Read(bytes, 0, this.packetSize);
-                            this.isOK = true;
-                            this.state = ParserState.PacketSize;
+                            memoryStream.Seek(0, SeekOrigin.Begin);
+                            memoryStream.SetLength(packetSize);
+                            byte[] bytes = memoryStream.GetBuffer();
+                            buffer.Read(bytes, 0, packetSize);
+                            isOK = true;
+                            state = ParserState.PacketSize;
                             finish = true;
                         }
 
@@ -103,13 +103,13 @@ namespace Server.Core.Network.TCP
                 }
             }
 
-            return this.isOK;
+            return isOK;
         }
 
         public MemoryStream GetPacket()
         {
-            this.isOK = false;
-            return this.memoryStream;
+            isOK = false;
+            return memoryStream;
         }
     }
 }

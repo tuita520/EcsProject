@@ -4,6 +4,7 @@ using System.IO;
 using Frame.Core.Base;
 using Frame.Core.Base.Attributes;
 using Frame.Core.Message;
+using RDLog;
 using Server.Core.Network.Helper;
 using Server.Core.Network.TCP;
 
@@ -14,7 +15,7 @@ namespace Server.Core.Network
         public void Awake(object protocol,string address)
         {
             var ipEndPoint = NetworkHelper.ToIPEndPoint(address);
-            Service = new TcpConnectService(ipEndPoint, OnConnect) {Parent = this};
+            service = new TcpConnectService(ipEndPoint, OnConnect) {Parent = this};
         }
 
         private void OnConnect(AChannel channel)
@@ -22,10 +23,9 @@ namespace Server.Core.Network
             Session session = ComponentFactory.Create<Session, AChannel>(this, channel);
             AddSession(session);
             session.Start();
-            
-            //TODO:BOIL 连接成功
-            MemoryStream ms=new MemoryStream(Convert.FromBase64String($"connected "));
-            session.Send(ms);
+//            //TODO:BOIL 连接成功
+//            MemoryStream ms=new MemoryStream(Convert.FromBase64String($"connected "));c
+//            session.Send(ms);
         }
     }
     
