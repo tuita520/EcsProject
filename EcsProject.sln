@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frame", "Frame\Frame.csproj", "{203B2985-005A-4B1E-9C89-D2456BAD9A70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigData", "ConfigData\ConfigData.csproj", "{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,5 +102,17 @@ Global
 		{203B2985-005A-4B1E-9C89-D2456BAD9A70}.Release|x64.Build.0 = Release|Any CPU
 		{203B2985-005A-4B1E-9C89-D2456BAD9A70}.Release|x86.ActiveCfg = Release|Any CPU
 		{203B2985-005A-4B1E-9C89-D2456BAD9A70}.Release|x86.Build.0 = Release|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Debug|x64.Build.0 = Debug|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Debug|x86.Build.0 = Debug|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Release|x64.ActiveCfg = Release|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Release|x64.Build.0 = Release|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Release|x86.ActiveCfg = Release|Any CPU
+		{DBE4C654-C550-43E8-A0CC-0FCC6AC5A7EC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

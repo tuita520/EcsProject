@@ -95,7 +95,7 @@ namespace Server.Core.Network.TCP
                 return;
             }
 
-            SocketAsyncEventArgs e = (SocketAsyncEventArgs) o;
+            var e = (SocketAsyncEventArgs) o;
 
             if (e.SocketError != SocketError.Success)
             {
@@ -105,7 +105,7 @@ namespace Server.Core.Network.TCP
                 return;
             }
 
-            TcpChannel channel = new TcpChannel(this, e.ConnectSocket,ChannelType.Connect);
+            var channel = new TcpChannel(this, e.ConnectSocket,ChannelType.Connect);
             _idChannels[channel.Id] = channel;
 
             try

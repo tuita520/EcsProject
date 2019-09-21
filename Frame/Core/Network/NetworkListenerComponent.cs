@@ -19,7 +19,7 @@ namespace Server.Core.Network
 
         private void OnAccept(AChannel channel)
         {
-            Session session = ComponentFactory.Create<Session, AChannel>(this, channel);
+            var session = ComponentFactory.Create<Session, AChannel>(this, channel);
             AddSession(session);
             session.Start();
         }

@@ -17,16 +17,11 @@ namespace Server.Core.Network
 
         private readonly Dictionary<int, Action<IResponse>> requestCallback = new Dictionary<int, Action<IResponse>>();
 
-        public void Send(MemoryStream stream)
-        {
-            channel.Send(stream);
-        }
-
         public void Awake(AChannel aChannel)
         {
             channel = aChannel;
             requestCallback.Clear();
-            long id = Id;
+            var id = Id;
             channel.ErrorCallback += (c, e) => { network.RemoveSession(id); };
             channel.ReadCallback += OnRead;
         }
@@ -83,7 +78,11 @@ namespace Server.Core.Network
 //
 //            action(response);
         }
-
+        
+        public void Send(MemoryStream stream)
+        {
+            channel.Send(stream);
+        }
 
         public void Start()
         {

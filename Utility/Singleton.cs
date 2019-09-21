@@ -8,14 +8,12 @@
         {
             get
             {
-                if (_inst == null)
+                if (_inst != null) return _inst;
+                lock(_sysLock)
                 {
-                    lock(_sysLock)
+                    if (_inst == null)
                     {
-                        if (_inst == null)
-                        {
-                            _inst = new T();
-                        }
+                        _inst = new T();
                     }
                 }
                 return _inst;

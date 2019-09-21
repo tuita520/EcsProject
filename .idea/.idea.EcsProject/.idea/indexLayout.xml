@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ContentModelUserStore">
     <explicitIncludes>
-      <Path>..\Bin</Path>
       <Path>Bin</Path>
     </explicitIncludes>
     <explicitExcludes />

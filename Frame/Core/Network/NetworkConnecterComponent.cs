@@ -20,12 +20,9 @@ namespace Server.Core.Network
 
         private void OnConnect(AChannel channel)
         {
-            Session session = ComponentFactory.Create<Session, AChannel>(this, channel);
+            var session = ComponentFactory.Create<Session, AChannel>(this, channel);
             AddSession(session);
             session.Start();
-//            //TODO:BOIL 连接成功
-//            MemoryStream ms=new MemoryStream(Convert.FromBase64String($"connected "));c
-//            session.Send(ms);
         }
     }
     
