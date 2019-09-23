@@ -208,6 +208,16 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "Google.Protobuf/3.6.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Google.Protobuf.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Google.Protobuf.dll": {}
+        }
+      },
       "Helper/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -710,6 +720,11 @@
         "netstandard.library.nuspec"
       ]
     },
+    "Google.Protobuf/3.6.0": {
+      "type": "project",
+      "path": "../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
+      "msbuildProject": "../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
+    },
     "Helper/1.0.0": {
       "type": "project",
       "path": "../Helper/Helper.csproj",
@@ -728,6 +743,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "Google.Protobuf >= 3.6.0",
       "Helper >= 1.0.0",
       "Log >= 1.0.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -770,6 +786,9 @@
             },
             "D:\\code\\EcsProject\\Log\\Log.csproj": {
               "projectPath": "D:\\code\\EcsProject\\Log\\Log.csproj"
+            },
+            "D:\\code\\EcsProject\\ThirdParty\\Google.Protobuf\\Google.Protobuf.csproj": {
+              "projectPath": "D:\\code\\EcsProject\\ThirdParty\\Google.Protobuf\\Google.Protobuf.csproj"
             },
             "D:\\code\\EcsProject\\Utility\\Utility.csproj": {
               "projectPath": "D:\\code\\EcsProject\\Utility\\Utility.csproj"

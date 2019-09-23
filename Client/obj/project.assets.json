@@ -212,6 +212,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
+          "Google.Protobuf": "3.6.0",
           "Helper": "1.0.0",
           "Log": "1.0.0",
           "Utility": "1.0.0"
@@ -221,6 +222,16 @@
         },
         "runtime": {
           "bin/placeholder/Frame.dll": {}
+        }
+      },
+      "Google.Protobuf/3.6.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Google.Protobuf.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Google.Protobuf.dll": {}
         }
       },
       "Helper/1.0.0": {
@@ -729,6 +740,11 @@
       "type": "project",
       "path": "../Frame/Frame.csproj",
       "msbuildProject": "../Frame/Frame.csproj"
+    },
+    "Google.Protobuf/3.6.0": {
+      "type": "project",
+      "path": "../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
+      "msbuildProject": "../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
     },
     "Helper/1.0.0": {
       "type": "project",

@@ -342,7 +342,7 @@ namespace Frame.Core.Base
         public void Update()
         {
             this.Start();
-
+           
             while (this.updates.Count > 0)
             {
                 var id = this.updates.Dequeue();

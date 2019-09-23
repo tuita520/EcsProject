@@ -6,6 +6,7 @@ namespace Frame.Core.Base
     public abstract class AComponent: ISupportInitialize,IDisposable
     {
         public long Id { get; set; }
+        
         public AComponent Parent { get; set; }
 
         public bool IsDisposed { get; set; }

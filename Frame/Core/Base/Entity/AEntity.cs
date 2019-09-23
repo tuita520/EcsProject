@@ -42,7 +42,7 @@ namespace Frame.Core.Base
             componentDict.Add(type, component);
             return component;
         }
-                
+    
         public virtual K AddComponent<K, A,B>(A a,B b) where K :AComponent, new()
         {
             Type type = typeof (K);
@@ -57,6 +57,7 @@ namespace Frame.Core.Base
             return component;
         }
         
+
         
         public virtual void RemoveComponent<K>() where K : AComponent
         {

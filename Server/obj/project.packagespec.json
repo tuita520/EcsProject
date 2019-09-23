@@ -15,6 +15,9 @@
     "frameworks": {
       "netcoreapp2.2": {
         "projectReferences": {
+          "D:\\code\\EcsProject\\ConfigData\\ConfigData.csproj": {
+            "projectPath": "D:\\code\\EcsProject\\ConfigData\\ConfigData.csproj"
+          },
           "D:\\code\\EcsProject\\Frame\\Frame.csproj": {
             "projectPath": "D:\\code\\EcsProject\\Frame\\Frame.csproj"
           },

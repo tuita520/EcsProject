@@ -8,12 +8,18 @@
     ".NETCoreApp,Version=v2.2": {
       "Frame/1.0.0": {
         "dependencies": {
+          "Google.Protobuf": "3.6.0",
           "Helper": "1.0.0",
           "Log": "1.0.0",
           "Utility": "1.0.0"
         },
         "runtime": {
           "Frame.dll": {}
+        }
+      },
+      "Google.Protobuf/3.6.0": {
+        "runtime": {
+          "Google.Protobuf.dll": {}
         }
       },
       "Helper/1.0.0": {
@@ -35,6 +41,11 @@
   },
   "libraries": {
     "Frame/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Google.Protobuf/3.6.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

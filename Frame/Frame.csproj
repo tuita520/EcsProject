@@ -5,6 +5,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Helper\Helper.csproj" />
     <ProjectReference Include="..\Log\Log.csproj" />
+    <ProjectReference Include="..\ThirdParty\Google.Protobuf\Google.Protobuf.csproj" />
     <ProjectReference Include="..\Utility\Utility.csproj" />
   </ItemGroup>
 </Project>

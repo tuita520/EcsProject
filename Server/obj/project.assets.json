@@ -208,10 +208,25 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "ConfigData/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Log": "1.0.0",
+          "Utility": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ConfigData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ConfigData.dll": {}
+        }
+      },
       "Frame/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
+          "Google.Protobuf": "3.6.0",
           "Helper": "1.0.0",
           "Log": "1.0.0",
           "Utility": "1.0.0"
@@ -221,6 +236,16 @@
         },
         "runtime": {
           "bin/placeholder/Frame.dll": {}
+        }
+      },
+      "Google.Protobuf/3.6.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Google.Protobuf.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Google.Protobuf.dll": {}
         }
       },
       "Helper/1.0.0": {
@@ -725,10 +750,20 @@
         "netstandard.library.nuspec"
       ]
     },
+    "ConfigData/1.0.0": {
+      "type": "project",
+      "path": "../ConfigData/ConfigData.csproj",
+      "msbuildProject": "../ConfigData/ConfigData.csproj"
+    },
     "Frame/1.0.0": {
       "type": "project",
       "path": "../Frame/Frame.csproj",
       "msbuildProject": "../Frame/Frame.csproj"
+    },
+    "Google.Protobuf/3.6.0": {
+      "type": "project",
+      "path": "../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
+      "msbuildProject": "../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
     },
     "Helper/1.0.0": {
       "type": "project",
@@ -748,6 +783,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "ConfigData >= 1.0.0",
       "Frame >= 1.0.0",
       "Helper >= 1.0.0",
       "Log >= 1.0.0",
@@ -785,6 +821,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "D:\\code\\EcsProject\\ConfigData\\ConfigData.csproj": {
+              "projectPath": "D:\\code\\EcsProject\\ConfigData\\ConfigData.csproj"
+            },
             "D:\\code\\EcsProject\\Frame\\Frame.csproj": {
               "projectPath": "D:\\code\\EcsProject\\Frame\\Frame.csproj"
             },

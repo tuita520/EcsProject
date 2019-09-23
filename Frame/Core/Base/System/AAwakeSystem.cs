@@ -24,14 +24,14 @@ namespace Frame.Core.Base
 	
     public abstract class AAwakeSystem<T>:IAwakeSystem,IAwakeRun
     {
-        public new Type Type()
+        public Type Type()
         {
             return typeof(T);
         }
         
         public void Run(object o)
         {
-            this.Awake((T)o);
+            Awake((T)o);
         }
 
         protected abstract void Awake(T self);

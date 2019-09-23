@@ -4,10 +4,14 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>..\Bin\Debug\netcoreapp2.2\netcoreapp2.2\</OutputPath>
+    <OutputPath>..\Bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>..\Bin\Release\netcoreapp2.2\netcoreapp2.2\</OutputPath>
+    <OutputPath>..\Bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConfigData\ConfigData.csproj" />

@@ -14,3 +14,6 @@ D:\code\EcsProject\Frame\obj\Debug\netcoreapp2.2\Frame.AssemblyInfo.cs
 D:\code\EcsProject\Frame\obj\Debug\netcoreapp2.2\Frame.csproj.CopyComplete
 D:\code\EcsProject\Frame\obj\Debug\netcoreapp2.2\Frame.dll
 D:\code\EcsProject\Frame\obj\Debug\netcoreapp2.2\Frame.pdb
+D:\code\EcsProject\Frame\bin\Debug\netcoreapp2.2\Google.Protobuf.dll
+D:\code\EcsProject\Frame\bin\Debug\netcoreapp2.2\Google.Protobuf.pdb
+D:\code\EcsProject\Frame\bin\Debug\netcoreapp2.2\Google.Protobuf.xml

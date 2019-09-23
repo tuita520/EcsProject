@@ -13,9 +13,9 @@ namespace Frame.Core.Base
 
         public EventSystem EventSystem => _eventSystem;
         
-        private ZoneEntity _zone;
+        private Zone _zone;
 
-        public ZoneEntity Zone => _zone ;
+        public Zone Zone => _zone ;
 
         public void Init()
         {
@@ -23,7 +23,7 @@ namespace Frame.Core.Base
             SynchronizationContext.SetSynchronizationContext(MainThreadSynchronizationContext.Inst);
             
             _eventSystem = new EventSystem();
-            _zone = new ZoneEntity();
+            _zone = new Zone();
         }
 
         public void  AddDll(DLLType dllType, Assembly assembly)
@@ -46,6 +46,8 @@ namespace Frame.Core.Base
             return _zone.AddComponent<T,A,B>(a,b);
         }
         
+        
+        
         public void Run()
         {
             while (true)
@@ -67,5 +69,7 @@ namespace Frame.Core.Base
         {
             
         }
+
+
     }
 }

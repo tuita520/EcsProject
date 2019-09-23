@@ -4,6 +4,7 @@ using System.IO;
 using Frame.Core.Base;
 using Frame.Core.Base.Attributes;
 using Frame.Core.Message;
+using Frame.Core.Register;
 using RDLog;
 using Server.Core.Network.Helper;
 using Server.Core.Network.TCP;
@@ -23,6 +24,8 @@ namespace Server.Core.Network
             var session = ComponentFactory.Create<Session, AChannel>(this, channel);
             AddSession(session);
             session.Start();
+         
+            (Parent as ARegisterCenter)?.SendRegisterMsg(session);
         }
     }
     

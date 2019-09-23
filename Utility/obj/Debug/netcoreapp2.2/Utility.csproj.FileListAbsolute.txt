@@ -6,3 +6,4 @@ D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.AssemblyInfoInputs.ca
 D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.AssemblyInfo.cs
 D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.dll
 D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.pdb
+D:\code\EcsProject\Utility\obj\Debug\netcoreapp2.2\Utility.csprojAssemblyReference.cache
