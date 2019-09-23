@@ -2,6 +2,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>..\Bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>..\Bin\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThirdParty\Google.Protobuf\Google.Protobuf.csproj" />
   </ItemGroup>
