@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Code\Client" />
+    <Folder Include="Code\Gate" />
+    <Folder Include="Code\Realm" />
+    <Folder Include="Code\ServerShared" />
+    <Folder Include="Generator" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\Google.Protobuf\Google.Protobuf.csproj" />
+    <ProjectReference Include="..\Utility\Utility.csproj" />
+  </ItemGroup>
+</Project>
