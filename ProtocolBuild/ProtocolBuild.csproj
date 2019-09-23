@@ -10,10 +10,6 @@
     <OutputPath>..\Bin\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Code\Client" />
-    <Folder Include="Code\Gate" />
-    <Folder Include="Code\Realm" />
-    <Folder Include="Code\ServerShared" />
     <Folder Include="Generator" />
   </ItemGroup>
   <ItemGroup>
