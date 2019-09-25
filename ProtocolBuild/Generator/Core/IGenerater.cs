@@ -15,6 +15,5 @@ namespace ProtocolGenerator
     public interface IGenerator
     {
         void Generate();
-        void Generate(Data data);
     }
 }

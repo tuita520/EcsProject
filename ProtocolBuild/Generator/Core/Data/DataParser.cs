@@ -10,11 +10,12 @@
 ************************************************************************ 
  * Copyright @ BoilingBlood 2018. All rights reserved. 
 ************************************************************************/
-using ProtocolBuffersGenerator.Utils;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Utility;
 
 namespace ProtocolGenerator
 {

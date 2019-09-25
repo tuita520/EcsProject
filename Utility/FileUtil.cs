@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace ProtocolGenerator
+namespace Utility
 {
     public class FileUtil
     {

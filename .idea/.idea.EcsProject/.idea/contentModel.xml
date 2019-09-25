@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Boil\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Boil\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_EcsProject.-726406595.00" t="ExcludeRecursive" />
-    <e p="D:\GitHub\EcsProject" t="IncludeFlat">
+    <e p="C:\Users\WanXin\.nuget\packages\mstest.testadapter\1.3.2\build\_common\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\WanXin\.nuget\packages\mstest.testadapter\1.3.2\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
+    <e p="C:\Users\WanXin\.nuget\packages\mstest.testadapter\1.3.2\build\netcoreapp1.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
+    <e p="C:\Users\WanXin\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_EcsProject.1773862023.00" t="ExcludeRecursive" />
+    <e p="D:\code\EcsProject" t="IncludeFlat">
       <e p="bin" t="ExcludeRecursive" />
       <e p="Client" t="IncludeRecursive">
         <e p="Client.csproj" t="IncludeRecursive" />
@@ -91,7 +93,7 @@
             <e p="ProtoBuffPacker.cs" t="Include" />
             <e p="StringPacker.cs" t="Include" />
           </e>
-          <e p="Network" t="Include">
+          <e p="NetWork" t="Include">
             <e p="AChannel.cs" t="Include" />
             <e p="AService.cs" t="Include" />
             <e p="Helper" t="Include">
@@ -120,7 +122,7 @@
             <e p="RecyclableMemoryStream.cs" t="Include" />
             <e p="RecyclableMemoryStreamManager.cs" t="Include" />
           </e>
-          <e p="utility" t="Include">
+          <e p="Utility" t="Include">
             <e p="UnOrderMultiMap.cs" t="Include" />
           </e>
         </e>
@@ -170,15 +172,21 @@
       </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="ProtocolBuild" t="IncludeRecursive">
-        <e p="Code" t="Include">
+        <e p="code" t="Include">
           <e p="Client" t="Include">
-            <e p="Client.code" t="Include" />
+            <e p="CRealm.code" t="Include" />
+            <e p="RealmC.code" t="Include" />
           </e>
           <e p="Gate" t="Include">
-            <e p="Gate.code" t="Include" />
+            <e p="CGate.code" t="Include" />
+            <e p="GateC.code" t="Include" />
           </e>
           <e p="Realm" t="Include">
             <e p="Realm.code" t="Include" />
+          </e>
+          <e p="Scene" t="Include">
+            <e p="GS.code" t="Include" />
+            <e p="SG.code" t="Include" />
           </e>
           <e p="ServerShared" t="Include">
             <e p="ServerShard.code" t="Include" />
@@ -187,6 +195,12 @@
         <e p="Generator" t="Include">
           <e p="Core" t="Include">
             <e p="AbstractFileModel.cs" t="Include" />
+            <e p="CodeFile" t="Include">
+              <e p="CodeFile.cs" t="Include" />
+              <e p="CodeFileManager.cs" t="Include" />
+              <e p="CodeFileParaser.cs" t="Include" />
+            </e>
+            <e p="ConstData.cs" t="Include" />
             <e p="CSharp" t="Include">
               <e p="CSharpClass_Id.cs" t="Include" />
               <e p="CSharpClass_IdGenerater.cs" t="Include" />
@@ -204,14 +218,12 @@
             <e p="GeneraterManager.cs" t="Include" />
             <e p="ICodeGenerater.cs" t="Include" />
             <e p="IGenerater.cs" t="Include" />
-            <e p="ProtoBuf" t="Include">
+            <e p="ProtoFile" t="Include">
+              <e p="ProtoFile.cs" t="Include" />
               <e p="ProtoFileGenerater.cs" t="Include" />
-              <e p="ProtoGenerater.cs" t="Include" />
+              <e p="ProtoFileGenerator.cs" t="Include" />
+              <e p="ProtoFileManager.cs" t="Include" />
             </e>
-          </e>
-          <e p="Utils" t="Include">
-            <e p="FileUtil.cs" t="Include" />
-            <e p="StringUtil.cs" t="Include" />
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -350,7 +362,23 @@
           <e p="WireFormat.cs" t="Include" />
         </e>
       </e>
-      <e p="utility" t="IncludeRecursive">
+      <e p="UnitTest" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="UnitTest.AssemblyInfo.cs" t="Include" />
+              <e p="UnitTest.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="TestProtocolBuilder.cs" t="Include" />
+        <e p="TestString.cs" t="Include" />
+        <e p="UnitTest.csproj" t="IncludeRecursive" />
+        <e p="UnitTest1.cs" t="Include" />
+      </e>
+      <e p="Utility" t="IncludeRecursive">
+        <e p="FileUtil.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.2" t="Include">
@@ -360,6 +388,7 @@
         </e>
         <e p="PathUtil.cs" t="Include" />
         <e p="Singleton.cs" t="Include" />
+        <e p="StringUtil.cs" t="Include" />
         <e p="Utility.csproj" t="IncludeRecursive" />
       </e>
     </e>
