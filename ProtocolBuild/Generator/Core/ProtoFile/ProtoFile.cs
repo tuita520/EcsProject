@@ -12,6 +12,7 @@
 //************************************************************************/
 //
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using RDLog;
@@ -98,5 +99,15 @@ namespace ProtocolBuild.Generator.Core
             return true;
         }
 
+        public void GenerateProtoFile()
+        {
+            StringBuilder context = new StringBuilder();
+            context.Append($"syntax = {Syntax};");
+            context.Append(Environment.NewLine);
+            context.Append($"{ConstData.PACKAGE_KEY} {PackageName};");
+            context.Append(Environment.NewLine);
+            context.Append(MsgData);
+            FileUtil.WriteToFile(context, FullName);
+        }
     }
 }

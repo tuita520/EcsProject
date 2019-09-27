@@ -195,6 +195,7 @@
         </e>
         <e p="Generator" t="Include">
           <e p="Core" t="Include">
+            <e p="BuildManager.cs" t="Include" />
             <e p="CodeFile" t="Include">
               <e p="CodeFile.cs" t="Include" />
               <e p="CodeFileManager.cs" t="Include" />
@@ -207,11 +208,6 @@
               <e p="CSharpClass_Proto.cs" t="Include" />
               <e p="CSharpFileGenerator.cs" t="Include" />
               <e p="CSharpGenerater.cs" t="Include" />
-            </e>
-            <e p="Data" t="Include">
-              <e p="Data.cs" t="Include" />
-              <e p="DataManager.cs" t="Include" />
-              <e p="DataParser.cs" t="Include" />
             </e>
             <e p="EnumType.cs" t="Include" />
             <e p="ICodeGenerater.cs" t="Include" />

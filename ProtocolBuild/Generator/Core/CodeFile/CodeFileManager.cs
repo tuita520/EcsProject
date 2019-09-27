@@ -10,11 +10,11 @@ namespace ProtocolBuild.Generator.Core
     public class CodeFileManager:Singleton<CodeFileManager>
     {
         //key :filename
-        Dictionary<string, CodeFile> _codeFiles = new Dictionary<string, CodeFile>();
+        public readonly Dictionary<string, CodeFile> CodeFiles = new Dictionary<string, CodeFile>();
         
         private void AddCodeFile(CodeFile codeFile)
         {
-            _codeFiles.Add(codeFile.Name,codeFile);
+            CodeFiles.Add(codeFile.Name,codeFile);
         }
         
         public void LoadFile(string fileFullName)

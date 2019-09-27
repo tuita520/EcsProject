@@ -5,22 +5,22 @@ using Utility;
 
 namespace ProtocolBuild.Generator.Core
 {
-    public class ProtoFileManager
+    public class ProtoFileManager:Singleton<ProtoFileManager>
     {
-        Dictionary<string,ProtoFile> protoFiles = new Dictionary<string, ProtoFile>();
+        public Dictionary<string,ProtoFile> ProtoFiles = new Dictionary<string, ProtoFile>();
 
         public void LoadCodeFile(CodeFile codeFile)
         {
             var protoFileNameList = GetProtoFileNameList(codeFile.PackageType);
             foreach (var fileName in protoFileNameList)
             {
-                if (!protoFiles.TryGetValue(fileName,out var protoFile))
+                if (!ProtoFiles.TryGetValue(fileName,out var protoFile))
                 {
                     protoFile = new ProtoFile();
                     protoFile.SetFileName(fileName);
                     protoFile.SetSyntax(codeFile.Syntax);
                     
-                    protoFiles.Add(fileName,protoFile);
+                    ProtoFiles.Add(fileName,protoFile);
                 }
                 protoFile.LoadCodeFile(codeFile);
             }
@@ -44,6 +44,6 @@ namespace ProtocolBuild.Generator.Core
             }
             return fileNameList;
         }
-        
+
     }
 }
