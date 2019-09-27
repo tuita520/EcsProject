@@ -4,15 +4,16 @@
     <e p="C:\Users\WanXin\.nuget\packages\mstest.testadapter\1.3.2\build\_common\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
     <e p="C:\Users\WanXin\.nuget\packages\mstest.testadapter\1.3.2\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
     <e p="C:\Users\WanXin\.nuget\packages\mstest.testadapter\1.3.2\build\netcoreapp1.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
-    <e p="C:\Users\WanXin\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_EcsProject.1773862023.00" t="ExcludeRecursive" />
-    <e p="D:\code\EcsProject" t="IncludeFlat">
+    <e p="C:\Users\WanXin\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\WanXin\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_EcsProject.-726406595.00" t="ExcludeRecursive" />
+    <e p="D:\GitHub\EcsProject" t="IncludeFlat">
       <e p="bin" t="ExcludeRecursive" />
-      <e p="Client" t="IncludeRecursive">
-        <e p="Client.csproj" t="IncludeRecursive" />
+      <e p="ClientApp" t="IncludeRecursive">
+        <e p="ClientApp.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.2" t="Include">
-              <e p="Client.AssemblyInfo.cs" t="Include" />
+              <e p="ClientApp.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -194,18 +195,17 @@
         </e>
         <e p="Generator" t="Include">
           <e p="Core" t="Include">
-            <e p="AbstractFileModel.cs" t="Include" />
             <e p="CodeFile" t="Include">
               <e p="CodeFile.cs" t="Include" />
               <e p="CodeFileManager.cs" t="Include" />
-              <e p="CodeFileParaser.cs" t="Include" />
+              <e p="CodeFileParser.cs" t="Include" />
             </e>
             <e p="ConstData.cs" t="Include" />
             <e p="CSharp" t="Include">
               <e p="CSharpClass_Id.cs" t="Include" />
               <e p="CSharpClass_IdGenerater.cs" t="Include" />
               <e p="CSharpClass_Proto.cs" t="Include" />
-              <e p="CSharpCodeGenerater.cs" t="Include" />
+              <e p="CSharpFileGenerator.cs" t="Include" />
               <e p="CSharpGenerater.cs" t="Include" />
             </e>
             <e p="Data" t="Include">
@@ -214,13 +214,9 @@
               <e p="DataParser.cs" t="Include" />
             </e>
             <e p="EnumType.cs" t="Include" />
-            <e p="GeneraterCache.cs" t="Include" />
-            <e p="GeneraterManager.cs" t="Include" />
             <e p="ICodeGenerater.cs" t="Include" />
-            <e p="IGenerater.cs" t="Include" />
             <e p="ProtoFile" t="Include">
               <e p="ProtoFile.cs" t="Include" />
-              <e p="ProtoFileGenerater.cs" t="Include" />
               <e p="ProtoFileGenerator.cs" t="Include" />
               <e p="ProtoFileManager.cs" t="Include" />
             </e>
@@ -236,18 +232,18 @@
         <e p="Program.cs" t="Include" />
         <e p="ProtocolBuild.csproj" t="IncludeRecursive" />
       </e>
-      <e p="Server" t="IncludeRecursive">
+      <e p="ServerApp" t="IncludeRecursive">
         <e p="App" t="Include">
           <e p="Program.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.2" t="Include">
-              <e p="Server.AssemblyInfo.cs" t="Include" />
+              <e p="ServerApp.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="Server.csproj" t="IncludeRecursive" />
+        <e p="ServerApp.csproj" t="IncludeRecursive" />
       </e>
       <e p="ServerProtocol" t="IncludeRecursive">
         <e p="Class1.cs" t="Include" />
@@ -372,7 +368,6 @@
             </e>
           </e>
         </e>
-        <e p="TestProtocolBuilder.cs" t="Include" />
         <e p="TestString.cs" t="Include" />
         <e p="UnitTest.csproj" t="IncludeRecursive" />
         <e p="UnitTest1.cs" t="Include" />

@@ -1,4 +1,6 @@
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Utility;
 
 namespace UnitTest
 {
@@ -8,6 +10,7 @@ namespace UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            FileUtil.WriteToFile(new StringBuilder("2"), @"..\TestFile\ServerShard.code");
         }
     }
 }

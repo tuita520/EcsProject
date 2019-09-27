@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using ProtocolGenerator.Core;
 using RDLog;
 
 namespace ProtocolBuild.Generator.Core
@@ -8,24 +10,24 @@ namespace ProtocolBuild.Generator.Core
     {
         public string FullName { get; set; }
         public string Name { get; set; }
+        public string Syntax { get; set; }
 
-        private string syntax { get; set; }
-        private readonly List<string> _packetNameList = new List<string>();
+        public PackageType PackageType = PackageType.Both;
 
-        private readonly Dictionary<string, string> _idNameDic = new Dictionary<string, string>();
-        private readonly Dictionary<string, string> _nameIdDic = new Dictionary<string, string>();
+        public readonly Dictionary<string, string> IdNameDic = new Dictionary<string, string>();
+        public readonly Dictionary<string, string> NameIdDic = new Dictionary<string, string>();
 
-        private StringBuilder ProtoBufData { get; set; }
+        public StringBuilder ProtoBufData { get; set; }
 
         public bool AddMessageNameId(string msgName, string msgId = null)
         {
-            if (_nameIdDic.TryGetValue(msgName, out var id))
+            if (NameIdDic.TryGetValue(msgName, out var id))
             {
                 Log.Error($"file {Name} got an wrong msg name : {msgName} ");
                 return false;
             }
 
-            if (_idNameDic.TryGetValue(msgId, out var name))
+            if (IdNameDic.TryGetValue(msgId, out var name))
             {
                 Log.Error($"file {Name} got an wrong msg id : {msgId}");
                 return false;
@@ -33,27 +35,27 @@ namespace ProtocolBuild.Generator.Core
 
             if (!string.IsNullOrEmpty(msgId))
             {
-                _idNameDic.Add(msgId, msgName);
+                IdNameDic.Add(msgId, msgName);
             }
 
-            _nameIdDic.Add(msgName, msgId);
+            NameIdDic.Add(msgName, msgId);
             return true;
         }
 
 
-        public bool AddProtoPackageName(string packageName)
+        public bool SetPackageType(string package)
         {
-            if (_packetNameList.Contains(packageName))
+            if ( !Enum.TryParse<PackageType>(package ,out var packageType))
             {
                 return false;
             }
-            _packetNameList.Add(packageName);
+            PackageType = packageType;
             return true;
         }
 
         public void SetSyntex(string syntax)
         {
-            this.syntax = syntax;
+            Syntax = syntax;
         }
 
         public void SetProtoBuffData(StringBuilder messageLines)

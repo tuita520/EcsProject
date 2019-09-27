@@ -21,5 +21,11 @@ namespace ProtocolGenerator.Core
         Lua,
         CPlusPlus
     }
-
+    
+    public enum PackageType
+    {
+        Both,
+        Server,
+        Client,
+    }
 }

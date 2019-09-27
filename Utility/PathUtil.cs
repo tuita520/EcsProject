@@ -27,17 +27,15 @@ namespace Utility
 
     public class PathUtil
     {
-        public static string OutputPath = string.Empty;
         public static string RootPath = string.Empty;
         public static string ConfigPath = string.Empty;
         public static string BinPath = string.Empty;
 
         public static void Init()
         {
-            OutputPath = AppDomain.CurrentDomain.BaseDirectory;
-            DirectoryInfo path = new DirectoryInfo(OutputPath);
-            //TODO:BOIL 这里取的当前可执行程序outputPath相对目录
-            RootPath = path.Parent.Parent.FullName; 
+            RootPath = AppDomain.CurrentDomain.BaseDirectory;
+            var path = new DirectoryInfo(RootPath);
+            if (path.Parent != null) BinPath = path.Parent.FullName;
             BinPath = RootPath;
             ConfigPath = PathCombine(BinPath, "Config");
         }
@@ -50,7 +48,7 @@ namespace Utility
 
         public static string PathCombine(string inputPath, string folder)
         {
-            string newPath = Path.Combine(inputPath, folder);
+            var newPath = Path.Combine(inputPath, folder);
             if (!Directory.Exists(newPath))
             {
                 Directory.CreateDirectory(newPath);

@@ -19,7 +19,7 @@ namespace ProtocolBuild.Generator.Core
         
         public void LoadFile(string fileFullName)
         {
-             CodeFileParaser _paraser = new CodeFileParaser();
+             CodeFileParser parser = new CodeFileParser();
             if (fileFullName == null)
             {
                 Log.Error("ParseCodeFile error : fileFullName is null.");
@@ -28,7 +28,7 @@ namespace ProtocolBuild.Generator.Core
 
             try
             {
-                CodeFile codeFile =  _paraser.ParaserFile(fileFullName);
+                CodeFile codeFile =  parser.ParserFile(fileFullName);
 
                 if (codeFile == null)
                 {

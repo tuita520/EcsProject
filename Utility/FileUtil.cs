@@ -19,24 +19,15 @@ namespace Utility
 {
     public class FileUtil
     {
-        /// <summary>
-        /// 写文件
-        /// </summary>
-        /// <param name="fileContent">写入内容</param>
-        /// <param name="filePath">文件路径</param>
-        /// <param name="fileName">文件名</param>
-        /// <param name="fileSuffix">文件后缀</param>
-        /// <returns></returns>
-        public static bool WriteToFile(StringBuilder fileContent, string filePath, string fileName, string fileSuffix)
+        public static bool WriteToFile(StringBuilder fileContent, string fileFullName)
         {
             try
             {
-                if (!Directory.Exists(filePath))
-                {
-                    Directory.CreateDirectory(filePath);
-                }
-                string fileFullName = filePath + fileName + fileSuffix;
                 FileInfo fileInfo = new FileInfo(fileFullName);
+                if (!fileInfo.Directory.Exists)
+                {
+                    Directory.CreateDirectory(fileInfo.Directory.FullName);
+                }
                 StreamWriter writer = fileInfo.CreateText();
                 writer.WriteLine(fileContent.ToString());
                 writer.Close();
@@ -48,29 +39,6 @@ namespace Utility
             }
             return true;
         }
-
-        public static bool WriteToFile(string fileContent, string filePath, string fileName, string fileSuffix)
-        {
-            try
-            {
-                if (!Directory.Exists(filePath))
-                {
-                    Directory.CreateDirectory(filePath);
-                }
-                string fileFullName = filePath + fileName + fileSuffix;
-                FileInfo fileInfo = new FileInfo(fileFullName);
-                StreamWriter writer = fileInfo.CreateText();
-                writer.WriteLine(fileContent);
-                writer.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-            return true;
-        }
-
 
         public static string[] FindFiles(string path,string key)
         {
@@ -89,8 +57,6 @@ namespace Utility
             string hashValue = BitConverter.ToString(hashByte);
             return hashValue;
         }
-
-
 
         public static string ReadFromFile(string filePath, string fileName, string fileSuffix)
         {
@@ -120,21 +86,18 @@ namespace Utility
             return null;
         }
 
-
-
-        public static List<string> ReadLinesFromFile(string filePath, string fileName, string fileSuffix)
+        public static List<string> ReadLinesFromFile(string fileFullName)
         {
             try
             {
                 List<string> lines = new List<string>();
-
-                if (!Directory.Exists(filePath))
+                FileInfo fi = new FileInfo(fileFullName);
+                if (!fi.Exists)
                 {
-                    Directory.CreateDirectory(filePath);
+                    return lines;
                 }
-                string fileFullName = filePath + fileName + fileSuffix;
-                FileStream fsRead = new FileStream(fileFullName, FileMode.Open, FileAccess.Read);
 
+                FileStream fsRead = fi.OpenRead();
                 StreamReader sr = new StreamReader(fsRead);
                 string s = "";
                 do

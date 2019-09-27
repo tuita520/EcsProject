@@ -10,6 +10,5 @@ namespace ProtocolBuild
             PathUtil.Init();
             Console.WriteLine("Hello World!");
         }
-
     }
 }

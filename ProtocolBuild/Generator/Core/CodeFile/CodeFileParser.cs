@@ -4,26 +4,27 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using RDLog;
+using Utility;
 
 namespace ProtocolBuild.Generator.Core
 {
-    public class CodeFileParaser
+    public class CodeFileParser
     {
-        public CodeFile ParaserFile(string fileFullName)
+        public CodeFile ParserFile(string fileFullName)
         {
-            var index = fileFullName.LastIndexOf("\\");
+            var index = fileFullName.LastIndexOf("\\", StringComparison.Ordinal);
             if (index < 0)
             {
-                Log.Error($"ParaserFile {fileFullName} error : fileFullName format wrong .");
+                Log.Error($"ParserFile {fileFullName} error : fileFullName format wrong .");
                 return null;
             }
 
             var fileName = fileFullName.Substring(index + 1);
 
-            var lines = File.ReadAllLines(fileFullName);
-            if (lines == null || lines.Length == 0)
+            var lines = FileUtil.ReadLinesFromFile(fileFullName);
+            if (lines == null || lines.Count == 0)
             {
-                Log.Error($"ParaserFile {fileFullName} error : read file wrong .");
+                Log.Error($"ParserFile {fileFullName} error : read file wrong .");
                 return null;
             }
 
@@ -37,7 +38,7 @@ namespace ProtocolBuild.Generator.Core
             {
                 return codeFile;
             }
-            Log.Error($"ParaserFile {fileFullName} error : format file wrong .");
+            Log.Error($"ParserFile {fileFullName} error : format file wrong .");
             return null;
         }
 
@@ -96,7 +97,7 @@ namespace ProtocolBuild.Generator.Core
         private bool GetFormatOtherLine(string line,out string formatLine)
         {
             formatLine = string.Empty;
-            var index = line.IndexOf("//");
+            var index = line.IndexOf("//", StringComparison.Ordinal);
             formatLine = index == -1 ? line : line.Substring(0, index);
             return true;
         }
@@ -113,7 +114,7 @@ namespace ProtocolBuild.Generator.Core
             }
 
             var messageKey = formatArr[0];
-            if (string.Compare(messageKey, ConstData.MESSAGE_KEY) == -1)
+            if (string.CompareOrdinal(messageKey, ConstData.MESSAGE_KEY) == -1)
             {
                 Log.Error($"please check the message key,{messageKey}!");
                 return false;
@@ -147,16 +148,16 @@ namespace ProtocolBuild.Generator.Core
             }
 
             var packageKey = formatArr[0];
-            if (string.Compare(packageKey, ConstData.PACKAGE_KEY) == -1)
+            if (string.CompareOrdinal(packageKey, ConstData.PACKAGE_KEY) == -1)
             {
                 Log.Error($"please check the package key,{packageKey}!");
                 return false;
             }
 
-            var packageName = formatArr[1].Replace(";", "");
-            if (codeFile.AddProtoPackageName(packageName))
+            var packageType = formatArr[1];
+            if (codeFile.SetPackageType(packageType))
             {
-                formatLine = string.Format("{0} {1};", packageKey, packageName);
+                formatLine = $"{packageKey} {packageType}";
             }
             return true;
         }
@@ -173,21 +174,21 @@ namespace ProtocolBuild.Generator.Core
             }
 
             var syntaxKey = formatArr[0];
-            if (string.Compare(syntaxKey, ConstData.SYNTAX_KEY) == -1)
+            if (string.CompareOrdinal(syntaxKey, ConstData.SYNTAX_KEY) == -1)
             {
-                Log.Error($"please check the syntex key,{syntaxKey}!");
+                Log.Error($"please check the syntax key,{syntaxKey}!");
                 return false;
             }
 
             var syntax = formatArr[1].Replace(";", "");
-            if (string.Compare(syntax, ConstData.SYNTAX) == -1)
+            if (string.CompareOrdinal(syntax, ConstData.SYNTAX) == -1)
             {
-                Log.Error($"please check the syntex,{syntax}!");
+                Log.Error($"please check the syntax,{syntax}!");
                 return false;
             }
 
             codeFile.SetSyntex(syntax);
-            formatLine = string.Format("{0}={1};", syntaxKey, syntax);
+            formatLine = $"{syntaxKey}={syntax};";
             return true;
         }
     }

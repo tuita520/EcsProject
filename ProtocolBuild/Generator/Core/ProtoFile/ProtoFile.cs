@@ -14,21 +14,89 @@
 
 using System.Collections.Generic;
 using System.Text;
+using RDLog;
+using Utility;
 
 namespace ProtocolBuild.Generator.Core
 {
     public class ProtoFile
     {
-        public string FullName { get; set; }
-        public string Name { get; set; }
-
-        private string syntax { get; set; }
-        private string packageName { get; set; }
-        /// <summary>
-        /// key msgname value filename
-        /// </summary>
-        private Dictionary<string,string> msgNameDic = new Dictionary<string, string>();
+        public string FullName { get;private set; }
+        public string Name { get; private set; }
+        public string Syntax { get; private set; }
         
-        private StringBuilder msgData = new StringBuilder();
+        public string PackageName = ConstData.PACKAGE_NAME;
+        /// <summary>
+        /// key msgname value codefilename
+        /// </summary>
+        private readonly Dictionary<string,string> MsgNameDic = new Dictionary<string, string>();
+        /// <summary>
+        /// key msgId value codefilename
+        /// </summary>
+        private readonly Dictionary<string,string> MsgIdDic = new Dictionary<string, string>();
+        
+        public readonly StringBuilder MsgData = new StringBuilder();
+
+        public void SetFileName(string fileName)
+        {
+            Name = fileName;
+            switch (fileName)
+            {
+                case ConstData.FILE_NAME_CLIENT_PROTO:
+                    FullName = PathUtil.PathCombine(ConstData.CLIENT_MSG_PATH, fileName);
+                    break;
+                case ConstData.FILE_NAME_SERVER_PROTO:
+                    FullName = PathUtil.PathCombine(ConstData.SERVER_MSG_PATH, fileName);
+                    break;
+            }
+        }
+                            
+        public void SetSyntax(string codeFileSyntax)
+        {
+            Syntax = codeFileSyntax;
+        }
+        public bool LoadCodeFile(CodeFile codeFile)
+        {
+            if (!LoadMsgName(codeFile.NameIdDic,codeFile.Name))
+            {
+                return false;
+            }
+
+            if (!LoadMsgId(codeFile.IdNameDic,codeFile.Name))
+            {
+                return false;
+            }
+            MsgData.Append(codeFile.ProtoBufData);
+            return true;
+        }
+
+        private bool LoadMsgName(Dictionary<string, string> nameDic, string codeFileName)
+        {
+            foreach (var (msgName, _) in nameDic)
+            {
+                if (MsgNameDic.TryGetValue(msgName, out var filename))
+                {
+                    Log.Error($" msg name {msgName} repeated in files {filename} and {codeFileName}");
+                    return false;
+                }
+                MsgNameDic.Add(msgName,codeFileName);
+            }
+            return true;
+        }
+
+        private bool LoadMsgId(Dictionary<string, string> idDic, string codeFileName)
+        {
+            foreach (var (msgId, _) in idDic)
+            {
+                if (MsgIdDic.TryGetValue(msgId,out var filename))
+                {
+                    Log.Error($" msg id {msgId} repeated in files {filename} and {codeFileName}");
+                    return false;
+                }
+                MsgIdDic.Add(msgId,codeFileName);
+            }
+            return true;
+        }
+
     }
 }
