@@ -14,8 +14,12 @@ namespace ProtocolBuild.Generator.Core
 
             foreach (var item in ProtoFileManager.Inst.ProtoFiles)
             {
-                
+                if (item.Value.GenerateProtoFile())
+                {
+                      
+                }  
             }
+            
             
         }
     }
