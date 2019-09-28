@@ -8,10 +8,7 @@ namespace ProtocolGenerator.Core
 {
     public class CSharpFile
     {
-        public string Name;
-        public string FullName;
-        public StringBuilder FileData;
-
+        private static string outPutDir = @"D:\GitHub\EcsProject\ServerProtocol\";
         public void ProtocolGenerator()
         {
         }
@@ -29,6 +26,11 @@ namespace ProtocolGenerator.Core
                 return;
             }
 
+            DirectoryInfo outPutDirectory = new DirectoryInfo(outPutDir);
+            if (!outPutDirectory.Exists)
+            {
+                outPutDirectory.Create();
+            }
             //调用外部程序protoc.exe
             var p = new Process
             {
@@ -40,7 +42,7 @@ namespace ProtocolGenerator.Core
                     CreateNoWindow = false,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = false,
-                    Arguments = $@"-I . --csharp_out={fileInfo.Directory} {fileInfo.Name}"
+                    Arguments = $@"-I . --csharp_out={outPutDir} {protoFile.Name}"
                 }
             };
 

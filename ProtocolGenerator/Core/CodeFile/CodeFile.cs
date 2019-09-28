@@ -78,6 +78,7 @@ namespace ProtocolGenerator.Core
         public void AddProtoBuffData(StringBuilder protoLine)
         {
             ProtoBufText.Append(protoLine);
+            ProtoBufText.Append(Environment.NewLine);
         }
     }
 }

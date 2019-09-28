@@ -68,10 +68,10 @@ namespace ProtocolGenerator.Core
         
         private bool CodeFileFormat(IEnumerable<string> lines, CodeFile codeFile)
         {
-            var syntaxLine = new StringBuilder();
-            var packageLines = new StringBuilder();
-            var optionLine = new StringBuilder();
-            var importLines = new StringBuilder();
+           var syntaxLine = new StringBuilder();
+           var packageLines = new StringBuilder();
+//            var optionLine = new StringBuilder();
+//            var importLines = new StringBuilder();
             var contextLines = new StringBuilder();
 
             foreach (var line in lines)
@@ -85,6 +85,9 @@ namespace ProtocolGenerator.Core
                     }
 
                     syntaxLine.Append(syntaxFormatLine);
+                    
+                    contextLines.Append(syntaxFormatLine);
+                    contextLines.Append(Environment.NewLine);
                 }
                 else if (trimLine.StartsWith(ConstData.PACKAGE_KEY))
                 {
@@ -94,6 +97,9 @@ namespace ProtocolGenerator.Core
                     }
 
                     packageLines.Append(packageFormatLine);
+                    
+                    contextLines.Append(packageFormatLine);
+                    contextLines.Append(Environment.NewLine);
                 }
                 else if (trimLine.StartsWith(ConstData.OPTION_KEY))
                 {
@@ -102,7 +108,8 @@ namespace ProtocolGenerator.Core
                         return false;
                     }
 
-                    optionLine.Append(optionFormatLine);
+                    contextLines.Append(optionFormatLine);
+                    contextLines.Append(Environment.NewLine);
                 }
                 else if (trimLine.StartsWith(ConstData.IMPORT_KEY))
                 {
@@ -111,7 +118,8 @@ namespace ProtocolGenerator.Core
                         return false;
                     }
 
-                    importLines.Append(importFormatLine);
+                    contextLines.Append(importFormatLine);
+                    contextLines.Append(Environment.NewLine);
                 }
                 else if (trimLine.StartsWith(ConstData.ANNOTAION_KEY))
                 {
@@ -153,10 +161,6 @@ namespace ProtocolGenerator.Core
             {
                 return false;
             }
-            codeFile.AddProtoBuffData(syntaxLine);
-            codeFile.AddProtoBuffData(packageLines);
-            codeFile.AddProtoBuffData(optionLine);
-            codeFile.AddProtoBuffData(importLines);
             codeFile.AddProtoBuffData(contextLines);
             return true;
         }
@@ -223,7 +227,7 @@ namespace ProtocolGenerator.Core
         private bool GetFormatOptionLine(string line, CodeFile codeFile, out string formatLine)
         {
             formatLine = string.Empty;
-            var optionKey = ConstData.PACKAGE_KEY;
+            var optionKey = ConstData.OPTION_KEY;
             var trimLine = StringUtil.TrimStartWord(line, optionKey);
             var option = trimLine.Replace(";", "").Trim();
             if (!codeFile.SetOption(option)) return false;

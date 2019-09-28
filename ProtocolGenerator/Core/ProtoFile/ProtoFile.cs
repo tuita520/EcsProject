@@ -41,7 +41,7 @@ namespace ProtocolBuild.Generator.Core
 
         public void SetFileName(string fileName)
         {
-            Name = fileName;
+            Name = fileName.Replace(".code",".proto");
         }
                             
         public void SetSyntax(string codeFileSyntax)
@@ -61,7 +61,7 @@ namespace ProtocolBuild.Generator.Core
                 return false;
             }
 
-            FullName = codeFile.FullName;
+            FullName = codeFile.FullName.Replace("Code","Proto").Replace(".code",".proto");
             ProtoBuffContext.Append(codeFile.ProtoBufText);
             return true;
         }

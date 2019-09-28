@@ -14,4 +14,7 @@
     <ProjectReference Include="..\ThirdParty\Google.Protobuf\Google.Protobuf.csproj" />
     <ProjectReference Include="..\Utility\Utility.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Proto\Shared" />
+  </ItemGroup>
 </Project>
