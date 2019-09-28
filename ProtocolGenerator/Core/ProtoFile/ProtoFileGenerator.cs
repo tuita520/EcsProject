@@ -16,7 +16,7 @@ namespace ProtocolBuild.Generator.Core
         
         public void Generate()
         {
-            if (FileUtil.WriteToFile(_protoFile.MsgData,_protoFile.FullName))
+            if (FileUtil.WriteToFile(_protoFile.ProtoBuffContext,_protoFile.FullName))
             {
                 Log.Info($"{_protoFile.FullName} generate success");
                 return;

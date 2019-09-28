@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package message.server.shared;
+
+option csharp_namespace = "Message.Server.Model";
+
+message Server_Tag
+{
+	 int32 ServerType= 1;  
+	 int32 AreaId = 2;
+	 int32 SubId = 3;
+}
+
+message Connect_Info
+{
+	 string Ip = 2;
+     int32 Port = 1;
+}
+

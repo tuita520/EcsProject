@@ -12,9 +12,9 @@
 //************************************************************************/
 //
 
-using System;
 using System.Collections.Generic;
 using System.Text;
+using ProtocolGenerator.Core;
 using RDLog;
 using Utility;
 
@@ -25,40 +25,33 @@ namespace ProtocolBuild.Generator.Core
         public string FullName { get;private set; }
         public string Name { get; private set; }
         public string Syntax { get; private set; }
-        
-        public string PackageName = ConstData.PACKAGE_NAME;
+
+        public string PackageName { get; private set; }
+
         /// <summary>
-        /// key msgname value codefilename
+        /// key structname value codefilename
         /// </summary>
-        private readonly Dictionary<string,string> MsgNameDic = new Dictionary<string, string>();
+        private readonly Dictionary<string,string> StructNameDic = new Dictionary<string, string>();
         /// <summary>
         /// key msgId value codefilename
         /// </summary>
         private readonly Dictionary<string,string> MsgIdDic = new Dictionary<string, string>();
         
-        public readonly StringBuilder MsgData = new StringBuilder();
+        public readonly StringBuilder ProtoBuffContext = new StringBuilder();
 
         public void SetFileName(string fileName)
         {
             Name = fileName;
-            switch (fileName)
-            {
-                case ConstData.FILE_NAME_CLIENT_PROTO:
-                    FullName = PathUtil.PathCombine(ConstData.CLIENT_MSG_PATH, fileName);
-                    break;
-                case ConstData.FILE_NAME_SERVER_PROTO:
-                    FullName = PathUtil.PathCombine(ConstData.SERVER_MSG_PATH, fileName);
-                    break;
-            }
         }
                             
         public void SetSyntax(string codeFileSyntax)
         {
             Syntax = codeFileSyntax;
         }
+        
         public bool LoadCodeFile(CodeFile codeFile)
         {
-            if (!LoadMsgName(codeFile.NameIdDic,codeFile.Name))
+            if (!LoadStructName(codeFile.NameList,codeFile.Name))
             {
                 return false;
             }
@@ -67,20 +60,22 @@ namespace ProtocolBuild.Generator.Core
             {
                 return false;
             }
-            MsgData.Append(codeFile.ProtoBufData);
+
+            FullName = codeFile.FullName;
+            ProtoBuffContext.Append(codeFile.ProtoBufText);
             return true;
         }
 
-        private bool LoadMsgName(Dictionary<string, string> nameDic, string codeFileName)
+        private bool LoadStructName(List<string> nameList, string codeFileName)
         {
-            foreach (var (msgName, _) in nameDic)
+            foreach (var name in nameList)
             {
-                if (MsgNameDic.TryGetValue(msgName, out var filename))
+                if (StructNameDic.TryGetValue(name, out var filename))
                 {
-                    Log.Error($" msg name {msgName} repeated in files {filename} and {codeFileName}");
+                    Log.Error($" msg name {name} repeated in files {filename} and {codeFileName}");
                     return false;
                 }
-                MsgNameDic.Add(msgName,codeFileName);
+                StructNameDic.Add(name,codeFileName);
             }
             return true;
         }
@@ -101,13 +96,7 @@ namespace ProtocolBuild.Generator.Core
 
         public bool GenerateProtoFile()
         {
-            StringBuilder context = new StringBuilder();
-            context.Append($"syntax = {Syntax};");
-            context.Append(Environment.NewLine);
-            context.Append($"{ConstData.PACKAGE_KEY} {PackageName};");
-            context.Append(Environment.NewLine);
-            context.Append(MsgData);
-            return FileUtil.WriteToFile(context, FullName);
+            return FileUtil.WriteToFile(ProtoBuffContext, FullName);
         }
     }
 }

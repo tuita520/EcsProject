@@ -1,0 +1,56 @@
+syntax = "proto3";package message.server.shared;package option csharp_namespace = "Message.Server.Shared";
+
+
+
+package enum Server_Tag
+{
+	  Server_Tag1= 1;  
+	  Server_Tag2 = 2;
+	  Server_Tag3 = 3;
+}
+
+message Server_Tag
+{
+	 int32 ServerType= 1;  
+	 int32 AreaId = 2;
+	 int32 SubId = 3;
+}
+
+message MSG_Server_Register_Request
+{
+	 Server_Tag Tag =1;
+}
+
+message MSG_Server_Register_Response
+{
+	 int32 Result =1;
+	 Server_Tag Tag =2;
+}
+
+message Connect_Info
+{
+	 string Ip = 2;
+     int32 Port = 1;
+}
+
+message MSG_Server_Connect_Command
+{
+	 Server_Tag Tag = 1;
+	 Connect_Info Info= 2;
+	 int32 ConnectType = 4;
+}
+
+message MSG_Heartbeat_Ping
+{
+}
+
+message MSG_Heartbeat_Pong
+{
+}
+Ping 0xff0010
+{
+}
+
+message MSG_Heartbeat_Pong 0xff0011
+{
+}

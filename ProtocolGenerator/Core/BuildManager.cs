@@ -1,22 +1,23 @@
+using ProtocolBuild.Generator.Core;
 using Utility;
 
-namespace ProtocolBuild.Generator.Core
+namespace ProtocolGenerator.Core
 {
     public class BuildManager:Singleton<BuildManager>
     {
         public void Run()
         {
-            CodeFileManager.Inst.LoadFile("");
+            CodeFileManager.Inst.LoadFiles("../../../ProtocolBuild");
             foreach (var item in CodeFileManager.Inst.CodeFiles)
             {
                 ProtoFileManager.Inst.LoadCodeFile(item.Value);
             }
 
-            foreach (var item in ProtoFileManager.Inst.ProtoFiles)
+            foreach (var (_, value) in ProtoFileManager.Inst.ProtoFiles)
             {
-                if (item.Value.GenerateProtoFile())
+                if (value.GenerateProtoFile())
                 {
-                      
+                    CSharpFile.ProtoBuffFile(value);
                 }  
             }
             

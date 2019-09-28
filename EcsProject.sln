@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Protobuf", "ThirdPar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{E942750D-FC9D-4A6B-89DC-98504A80AFE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtocolGenerator", "ProtocolGenerator\ProtocolGenerator.csproj", "{498B2441-F845-40E0-8169-43EFDD7312A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,6 +188,18 @@ Global
 		{E942750D-FC9D-4A6B-89DC-98504A80AFE5}.Release|x64.Build.0 = Release|Any CPU
 		{E942750D-FC9D-4A6B-89DC-98504A80AFE5}.Release|x86.ActiveCfg = Release|Any CPU
 		{E942750D-FC9D-4A6B-89DC-98504A80AFE5}.Release|x86.Build.0 = Release|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Debug|x64.Build.0 = Debug|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Debug|x86.Build.0 = Debug|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Release|x64.ActiveCfg = Release|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Release|x64.Build.0 = Release|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Release|x86.ActiveCfg = Release|Any CPU
+		{498B2441-F845-40E0-8169-43EFDD7312A9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{66891598-EF6B-43A4-AF90-1F47AF8F42E6} = {D5842ACB-9849-4498-9250-09A274AE88D1}

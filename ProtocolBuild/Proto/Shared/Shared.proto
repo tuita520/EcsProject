@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package message.server.shared;
+
+option csharp_namespace = "Message.Server.Shared";
+
+import "Model.proto";
+
+message MSG_Server_Register_Request
+{
+	 Server_Tag Tag =1;
+}
+
+message MSG_Server_Register_Response
+{
+	 int32 Result =1;
+	 Server_Tag Tag =2;
+}
+
+message MSG_Server_Connect_Command
+{
+	 Server_Tag Tag = 1;
+	 Connect_Info Info= 2;
+	 int32 ConnectType = 4;
+}
+
+message MSG_Heartbeat_Ping
+{
+}
+
+message MSG_Heartbeat_Pong
+{
+}

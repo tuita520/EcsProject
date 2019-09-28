@@ -3,10 +3,10 @@
     <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>..\Bin\Debug\</OutputPath>
+    <OutputPath>..\Bin\Library</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>..\Bin\Release\</OutputPath>
+    <OutputPath>..\Bin\Library</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Helper\Helper.csproj" />

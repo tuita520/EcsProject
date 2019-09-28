@@ -24,13 +24,22 @@ namespace Utility
             try
             {
                 FileInfo fileInfo = new FileInfo(fileFullName);
-                if (!fileInfo.Directory.Exists)
+                FileStream fileStream = null;
+                if (!fileInfo.Exists)
                 {
-                    Directory.CreateDirectory(fileInfo.Directory.FullName);
+                    if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
+                    {
+                        Directory.CreateDirectory(fileInfo.Directory.FullName);
+                    }
+                    fileStream = fileInfo.Create();
                 }
-                StreamWriter writer = fileInfo.CreateText();
-                writer.WriteLine(fileContent.ToString());
-                writer.Close();
+                else
+                {
+                    fileStream = fileInfo.OpenWrite();
+                }
+
+                if (fileContent != null) fileStream.Write(Encoding.Default.GetBytes(fileContent.ToString()));
+                fileStream.Close();
             }
             catch (Exception e)
             {
@@ -40,11 +49,17 @@ namespace Utility
             return true;
         }
 
-        public static string[] FindFiles(string path,string key)
+        public static FileInfo[] FindFiles(string path,string key)
         {
-            //string[] files = Directory.GetFiles(path, "*.code", SearchOption.AllDirectories);
-            string[] files = Directory.GetFiles(path, key, SearchOption.AllDirectories);
-            return files;
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            if (directoryInfo .Exists)
+            {
+                FileInfo[] files = directoryInfo. GetFiles(key,SearchOption.AllDirectories);
+                return files;
+            }
+            return null;
+//            string[] files = Directory.GetFiles(path, "*.code", SearchOption.AllDirectories);
+//            string[] files = Directory.GetFiles(path, key, SearchOption.AllDirectories);
         }
 
         public static string GetFileHashValue(string fileFullName)
@@ -86,16 +101,44 @@ namespace Utility
             return null;
         }
 
+        public static List<string> ReadLinesFromFile(FileInfo fi)
+        {
+            try
+            {
+                var lines = new List<string>();
+                var fsRead = fi.OpenRead();
+                var sr = new StreamReader(fsRead);
+                var s = "";
+                do
+                {
+                    s = sr.ReadLine();
+                    if (s != null)
+                    {
+                        lines.Add(s);
+                    }
+                } while (s != null);
+
+                sr.Close();
+                fsRead.Close();
+                return lines;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
+        }
+
         public static List<string> ReadLinesFromFile(string fileFullName)
         {
             try
             {
-                List<string> lines = new List<string>();
                 FileInfo fi = new FileInfo(fileFullName);
                 if (!fi.Exists)
                 {
-                    return lines;
+                    return null;
                 }
+                List<string> lines = new List<string>();
 
                 FileStream fsRead = fi.OpenRead();
                 StreamReader sr = new StreamReader(fsRead);
@@ -119,8 +162,6 @@ namespace Utility
             }
             return null;
         }
-
-      
 
     }
 }

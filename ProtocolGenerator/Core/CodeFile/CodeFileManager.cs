@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
+using ProtocolBuild.Generator.Core;
 using RDLog;
 using Utility;
 
-namespace ProtocolBuild.Generator.Core
+namespace ProtocolGenerator.Core
 {
     public class CodeFileManager:Singleton<CodeFileManager>
     {
@@ -15,6 +15,26 @@ namespace ProtocolBuild.Generator.Core
         private void AddCodeFile(CodeFile codeFile)
         {
             CodeFiles.Add(codeFile.Name,codeFile);
+        }
+
+        private void LoadFile(FileInfo fileInfo)
+        {
+            var parser = new CodeFileParser();
+            try
+            {
+                var codeFile =  parser.ParserFile(fileInfo);
+                if (codeFile == null)
+                {
+                    return;
+                }
+
+                AddCodeFile(codeFile);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                throw;
+            }
         }
         
         public void LoadFile(string fileFullName)
@@ -32,7 +52,6 @@ namespace ProtocolBuild.Generator.Core
 
                 if (codeFile == null)
                 {
-                    Log.Error($"LoadFile {fileFullName} error : file paraser wrong .");
                     return;
                 }
 
@@ -43,6 +62,15 @@ namespace ProtocolBuild.Generator.Core
                 Log.Error(e);
                 throw;
             }
+        }
+
+        public void LoadFiles(string path)
+        {
+           var files = FileUtil.FindFiles(path, "*.code");
+           foreach (var file in files)
+           {
+               LoadFile(file);
+           }
         }
 
 

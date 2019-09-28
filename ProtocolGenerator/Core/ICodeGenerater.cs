@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace ProtocolGenerator
+namespace ProtocolGenerator.Core
 {
     public interface ICodeGenerator
     {

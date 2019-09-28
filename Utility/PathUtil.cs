@@ -49,11 +49,6 @@ namespace Utility
         public static string PathCombine(string inputPath, string folder)
         {
             var newPath = Path.Combine(inputPath, folder);
-            if (!Directory.Exists(newPath))
-            {
-                Directory.CreateDirectory(newPath);
-            }
-
             return newPath;
         }
     }
