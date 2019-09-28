@@ -1,0 +1,17 @@
+D:\GitHub\EcsProject\Bin\Debug\netcoreapp2.2\ProtocolGenerator.deps.json
+D:\GitHub\EcsProject\Bin\Debug\netcoreapp2.2\ProtocolGenerator.runtimeconfig.json
+D:\GitHub\EcsProject\Bin\Debug\netcoreapp2.2\ProtocolGenerator.runtimeconfig.dev.json
+D:\GitHub\EcsProject\Bin\Debug\netcoreapp2.2\ProtocolGenerator.dll
+D:\GitHub\EcsProject\Bin\Debug\netcoreapp2.2\ProtocolGenerator.pdb
+D:\GitHub\EcsProject\ProtocolGenerator\obj\Debug\netcoreapp2.2\ProtocolGenerator.csprojAssemblyReference.cache
+D:\GitHub\EcsProject\ProtocolGenerator\obj\Debug\netcoreapp2.2\ProtocolGenerator.csproj.CoreCompileInputs.cache
+D:\GitHub\EcsProject\ProtocolGenerator\obj\Debug\netcoreapp2.2\ProtocolGenerator.AssemblyInfoInputs.cache
+D:\GitHub\EcsProject\ProtocolGenerator\obj\Debug\netcoreapp2.2\ProtocolGenerator.AssemblyInfo.cs
+D:\GitHub\EcsProject\ProtocolGenerator\obj\Debug\netcoreapp2.2\ProtocolGenerator.csproj.CopyComplete
+D:\GitHub\EcsProject\ProtocolGenerator\obj\Debug\netcoreapp2.2\ProtocolGenerator.dll
+D:\GitHub\EcsProject\ProtocolGenerator\obj\Debug\netcoreapp2.2\ProtocolGenerator.pdb
+D:\GitHub\EcsProject\Bin\Tools\netcoreapp2.2\ProtocolGenerator.deps.json
+D:\GitHub\EcsProject\Bin\Tools\netcoreapp2.2\ProtocolGenerator.runtimeconfig.json
+D:\GitHub\EcsProject\Bin\Tools\netcoreapp2.2\ProtocolGenerator.runtimeconfig.dev.json
+D:\GitHub\EcsProject\Bin\Tools\netcoreapp2.2\ProtocolGenerator.dll
+D:\GitHub\EcsProject\Bin\Tools\netcoreapp2.2\ProtocolGenerator.pdb
