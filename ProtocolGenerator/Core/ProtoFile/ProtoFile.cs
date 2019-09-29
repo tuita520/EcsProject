@@ -13,21 +13,14 @@
 //
 
 using System.Collections.Generic;
-using System.Text;
-using ProtocolGenerator.Core;
+using System.IO;
 using RDLog;
 using Utility;
 
-namespace ProtocolBuild.Generator.Core
+namespace ProtocolGenerator.Core
 {
-    public class ProtoFile
+    public class ProtoFile:ProtoBuff
     {
-        public string FullName { get;private set; }
-        public string Name { get; private set; }
-        public string Syntax { get; private set; }
-
-        public string PackageName { get; private set; }
-
         /// <summary>
         /// key structname value codefilename
         /// </summary>
@@ -37,21 +30,9 @@ namespace ProtocolBuild.Generator.Core
         /// </summary>
         private readonly Dictionary<string,string> MsgIdDic = new Dictionary<string, string>();
         
-        public readonly StringBuilder ProtoBuffContext = new StringBuilder();
-
-        public void SetFileName(string fileName)
-        {
-            Name = fileName.Replace(".code",".proto");
-        }
-                            
-        public void SetSyntax(string codeFileSyntax)
-        {
-            Syntax = codeFileSyntax;
-        }
-        
         public bool LoadCodeFile(CodeFile codeFile)
         {
-            if (!LoadStructName(codeFile.NameList,codeFile.Name))
+            if (!LoadStructName(codeFile.StructNameList,codeFile.Name))
             {
                 return false;
             }
@@ -62,7 +43,7 @@ namespace ProtocolBuild.Generator.Core
             }
 
             FullName = codeFile.FullName.Replace("Code","Proto").Replace(".code",".proto");
-            ProtoBuffContext.Append(codeFile.ProtoBufText);
+            SetProtoBuffData(codeFile.ProtoBuffContext);
             return true;
         }
 
@@ -98,5 +79,6 @@ namespace ProtocolBuild.Generator.Core
         {
             return FileUtil.WriteToFile(ProtoBuffContext, FullName);
         }
+        
     }
 }

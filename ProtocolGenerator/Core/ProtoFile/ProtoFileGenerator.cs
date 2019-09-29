@@ -1,10 +1,7 @@
-﻿using System;
-using System.Text;
-using ProtocolGenerator;
-using RDLog;
+﻿using RDLog;
 using Utility;
 
-namespace ProtocolBuild.Generator.Core
+namespace ProtocolGenerator.Core
 {
     public class ProtoFileGenerator
     {

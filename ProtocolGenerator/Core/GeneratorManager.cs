@@ -1,13 +1,12 @@
-using ProtocolBuild.Generator.Core;
 using Utility;
 
 namespace ProtocolGenerator.Core
 {
-    public class BuildManager:Singleton<BuildManager>
+    public class GeneratorManager:Singleton<GeneratorManager>
     {
         public void Run()
         {
-            CodeFileManager.Inst.LoadFiles("../../../ProtocolBuild");
+            CodeFileManager.Inst.LoadFiles(ConstData.PROTOCOL_PATH);
             foreach (var item in CodeFileManager.Inst.CodeFiles)
             {
                 ProtoFileManager.Inst.LoadCodeFile(item.Value);

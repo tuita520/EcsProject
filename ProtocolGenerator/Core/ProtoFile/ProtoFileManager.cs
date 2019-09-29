@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using ProtocolGenerator.Core;
 using Utility;
 
-namespace ProtocolBuild.Generator.Core
+namespace ProtocolGenerator.Core
 {
     public class ProtoFileManager : Singleton<ProtoFileManager>
     {
@@ -15,6 +14,8 @@ namespace ProtocolBuild.Generator.Core
                 protoFile = new ProtoFile();
                 protoFile.SetFileName(codeFile.Name);
                 protoFile.SetSyntax(codeFile.Syntax);
+                protoFile.SetPackage(codeFile.Package);
+                protoFile.SetOption(codeFile.Option);
                 ProtoFiles.Add(protoFile.Name, protoFile);
             }
 

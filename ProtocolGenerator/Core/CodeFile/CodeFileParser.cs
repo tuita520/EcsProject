@@ -161,7 +161,7 @@ namespace ProtocolGenerator.Core
             {
                 return false;
             }
-            codeFile.AddProtoBuffData(contextLines);
+            codeFile.SetProtoBuffData(contextLines);
             return true;
         }
 

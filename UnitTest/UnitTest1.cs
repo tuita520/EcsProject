@@ -1,4 +1,5 @@
-using System.Text;
+using System;
+using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Utility;
 
@@ -10,7 +11,11 @@ namespace UnitTest
         [TestMethod]
         public void TestMethod1()
         {
-            FileUtil.WriteToFile(new StringBuilder("2"), @"..\TestFile\ServerShard.code");
+            string convertTime = "2012-12-12";
+            DateTime mdate1 = DateTime.ParseExact(convertTime, "yyyy-MM-dd", null);
+            Console.Write(1);
         }
+        
+        
     }
 }

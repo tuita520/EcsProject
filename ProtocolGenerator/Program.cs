@@ -7,7 +7,7 @@ namespace ProtocolGenerator
     {
         static void Main(string[] args)
         {
-            BuildManager.Inst.Run();
+            GeneratorManager.Inst.Run();
 //            CSharpFile.ProtoBuffFile(@"D:\GitHub\EcsProject\ProtocolBuild\Proto\Shared\Shared.proto");
           
             Console.WriteLine("Hello World!");
