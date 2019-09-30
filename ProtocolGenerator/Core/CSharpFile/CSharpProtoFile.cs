@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using RDLog;
 using Utility;
 
 namespace ProtocolGenerator.Core
@@ -12,10 +14,9 @@ namespace ProtocolGenerator.Core
         public string Name;
         public string FullName;
         public string Directory;
-        
+
         public void ProtocolGenerator()
         {
-                
         }
 
         public static void ProtoBuffFile(ProtoFile protoFile)
@@ -31,12 +32,15 @@ namespace ProtocolGenerator.Core
                 return;
             }
 
+            string outPutfile="./";
             var outPutDirList = new List<string>();
-            if (protoFile.Package.Contains("client"))
+            if (protoFile.Option.Contains("Client"))
             {
-                outPutDirList.Add(ConstData.CLIENTMSG_OUTPUT_PATH);
+                outPutfile = fileInfo.Directory.FullName.Replace(@"\Proto\", @"\Client\");
+                outPutDirList.Add(outPutfile);
             }
-            outPutDirList.Add(ConstData.SERVERMSG_OUTPUT_PATH);
+            outPutfile = fileInfo.Directory.FullName.Replace(@"\Proto\", @"\Server\");
+            outPutDirList.Add(outPutfile);
 
             foreach (var outPutDir in outPutDirList)
             {
@@ -51,7 +55,7 @@ namespace ProtocolGenerator.Core
                 {
                     StartInfo =
                     {
-                        FileName = @"D:\GitHub\EcsProject\ThirdParty\google_protoc\protoc.exe",
+                        FileName = $@"{Program.ProtocDir}\protoc.exe",
                         WorkingDirectory = fileInfo.Directory.FullName,
                         UseShellExecute = false,
                         CreateNoWindow = false,
@@ -60,9 +64,15 @@ namespace ProtocolGenerator.Core
                         Arguments = $@"-I . --csharp_out={outPutDir} {protoFile.Name}"
                     }
                 };
-
-                p.Start();
-                p.StandardInput.WriteLine("exit");
+                try
+                {
+                    p.Start();
+                    p.StandardInput.WriteLine("exit");
+                }
+                catch (Exception)
+                {
+                    Log.Error($"Process start fail: check protoc.exe path {p.StartInfo.FileName}");
+                }
 
 //            p.WaitForExit();
 //            p.StandardInput.WriteLine(command);

@@ -63,9 +63,14 @@ namespace ProtocolGenerator.Core
             }
         }
 
-        public void LoadFiles(string path)
+        public void LoadFiles(string dir)
         {
-           var files = FileUtil.FindFiles(path, "*.code");
+           var files = FileUtil.FindFiles(dir, "*.code");
+           if (files == null)
+           {
+               Log.Error($"load file fail : check file dir {dir}");
+               return;
+           }
            foreach (var file in files)
            {
                LoadFile(file);

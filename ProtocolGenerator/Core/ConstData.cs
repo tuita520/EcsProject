@@ -18,12 +18,11 @@
 
         public const string ANNOTAION_KEY = @"//";
 
-        public const string PROTOCOL_PATH = @"..\..\..\ProtocolBuild";
-        
-        public const string SERVERMSG_OUTPUT_PATH = @"..\..\..\ServerProtocol";
-        public const string CLIENTMSG_OUTPUT_PATH = @"..\..\..\ClientProtocol";
-
         public const string CSHARP_NAMESPACE_KEY = @"csharp_namespace";
+        
+        public const string PROTOC_DIR = @"\ThirdParty\google_protoc\";
+        
+        public const string INPUT_DIR_NAME = @"\Protocol\";
     }
     
     

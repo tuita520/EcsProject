@@ -6,7 +6,7 @@ namespace ProtocolGenerator.Core
     {
         public void Run()
         {
-            CodeFileManager.Inst.LoadFiles(ConstData.PROTOCOL_PATH);
+            CodeFileManager.Inst.LoadFiles(Program.InputFileDir);
             foreach (var item in CodeFileManager.Inst.CodeFiles)
             {
                 ProtoFileManager.Inst.LoadCodeFile(item.Value);

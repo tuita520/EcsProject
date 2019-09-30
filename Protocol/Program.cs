@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using Utility;
+﻿using System.Diagnostics;
 
 namespace ProtocolBuild
 {
@@ -8,7 +6,7 @@ namespace ProtocolBuild
     {
         static void Main(string[] args)
         {
-            ProtoBuffFile(@"D:\GitHub\EcsProject\ProtocolBuild\Proto\Shared\");
+            ProtoBuffFile(@"D:\GitHub\EcsProject\Protocol\Proto\Shared\");
         }
         
         public static void ProtoBuffFile(string protoFilesPath)

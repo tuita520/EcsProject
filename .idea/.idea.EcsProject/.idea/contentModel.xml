@@ -174,7 +174,12 @@
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
-      <e p="ProtocolBuild" t="IncludeRecursive">
+      <e p="Protocol" t="IncludeRecursive">
+        <e p="Client" t="Include">
+          <e p="Shared" t="Include">
+            <e p="Model.cs" t="Include" />
+          </e>
+        </e>
         <e p="code" t="Include">
           <e p="Client" t="Include">
             <e p="CRealm.code" t="Include" />
@@ -199,18 +204,26 @@
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.2" t="Include">
-              <e p="ProtocolBuild.AssemblyInfo.cs" t="Include" />
+              <e p="Protocol.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
         <e p="Program.cs" t="Include" />
         <e p="Proto" t="Include">
           <e p="Shared" t="Include">
+            <e p="Model.cs" t="Include" />
             <e p="Model.proto" t="Include" />
+            <e p="Shared.cs" t="Include" />
             <e p="Shared.proto" t="Include" />
           </e>
         </e>
-        <e p="ProtocolBuild.csproj" t="IncludeRecursive" />
+        <e p="Protocol.csproj" t="IncludeRecursive" />
+        <e p="Server" t="Include">
+          <e p="Shared" t="Include">
+            <e p="Model.cs" t="Include" />
+            <e p="Shared.cs" t="Include" />
+          </e>
+        </e>
       </e>
       <e p="ProtocolGenerator" t="IncludeRecursive">
         <e p="Core" t="Include">
