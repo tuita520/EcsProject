@@ -30,10 +30,127 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
+              "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj"
+              },
+              "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj"
+              },
               "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
                 "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
               }
             }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj",
+        "projectName": "Shared.CFGData",
+        "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj",
+        "packagesPath": "C:\\Users\\WanXin\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\WanXin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj"
+              },
+              "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
+        "projectName": "Shared.ConstData",
+        "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
+        "packagesPath": "C:\\Users\\WanXin\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\WanXin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
           }
         },
         "warningProperties": {

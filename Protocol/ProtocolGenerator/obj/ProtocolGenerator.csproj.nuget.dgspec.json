@@ -1,9 +1,68 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\ProtocolGenerator.csproj": {}
+    "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\ProtocolGenerator.csproj": {}
   },
   "projects": {
+    "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\ProtocolGenerator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\ProtocolGenerator.csproj",
+        "projectName": "ProtocolGenerator",
+        "projectPath": "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\ProtocolGenerator.csproj",
+        "packagesPath": "C:\\Users\\WanXin\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\WanXin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj"
+              },
+              "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
     "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -82,65 +141,6 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp2.2": {
-          "dependencies": {
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
-            }
-          },
-          "imports": [
-            "net461"
-          ],
-          "assetTargetFallback": true,
-          "warn": true
-        }
-      }
-    },
-    "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\ProtocolGenerator.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\ProtocolGenerator.csproj",
-        "projectName": "ProtocolGenerator",
-        "projectPath": "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\ProtocolGenerator.csproj",
-        "packagesPath": "C:\\Users\\WanXin\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\WanXin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp2.2"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp2.2": {
-            "projectReferences": {
-              "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj": {
-                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj"
-              },
-              "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj": {
-                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj"
-              }
-            }
           }
         },
         "warningProperties": {

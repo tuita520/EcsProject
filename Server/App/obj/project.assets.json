@@ -218,6 +218,30 @@
           "bin/placeholder/Google.Protobuf.dll": {}
         }
       },
+      "Shared.CFGData/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Shared.Log": "1.0.0",
+          "Shared.Utils": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Shared.CFGData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.CFGData.dll": {}
+        }
+      },
+      "Shared.ConstData/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Shared.ConstData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.ConstData.dll": {}
+        }
+      },
       "Shared.Frame/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -741,6 +765,16 @@
       "path": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
       "msbuildProject": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
     },
+    "Shared.CFGData/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/CFGData/Shared.CFGData.csproj",
+      "msbuildProject": "../../Shared/CFGData/Shared.CFGData.csproj"
+    },
+    "Shared.ConstData/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/ConstData/Shared.ConstData.csproj",
+      "msbuildProject": "../../Shared/ConstData/Shared.ConstData.csproj"
+    },
     "Shared.Frame/1.0.0": {
       "type": "project",
       "path": "../../Shared/Frame/Shared.Frame.csproj",
@@ -765,6 +799,8 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "Microsoft.NETCore.App >= 2.2.0",
+      "Shared.CFGData >= 1.0.0",
+      "Shared.ConstData >= 1.0.0",
       "Shared.Frame >= 1.0.0"
     ]
   },
@@ -798,6 +834,12 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
+              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj"
+            },
+            "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj": {
+              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj"
+            },
             "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
               "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
             }

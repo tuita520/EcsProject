@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\GitHub\\EcsProject\\Protocol\\MessageBuilder\\MessageBuilder.csproj",
-    "projectName": "MessageBuilder",
-    "projectPath": "D:\\GitHub\\EcsProject\\Protocol\\MessageBuilder\\MessageBuilder.csproj",
-    "outputPath": "D:\\GitHub\\EcsProject\\Protocol\\MessageBuilder\\obj\\",
+    "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
+    "projectName": "Shared.ConstData",
+    "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
+    "outputPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -18,14 +18,7 @@
     },
     "frameworks": {
       "netcoreapp2.2": {
-        "projectReferences": {
-          "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj"
-          },
-          "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj"
-          }
-        }
+        "projectReferences": {}
       }
     },
     "warningProperties": {

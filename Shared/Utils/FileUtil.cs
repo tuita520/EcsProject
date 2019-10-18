@@ -48,7 +48,35 @@ namespace Utility
             }
             return true;
         }
+        public static bool WriteToFile(string fileContent, string fileFullName)
+        {
+            try
+            {
+                FileInfo fileInfo = new FileInfo(fileFullName);
+                FileStream fileStream = null;
+                if (!fileInfo.Exists)
+                {
+                    if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
+                    {
+                        Directory.CreateDirectory(fileInfo.Directory.FullName);
+                    }
+                    fileStream = fileInfo.Create();
+                }
+                else
+                {
+                    fileStream = fileInfo.OpenWrite();
+                }
 
+                if (fileContent != null) fileStream.Write(Encoding.Default.GetBytes(fileContent));
+                fileStream.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            return true;
+        }
         public static FileInfo[] FindFiles(string path,string key)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(path);

@@ -51,34 +51,7 @@ namespace ProtocolGenerator.Core
                 }
 
                 //调用外部程序protoc.exe
-                var p = new Process
-                {
-                    StartInfo =
-                    {
-                        FileName = $@"{Program.ProtocDir}\protoc.exe",
-                        WorkingDirectory = fileInfo.Directory.FullName,
-                        UseShellExecute = false,
-                        CreateNoWindow = false,
-                        RedirectStandardInput = true,
-                        RedirectStandardOutput = false,
-                        Arguments = $@"-I . --csharp_out={outPutDir} {protoFile.Name}"
-                    }
-                };
-                try
-                {
-                    p.Start();
-                    p.StandardInput.WriteLine("exit");
-                }
-                catch (Exception)
-                {
-                    Log.Error($"Process start fail: check protoc.exe path {p.StartInfo.FileName}");
-                }
-
-//            p.WaitForExit();
-//            p.StandardInput.WriteLine(command);
-//            p.StandardInput.WriteLine("exit"); //需要有这句，不然程序会挂机
-//            向cmd.exe输入command
-//            string output = p.StandardOutput.ReadToEnd(); 这句可以用来获取执行命令的输出结果
+                CmdProcessUtil.RunCmdProcess($@"{FolderManager.Inst.GoogleGeneratorFileDirectory}\protoc.exe", $@"-I . --csharp_out={outPutDir} {protoFile.Name}",FolderManager.Inst.CurrentDirectory);
             }
         }
 

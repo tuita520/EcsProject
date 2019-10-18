@@ -207,26 +207,6 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
-      },
-      "Shared.Log/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/Shared.Log.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.Log.dll": {}
-        }
-      },
-      "Shared.Utils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/Shared.Utils.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.Utils.dll": {}
-        }
       }
     }
   },
@@ -699,23 +679,11 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
-    },
-    "Shared.Log/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/Log/Shared.Log.csproj",
-      "msbuildProject": "../../Shared/Log/Shared.Log.csproj"
-    },
-    "Shared.Utils/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/Utils/Shared.Utils.csproj",
-      "msbuildProject": "../../Shared/Utils/Shared.Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Microsoft.NETCore.App >= 2.2.0",
-      "Shared.Log >= 1.0.0",
-      "Shared.Utils >= 1.0.0"
+      "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
   "packageFolders": {
@@ -725,11 +693,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\EcsProject\\Protocol\\MessageBuilder\\MessageBuilder.csproj",
-      "projectName": "MessageBuilder",
-      "projectPath": "D:\\GitHub\\EcsProject\\Protocol\\MessageBuilder\\MessageBuilder.csproj",
+      "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
+      "projectName": "Shared.ConstData",
+      "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
       "packagesPath": "C:\\Users\\WanXin\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\EcsProject\\Protocol\\MessageBuilder\\obj\\",
+      "outputPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -747,14 +715,7 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {
-            "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj": {
-              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Log\\Shared.Log.csproj"
-            },
-            "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj": {
-              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Utils\\Shared.Utils.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

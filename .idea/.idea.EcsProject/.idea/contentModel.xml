@@ -34,28 +34,33 @@
       <e p="EcsProject.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Protocol" t="Include">
-        <e p="MessageBuilder" t="IncludeRecursive">
-          <e p="Code" t="Include">
-            <e p="Client" t="Include">
-              <e p="CRealm.code" t="Include" />
-              <e p="RealmC.code" t="Include" />
-            </e>
-            <e p="Gate" t="Include">
-              <e p="CGate.code" t="Include" />
-              <e p="GateC.code" t="Include" />
-            </e>
-            <e p="Realm" t="Include">
-              <e p="Realm.code" t="Include" />
-            </e>
-            <e p="Scene" t="Include">
-              <e p="GS.code" t="Include" />
-              <e p="SG.code" t="Include" />
-            </e>
-            <e p="Shared" t="Include">
-              <e p="Model.code" t="Include" />
-              <e p="Shared.code" t="Include" />
-            </e>
+        <e p="Bin" t="ExcludeRecursive">
+          <e p="ProtocolMaker.bat" t="Include" />
+        </e>
+        <e p="Code" t="Include">
+          <e p="Client" t="Include">
+            <e p="CRealm.code" t="Include" />
+            <e p="RealmC.code" t="Include" />
           </e>
+          <e p="Gate" t="Include">
+            <e p="CGate.code" t="Include" />
+            <e p="GateC.code" t="Include" />
+          </e>
+          <e p="Realm" t="Include">
+            <e p="Realm.code" t="Include" />
+          </e>
+          <e p="Scene" t="Include">
+            <e p="GS.code" t="Include" />
+            <e p="SG.code" t="Include" />
+          </e>
+          <e p="Shared" t="Include">
+            <e p="Model.code" t="Include" />
+            <e p="Shared.code" t="Include" />
+          </e>
+        </e>
+        <e p="MessageBuilder" t="IncludeRecursive">
+          <e p="ConstData.cs" t="Include" />
+          <e p="FolderManager.cs" t="Include" />
           <e p="MessageBuilder.csproj" t="IncludeRecursive" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
@@ -66,9 +71,44 @@
           </e>
           <e p="Program.cs" t="Include" />
         </e>
+        <e p="Proto" t="Include" />
+        <e p="ProtocolGenerator" t="IncludeRecursive">
+          <e p="Core" t="Include">
+            <e p="CodeFile" t="Include">
+              <e p="CodeFile.cs" t="Include" />
+              <e p="CodeFileManager.cs" t="Include" />
+              <e p="CodeFileParser.cs" t="Include" />
+            </e>
+            <e p="ConstData.cs" t="Include" />
+            <e p="CSharpFile" t="Include">
+              <e p="CSharpProtoFile.cs" t="Include" />
+              <e p="CSharpProtoHandlerFile.cs" t="Include" />
+            </e>
+            <e p="EnumType.cs" t="Include" />
+            <e p="GeneratorManager.cs" t="Include" />
+            <e p="ICodeGenerater.cs" t="Include" />
+            <e p="ProtoBuff.cs" t="Include" />
+            <e p="ProtoFile" t="Include">
+              <e p="ProtoFile.cs" t="Include" />
+              <e p="ProtoFileGenerator.cs" t="Include" />
+              <e p="ProtoFileManager.cs" t="Include" />
+            </e>
+          </e>
+          <e p="FolderManager.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp2.2" t="Include">
+                <e p="ProtocolGenerator.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Program.cs" t="Include" />
+          <e p="ProtocolGenerator.csproj" t="IncludeRecursive" />
+        </e>
       </e>
       <e p="Server" t="Include">
         <e p="App" t="IncludeRecursive">
+          <e p="FolderManager.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
               <e p="netcoreapp2.2" t="Include">
@@ -108,6 +148,17 @@
           </e>
           <e p="Shared.CFGData.csproj" t="IncludeRecursive" />
           <e p="XmlParser.cs" t="Include" />
+        </e>
+        <e p="ConstData" t="IncludeRecursive">
+          <e p="CommonConst.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp2.2" t="Include">
+                <e p="Shared.ConstData.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Shared.ConstData.csproj" t="IncludeRecursive" />
         </e>
         <e p="Frame" t="IncludeRecursive">
           <e p="Config" t="Include">
@@ -232,6 +283,8 @@
           <e p="Shared.Log.csproj" t="IncludeRecursive" />
         </e>
         <e p="Utils" t="IncludeRecursive">
+          <e p="CmdProcessUtil.cs" t="Include" />
+          <e p="DirectoryUtil.cs" t="Include" />
           <e p="FileUtil.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
@@ -240,7 +293,6 @@
               </e>
             </e>
           </e>
-          <e p="PathUtil.cs" t="Include" />
           <e p="Shared.Utils.csproj" t="IncludeRecursive" />
           <e p="Singleton.cs" t="Include" />
           <e p="StringUtil.cs" t="Include" />
@@ -347,40 +399,7 @@
           <e p="WireFormat.cs" t="Include" />
         </e>
       </e>
-      <e p="Tools" t="Include">
-        <e p="ProtocolGenerator" t="IncludeRecursive">
-          <e p="Core" t="Include">
-            <e p="CodeFile" t="Include">
-              <e p="CodeFile.cs" t="Include" />
-              <e p="CodeFileManager.cs" t="Include" />
-              <e p="CodeFileParser.cs" t="Include" />
-            </e>
-            <e p="ConstData.cs" t="Include" />
-            <e p="CSharpFile" t="Include">
-              <e p="CSharpProtoFile.cs" t="Include" />
-              <e p="CSharpProtoHandlerFile.cs" t="Include" />
-            </e>
-            <e p="EnumType.cs" t="Include" />
-            <e p="GeneratorManager.cs" t="Include" />
-            <e p="ICodeGenerater.cs" t="Include" />
-            <e p="ProtoBuff.cs" t="Include" />
-            <e p="ProtoFile" t="Include">
-              <e p="ProtoFile.cs" t="Include" />
-              <e p="ProtoFileGenerator.cs" t="Include" />
-              <e p="ProtoFileManager.cs" t="Include" />
-            </e>
-          </e>
-          <e p="obj" t="ExcludeRecursive">
-            <e p="Debug" t="Include">
-              <e p="netcoreapp2.2" t="Include">
-                <e p="ProtocolGenerator.AssemblyInfo.cs" t="Include" />
-              </e>
-            </e>
-          </e>
-          <e p="Program.cs" t="Include" />
-          <e p="ProtocolGenerator.csproj" t="IncludeRecursive" />
-        </e>
-      </e>
+      <e p="Tools" t="Include" />
       <e p="UnitTest" t="IncludeRecursive">
         <e p="Bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">

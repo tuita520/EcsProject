@@ -7,11 +7,55 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>..\..\Bin\SharedLib\</OutputPath>
+      <OutputPath>..\Bin</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <OutputPath>..\..\Bin\SharedLib\</OutputPath>
+      <OutputPath>..\Bin</OutputPath>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\Log\Shared.Log.csproj" />
+      <ProjectReference Include="..\..\Shared\Utils\Shared.Utils.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\Bin\ProtocolMaker.bat">
+        <Link>ProtocolMaker.bat</Link>
+      </Content>
+      <Content Include="..\Code\Client\CRealm.code">
+        <Link>Code\Client\CRealm.code</Link>
+      </Content>
+      <Content Include="..\Code\Client\RealmC.code">
+        <Link>Code\Client\RealmC.code</Link>
+      </Content>
+      <Content Include="..\Code\Gate\CGate.code">
+        <Link>Code\Gate\CGate.code</Link>
+      </Content>
+      <Content Include="..\Code\Gate\GateC.code">
+        <Link>Code\Gate\GateC.code</Link>
+      </Content>
+      <Content Include="..\Code\Realm\Realm.code">
+        <Link>Code\Realm\Realm.code</Link>
+      </Content>
+      <Content Include="..\Code\Scene\GS.code">
+        <Link>Code\Scene\GS.code</Link>
+      </Content>
+      <Content Include="..\Code\Scene\SG.code">
+        <Link>Code\Scene\SG.code</Link>
+      </Content>
+      <Content Include="..\Code\Shared\Model.code">
+        <Link>Code\Shared\Model.code</Link>
+      </Content>
+      <Content Include="..\Code\Shared\Shared.code">
+        <Link>Code\Shared\Shared.code</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="..\Proto">
+        <Link>Proto</Link>
+      </Folder>
+    </ItemGroup>
 
 </Project>

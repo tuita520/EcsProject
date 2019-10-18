@@ -23,7 +23,7 @@ namespace Server
 //                        var at = attr.Value;
 //                    }
 //                }
-                PathUtil.Init();
+                FolderManager.Inst.Init(Environment.CurrentDirectory);
 
                 App.Inst.Init();
                 App.Inst.AddDll(DLLType.Frame,typeof(App).Assembly);

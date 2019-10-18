@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\ProtocolGenerator.csproj",
+    "projectUniqueName": "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\ProtocolGenerator.csproj",
     "projectName": "ProtocolGenerator",
-    "projectPath": "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\ProtocolGenerator.csproj",
-    "outputPath": "D:\\GitHub\\EcsProject\\Tools\\ProtocolGenerator\\obj\\",
+    "projectPath": "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\ProtocolGenerator.csproj",
+    "outputPath": "D:\\GitHub\\EcsProject\\Protocol\\ProtocolGenerator\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

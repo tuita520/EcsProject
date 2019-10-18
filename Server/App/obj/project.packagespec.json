@@ -19,6 +19,12 @@
     "frameworks": {
       "netcoreapp2.2": {
         "projectReferences": {
+          "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
+            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj"
+          },
+          "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj": {
+            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj"
+          },
           "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
             "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
           }

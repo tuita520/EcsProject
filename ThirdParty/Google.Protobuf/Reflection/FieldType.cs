@@ -33,7 +33,7 @@
 namespace Google.Protobuf.Reflection
 {
     /// <summary>
-    /// Enumeration of all the possible field types.
+    /// Shared.Enumeration of all the possible field types.
     /// </summary>
     public enum FieldType
     {

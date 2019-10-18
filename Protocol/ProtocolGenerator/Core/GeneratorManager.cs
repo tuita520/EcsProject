@@ -6,7 +6,7 @@ namespace ProtocolGenerator.Core
     {
         public void Run()
         {
-            CodeFileManager.Inst.LoadFiles(Program.InputFileDir);
+            CodeFileManager.Inst.LoadFiles(FolderManager.Inst.CodeFilesDir);
             foreach (var item in CodeFileManager.Inst.CodeFiles)
             {
                 ProtoFileManager.Inst.LoadCodeFile(item.Value);
@@ -19,7 +19,6 @@ namespace ProtocolGenerator.Core
                     CSharpFile.ProtoBuffFile(value);
                 }  
             }
-            
             
         }
     }

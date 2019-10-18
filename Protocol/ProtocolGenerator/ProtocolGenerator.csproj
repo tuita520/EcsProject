@@ -6,17 +6,16 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>..\..\Bin\Server\</OutputPath>
+      <OutputPath>..\Bin\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <OutputPath>..\..\Bin\Server\</OutputPath>
+      <OutputPath>..\Bin\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Shared\CFGData\Shared.CFGData.csproj" />
-      <ProjectReference Include="..\..\Shared\ConstData\Shared.ConstData.csproj" />
-      <ProjectReference Include="..\..\Shared\Frame\Shared.Frame.csproj" />
+      <ProjectReference Include="..\..\Shared\Log\Shared.Log.csproj" />
+      <ProjectReference Include="..\..\Shared\Utils\Shared.Utils.csproj" />
     </ItemGroup>
 
 </Project>
