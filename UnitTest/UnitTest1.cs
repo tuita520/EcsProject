@@ -1,21 +1,18 @@
-using System;
-using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Utility;
+using NUnit.Framework;
 
-namespace UnitTest
+namespace Tests
 {
-    [TestClass]
-    public class UnitTest1
+    public class Tests
     {
-        [TestMethod]
-        public void TestMethod1()
+        [SetUp]
+        public void Setup()
         {
-            string convertTime = "2012-12-12";
-            DateTime mdate1 = DateTime.ParseExact(convertTime, "yyyy-MM-dd", null);
-            Console.Write(1);
         }
-        
-        
+
+        [Test]
+        public void Test1()
+        {
+            Assert.Pass();
+        }
     }
 }
