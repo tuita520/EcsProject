@@ -52,7 +52,7 @@ namespace Google.Protobuf.Reflection
         }
 
         /// <value>
-        /// A human-readable description of the error. (The Message property
+        /// A human-readable description of the error. (The MessageBuilder property
         /// is made up of the descriptor's name and this description.)
         /// </value>
         public string Description

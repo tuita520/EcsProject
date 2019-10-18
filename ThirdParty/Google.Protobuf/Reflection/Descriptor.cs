@@ -3429,7 +3429,7 @@ namespace Google.Protobuf.Reflection {
     /// If set true, then the Java2 code generator will generate code that
     /// throws an exception whenever an attempt is made to assign a non-UTF-8
     /// byte sequence to a string field.
-    /// Message reflection will do the same.
+    /// MessageBuilder reflection will do the same.
     /// However, an extension field still accepts non-UTF-8 byte sequences.
     /// This option has no effect on when used with the lite runtime.
     /// </summary>
