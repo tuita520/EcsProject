@@ -18,6 +18,7 @@ namespace Frame.Core.Network
         public AService Service { get; private set; }
         
         public IPEndPoint RemoteAddress { get; protected set; }
+        public IPEndPoint LocalAddress { get; protected set; }
         
         private Action<MemoryStream> readCallback;
 

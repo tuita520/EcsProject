@@ -29,7 +29,7 @@ namespace Frame.Core.Network.TCP
 
         private byte[] packetSizeCache;
 
-        public TcpChannel(ATcpService connectService, Socket socket,ChannelType channelType) : base(connectService, channelType)
+        public TcpChannel(TcpService connectService, Socket socket,ChannelType channelType) : base(connectService, channelType)
         {
             Init(socket);
         }
@@ -47,6 +47,7 @@ namespace Frame.Core.Network.TCP
             _socket = socket;
             _socket.NoDelay = true;
             RemoteAddress = (IPEndPoint) socket.RemoteEndPoint;
+            LocalAddress = (IPEndPoint) socket.LocalEndPoint;
 
             isSending = false;
             isConnected = true;
@@ -73,9 +74,9 @@ namespace Frame.Core.Network.TCP
 
         public bool IsSending => isSending;
 
-        private ATcpService GetService()
+        private TcpService GetService()
         {
-            return Service as ATcpService;
+            return Service as TcpService;
         }
 
         private void OnIOComplete(object sender, SocketAsyncEventArgs eventArgs)

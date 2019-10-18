@@ -244,6 +244,28 @@ namespace Frame.Core.Base
                 }
             }
         }
+        
+        public void Awake<A,B,C>(AComponent component, A a,B b,C c)
+        {
+            var iAwakeSystems = this.awakeSystems[component.GetType()];
+            if (iAwakeSystems == null)
+            {
+                return;
+            }
+
+            foreach (var aAwakeSystem in iAwakeSystems)
+            {
+                if (!(aAwakeSystem is IAwakeRun<A,B,C> iAwake)) continue;
+                try
+                {
+                    iAwake.Run(component, a,b,c);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                }
+            }
+        }
 
         public void Load()
         {

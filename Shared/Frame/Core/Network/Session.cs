@@ -11,7 +11,7 @@ namespace Frame.Core.Network
 {
     public sealed class Session : AEntity
     {
-        private AChannel channel;
+        public AChannel Channel { get;  private set;}
 
         private NetworkComponent network => GetParent<NetworkComponent>();
 
@@ -19,11 +19,11 @@ namespace Frame.Core.Network
 
         public void Awake(AChannel aChannel)
         {
-            channel = aChannel;
+            Channel = aChannel;
             requestCallback.Clear();
             var id = Id;
-            channel.ErrorCallback += (c, e) => { network.RemoveSession(id); };
-            channel.ReadCallback += OnRead;
+            Channel.ErrorCallback += (c, e) => { network.RemoveSession(id); };
+            Channel.ReadCallback += OnRead;
         }
 
         private void OnRead(MemoryStream memoryStream)
@@ -57,7 +57,7 @@ namespace Frame.Core.Network
             {
                 // 出现任何消息解析异常都要断开Session，防止客户端伪造消息
                 Log.Error($"opcode: {opcode} {e} ");
-                channel.Error = NetworkErrorCode.PacketParserError;
+                Channel.Error = NetworkErrorCode.PacketParserError;
                 network.RemoveSession(Id);
                 return;
             }
@@ -81,12 +81,12 @@ namespace Frame.Core.Network
         
         public void Send(MemoryStream stream)
         {
-            channel.Send(stream);
+            Channel.Send(stream);
         }
 
         public void Start()
         {
-            channel.Start();
+            Channel.Start();
         }
     }
 

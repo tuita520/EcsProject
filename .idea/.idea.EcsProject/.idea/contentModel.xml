@@ -214,19 +214,16 @@
                 <e p="NetworkHelper.cs" t="Include" />
               </e>
               <e p="NetworkComponent.cs" t="Include" />
-              <e p="NetworkConnecterComponent.cs" t="Include" />
               <e p="NetworkErrorCode.cs" t="Include" />
-              <e p="NetworkListenerComponent.cs" t="Include" />
               <e p="NetworkProtocol.cs" t="Include" />
+              <e p="NetworkType.cs" t="Include" />
               <e p="Session.cs" t="Include" />
               <e p="TCP" t="Include">
-                <e p="ATcpService.cs" t="Include" />
                 <e p="CircularBuffer.cs" t="Include" />
                 <e p="PacketParser.cs" t="Include" />
                 <e p="SocketAsyncEventArgsPool.cs" t="Include" />
                 <e p="TcpChannel.cs" t="Include" />
-                <e p="TcpConnectService.cs" t="Include" />
-                <e p="TcpListenService.cs" t="Include" />
+                <e p="TcpService.cs" t="Include" />
               </e>
             </e>
             <e p="RecyclableMemoryStream" t="Include">

@@ -3,3 +3,15 @@ D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.runtimeconfig.js
 D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.runtimeconfig.dev.json
 D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.dll
 D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.pdb
+D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.deps.json
+D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.runtimeconfig.json
+D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.runtimeconfig.dev.json
+D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.dll
+D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.pdb
+D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.csprojAssemblyReference.cache
+D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.csproj.CoreCompileInputs.cache
+D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.AssemblyInfoInputs.cache
+D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.AssemblyInfo.cs
+D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.csproj.CopyComplete
+D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.dll
+D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.pdb

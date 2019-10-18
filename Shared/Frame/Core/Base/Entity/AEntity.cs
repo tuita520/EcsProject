@@ -57,6 +57,20 @@ namespace Frame.Core.Base
             return component;
         }
         
+        public virtual K AddComponent<K, A,B,C>(A a,B b,C c) where K :AComponent, new()
+        {
+            Type type = typeof (K);
+            if (this.componentDict.ContainsKey(type))
+            {
+                throw new Exception($"AddComponent, component already exist, id: {this.Id}, component: {typeof(K).Name}");
+            }
+
+            K component = ComponentFactory.Create<K,A,B,C>(this, a,b,c);
+			
+            componentDict.Add(type, component);
+            return component;
+        }
+        
 
         
         public virtual void RemoveComponent<K>() where K : AComponent

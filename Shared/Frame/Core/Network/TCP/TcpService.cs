@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using Frame.Core.Base;
 using RDLog;
 
 namespace Frame.Core.Network.TCP
 {
-    public abstract class ATcpService:AService
+    public class TcpService:AService
     {
+        private NetworkType _type;
+        
         private readonly Dictionary<long, TcpChannel> _idChannels;
         
         protected Socket _socket;
@@ -17,8 +20,7 @@ namespace Frame.Core.Network.TCP
         
         private readonly HashSet<long> _needStartSendChannel;
         
-        //Server
-        public ATcpService(Action<AChannel> callback):base(callback)
+        public TcpService(NetworkType type, IPEndPoint ipEndPoint,Action<AChannel> callback) : base(callback)
         {
             _idChannels= new Dictionary<long, TcpChannel>();
             _eventArgs = new SocketAsyncEventArgs();
@@ -29,10 +31,27 @@ namespace Frame.Core.Network.TCP
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             _eventArgs.Completed += OnComplete;
+            
+            _type  = type;
+            switch (type)
+            {
+                case NetworkType.Connector:
+                    _eventArgs.RemoteEndPoint = ipEndPoint;
+                    ConnectAsync();
+                    break;
+                case NetworkType.Listener:
+                    _socket.Bind(ipEndPoint);
+                    _socket.Listen(1000);
+                    AcceptAsync();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
         }
         
         protected void AcceptAsync()
         {
+            Log.Debug($"accept on {_socket.LocalEndPoint}");
             _eventArgs.AcceptSocket = null;
             if (_socket.AcceptAsync(_eventArgs))
             {
@@ -44,6 +63,7 @@ namespace Frame.Core.Network.TCP
         
         protected void ConnectAsync()
         {
+            Log.Debug($"try to connect to {_eventArgs.RemoteEndPoint}");
             if (_socket.ConnectAsync(_eventArgs))
             {
                 return;
@@ -70,7 +90,7 @@ namespace Frame.Core.Network.TCP
 
             var channel = new TcpChannel(this, e.AcceptSocket,ChannelType.Accept);
             _idChannels[channel.Id] = channel;
-
+            
             try
             {
                 OnAction(channel);
