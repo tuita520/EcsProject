@@ -1,0 +1,5 @@
+D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.deps.json
+D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.runtimeconfig.json
+D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.runtimeconfig.dev.json
+D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.dll
+D:\GitHub\EcsProject\Client\Bin\Server\netcoreapp2.2\Client.App.pdb

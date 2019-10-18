@@ -1,0 +1,3 @@
+D:\GitHub\EcsProject\Shared\Utils\bin\Debug\netcoreapp2.2\Shared.Utils.deps.json
+D:\GitHub\EcsProject\Shared\Utils\bin\Debug\netcoreapp2.2\Shared.Utils.dll
+D:\GitHub\EcsProject\Shared\Utils\bin\Debug\netcoreapp2.2\Shared.Utils.pdb
