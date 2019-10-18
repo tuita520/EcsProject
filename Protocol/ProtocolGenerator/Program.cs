@@ -14,7 +14,7 @@ namespace ProtocolGenerator
 
             if ((args.Length < 1))
             {
-                Log.Error($@"generator fail ,check directory {args[0]}");
+                Log.Error($@"generator fail ,check args ");
                 return;
             }
 
@@ -25,7 +25,6 @@ namespace ProtocolGenerator
                 Log.Error($@"generator fail ,check directory {args[0]}");
                 return;
             }
-            FolderManager.Inst.PrintAllDirs();
             GeneratorManager.Inst.Run();
             Console.Write("exit");
         }
