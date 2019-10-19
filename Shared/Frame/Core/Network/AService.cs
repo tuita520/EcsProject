@@ -29,6 +29,5 @@ namespace Frame.Core.Network
         public abstract void Update();
         
         public int PacketSizeLength { get; set; }
-
     }
 }

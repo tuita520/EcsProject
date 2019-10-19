@@ -181,7 +181,6 @@ namespace Frame.Core.Network.TCP
             _eventArgs.Dispose();
         }
 
-
         public override AChannel GetChannel(long id)
         {
             _idChannels.TryGetValue(id, out var channel);
@@ -236,18 +235,19 @@ namespace Frame.Core.Network.TCP
         }
         
                 
-//        private void DisconnectAsync()
-//        {
-//            if (_socket.DisconnectAsync(_eventArgs))
-//            {
-//                return;
-//            }
-//            OnDisconnectComplete(_eventArgs);
-//        }
-//
-//        private void OnDisconnectComplete(SocketAsyncEventArgs eventArgs)
-//        {
-//            throw new NotImplementedException();
-//        }
+        private void DisconnectAsync()
+        {
+            if (_socket.DisconnectAsync(_eventArgs))
+            {
+                return;
+            }
+            OnDisconnectComplete(_eventArgs);
+        }
+
+        private void OnDisconnectComplete(SocketAsyncEventArgs eventArgs)
+        {
+            Dispose();
+        }
+        
     }
 }

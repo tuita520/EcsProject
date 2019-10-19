@@ -46,5 +46,12 @@ namespace Frame.Core.Base
 		    App.Inst.EventSystem.Awake(component,a,b,c);
 		    return component;
 	    }
+	    
+	    public static T Create<T, A,B,C,D>(AComponent parent, A a,B b,C c,D d) where T : AComponent
+	    {
+		    var component = Generate<T>(parent);
+		    App.Inst.EventSystem.Awake(component,a,b,c,d);
+		    return component;
+	    }
     }
 }

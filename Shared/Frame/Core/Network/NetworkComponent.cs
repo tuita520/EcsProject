@@ -17,11 +17,18 @@ namespace Frame.Core.Network
 
         private NetworkProtocol _protocol;
         private NetworkType _type;
-        
-        public void Awake(NetworkProtocol protocol, NetworkType type, string address)
+
+        /// <summary>
+        /// 断线后操作需要重连
+        /// </summary>
+        private bool _needReconnect { get; set; }
+
+        public void Awake(NetworkProtocol protocol, NetworkType type, string address,bool needReconnect)
         {
             _protocol = protocol;
             _type = type;
+            _needReconnect = needReconnect;
+            
             var ipEndPoint = NetworkHelper.ToIPEndPoint(address);
             switch (protocol)
             {
@@ -49,13 +56,9 @@ namespace Frame.Core.Network
         {
             Log.Info($"disconnect !(local:{session.Channel.LocalAddress}  remote:{session.Channel.RemoteAddress})");
             RemoveSession(session.Id);
-            if (_type == NetworkType.Connector)
+            if (_needReconnect)
             {
-                //TODO:BOIL 重连
-                if (_protocol==NetworkProtocol.TCP)
-                {
-                    (_service as TcpService)?.ReconnectAsync();
-                }
+                (_service as TcpService)?.ReconnectAsync();
             }
         }
         
@@ -104,13 +107,14 @@ namespace Frame.Core.Network
     }
 
     [System]
-    public class NetWorkComponentAwakeSystem : AAwakeSystem<NetworkComponent, NetworkProtocol, NetworkType, string>
+    public class NetWorkComponentAwakeSystem : AAwakeSystem<NetworkComponent, NetworkProtocol, NetworkType, string,bool>
     {
-        protected override void Awake(NetworkComponent self, NetworkProtocol protocol, NetworkType type, string address)
+        protected override void Awake(NetworkComponent self, NetworkProtocol protocol, NetworkType type, string address,bool needReconnect)
         {
-            self.Awake(protocol, type, address);
+            self.Awake(protocol, type, address,needReconnect);
             self.MessagePacker = new StringPacker();
 //            self.MessageDispatcher = new OuterMessageDispatcher();
         }
     }
+    
 }

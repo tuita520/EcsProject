@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using RDLog;
@@ -50,7 +51,10 @@ namespace Frame.Core.Base
             return _zone.AddComponent<T,A,B,C>(a,b,c);
         }
 
-        
+        public T AddComponent<T,A,B,C,D>(A a,B b,C c,D d) where T : AComponent, new()
+        {
+            return _zone.AddComponent<T,A,B,C,D>(a,b,c,d);
+        }
         
         public void Run()
         {

@@ -29,7 +29,7 @@ namespace Server
 //                Options options = App.Inst.AddComponent<OptionComponent, string[]>(args).Options;
                 
 //                App.Inst.AddComponent<PlayerManagerComponent,bool>(true);
-                App.Inst.AddComponent<NetworkComponent,NetworkProtocol,NetworkType,string>(NetworkProtocol.TCP ,NetworkType.Listener,"127.0.0.1:50000");
+                App.Inst.AddComponent<NetworkComponent,NetworkProtocol,NetworkType,string,bool>(NetworkProtocol.TCP ,NetworkType.Listener,"127.0.0.1:50000",false);
                 App.Inst.Run();
             }
             catch (Exception e)

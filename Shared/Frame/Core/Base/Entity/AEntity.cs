@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Frame.Core.Base
 {
@@ -66,6 +67,20 @@ namespace Frame.Core.Base
             }
 
             K component = ComponentFactory.Create<K,A,B,C>(this, a,b,c);
+			
+            componentDict.Add(type, component);
+            return component;
+        }
+        
+        public virtual K AddComponent<K, A,B,C,D>(A a,B b,C c,D d) where K :AComponent, new()
+        {
+            Type type = typeof (K);
+            if (this.componentDict.ContainsKey(type))
+            {
+                throw new Exception($"AddComponent, component already exist, id: {this.Id}, component: {typeof(K).Name}");
+            }
+
+            K component = ComponentFactory.Create<K,A,B,C,D>(this, a,b,c,d);
 			
             componentDict.Add(type, component);
             return component;
