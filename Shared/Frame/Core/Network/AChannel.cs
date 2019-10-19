@@ -59,5 +59,15 @@ namespace Frame.Core.Network
         public abstract void Send(MemoryStream stream);
 
         public abstract void Start();
+        
+        public override void Dispose()
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+            base.Dispose();
+            this.Service.Remove(this.Id);
+        }
     }
 }

@@ -22,16 +22,16 @@ namespace Frame.Core.Network.TCP
         
         public TcpService(NetworkType type, IPEndPoint ipEndPoint,Action<AChannel> callback) : base(callback)
         {
-            _idChannels= new Dictionary<long, TcpChannel>();
-            _eventArgs = new SocketAsyncEventArgs();
-            _needStartSendChannel = new HashSet<long>();
-            
             PacketSizeLength = Packet.PacketSizeLength2;
+            
+            _idChannels= new Dictionary<long, TcpChannel>();
+            _needStartSendChannel = new HashSet<long>();
+
+            _eventArgs = new SocketAsyncEventArgs();
+            _eventArgs.Completed += OnComplete;
             
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            _eventArgs.Completed += OnComplete;
-            
             _type  = type;
             switch (type)
             {
@@ -61,7 +61,7 @@ namespace Frame.Core.Network.TCP
             OnAcceptComplete(_eventArgs);
         }
         
-        protected void ConnectAsync()
+        public void ConnectAsync()
         {
             Log.Debug($"try to connect to {_eventArgs.RemoteEndPoint}");
             if (_socket.ConnectAsync(_eventArgs))
@@ -70,6 +70,13 @@ namespace Frame.Core.Network.TCP
             }
 
             OnConnectComplete(_eventArgs);
+        }
+
+        public void ReconnectAsync()
+        {
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            ConnectAsync();
         }
         
         private void OnAcceptComplete(object o)
@@ -155,6 +162,8 @@ namespace Frame.Core.Network.TCP
 
         public override void Dispose()
         {
+            Log.Debug("TcpService dispose");
+
             if (IsDisposed)
             {
                 return;

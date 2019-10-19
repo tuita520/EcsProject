@@ -11,7 +11,7 @@ namespace Frame.Core.Network
 {
     public class NetworkComponent : AComponent
     {
-        protected AService service;
+        protected AService _service;
         private readonly Dictionary<long, Session> sessions = new Dictionary<long, Session>();
         public IMessagePacker MessagePacker { get; set; }
 
@@ -26,13 +26,13 @@ namespace Frame.Core.Network
             switch (protocol)
             {
                 case NetworkProtocol.TCP:
-                    service = new TcpService(type, ipEndPoint, OnConnect) {Parent = this};
+                    _service = new TcpService(type, ipEndPoint, OnConnect) {Parent = this};
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(protocol), protocol, null);
             }
         }
-
+        
         private void OnConnect(AChannel channel)
         {
             var session = ComponentFactory.Create<Session, AChannel>(this, channel);
@@ -45,6 +45,20 @@ namespace Frame.Core.Network
             }
         }
 
+        public void OnDisConnect(Session session)
+        {
+            Log.Info($"disconnect !(local:{session.Channel.LocalAddress}  remote:{session.Channel.RemoteAddress})");
+            RemoveSession(session.Id);
+            if (_type == NetworkType.Connector)
+            {
+                //TODO:BOIL 重连
+                if (_protocol==NetworkProtocol.TCP)
+                {
+                    (_service as TcpService)?.ReconnectAsync();
+                }
+            }
+        }
+        
         public void AddSession(Session session)
         {
             sessions.Add(session.Id, session);
@@ -69,7 +83,7 @@ namespace Frame.Core.Network
 
         public void Update()
         {
-            service?.Update();
+            _service?.Update();
         }
 
         public override void Dispose()
@@ -85,7 +99,7 @@ namespace Frame.Core.Network
                 item.Value.Dispose();
             }
 
-            service.Dispose();
+            _service.Dispose();
         }
     }
 

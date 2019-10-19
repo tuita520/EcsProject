@@ -61,7 +61,8 @@ namespace Frame.Core.Network.TCP
             }
 			
             base.Dispose();
-			
+            Log.Debug("TcpChannel dispose");
+
             _socket.Close();
             _writeArgs.Dispose();
             _readArgs.Dispose();

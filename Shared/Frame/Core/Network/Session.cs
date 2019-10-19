@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Frame.Core.Base;
 using Frame.Core.Base.Attributes;
 using Frame.Core.Message;
@@ -13,7 +14,7 @@ namespace Frame.Core.Network
     {
         public AChannel Channel { get;  private set;}
 
-        private NetworkComponent network => GetParent<NetworkComponent>();
+        private NetworkComponent _network => GetParent<NetworkComponent>();
 
         private readonly Dictionary<int, Action<IResponse>> requestCallback = new Dictionary<int, Action<IResponse>>();
 
@@ -21,11 +22,35 @@ namespace Frame.Core.Network
         {
             Channel = aChannel;
             requestCallback.Clear();
-            var id = Id;
-            Channel.ErrorCallback += (c, e) => { network.RemoveSession(id); };
+            Channel.ErrorCallback += (c, e) => { _network.OnDisConnect(this); };
             Channel.ReadCallback += OnRead;
         }
 
+        public override void Dispose()
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+            this._network.RemoveSession(Id);
+            base.Dispose();
+			
+//            foreach (Action<IResponse> action in this.requestCallback.Values.ToArray())
+//            {
+//                action.Invoke(new ErrorResponse { Error = this.Error });
+//            }
+
+            //int error = this.channel.Error;
+            //if (this.channel.Error != 0)
+            //{
+            //	Log.Trace($"session dispose: {this.Id} ErrorCode: {error}, please see ErrorCode.cs!");
+            //}
+			
+            this.Channel.Dispose();
+			
+            this.requestCallback.Clear();
+        }
+        
         private void OnRead(MemoryStream memoryStream)
         {
             try
@@ -58,7 +83,7 @@ namespace Frame.Core.Network
                 // 出现任何消息解析异常都要断开Session，防止客户端伪造消息
                 Log.Error($"opcode: {opcode} {e} ");
                 Channel.Error = NetworkErrorCode.PacketParserError;
-                network.RemoveSession(Id);
+                _network.OnDisConnect(this);
                 return;
             }
 
@@ -88,6 +113,9 @@ namespace Frame.Core.Network
         {
             Channel.Start();
         }
+        
+
+
     }
 
     [System]
