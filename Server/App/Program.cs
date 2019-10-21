@@ -1,6 +1,8 @@
 ﻿using System;
 using Frame.Core.Base;
 using Frame.Core.Network;
+using Module;
+using RDHelper;
 using RDLog;
 
 namespace Server
@@ -26,10 +28,11 @@ namespace Server
 
                 App.Inst.Init();
                 App.Inst.AddDll(DLLType.Frame,typeof(App).Assembly);
+                App.Inst.AddDll(DLLType.Module,DllHelper.GetServerModuleAssembly());
 //                Options options = App.Inst.AddComponent<OptionComponent, string[]>(args).Options;
-                
+                App.Inst.AddComponent<ClientManager>();
+
 //                App.Inst.AddComponent<PlayerManagerComponent,bool>(true);
-                App.Inst.AddComponent<NetworkComponent,NetworkProtocol,NetworkType,string,bool>(NetworkProtocol.TCP ,NetworkType.Listener,"127.0.0.1:50000",false);
                 App.Inst.Run();
             }
             catch (Exception e)

@@ -218,6 +218,19 @@
           "bin/placeholder/Google.Protobuf.dll": {}
         }
       },
+      "Server.Module/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Shared.Frame": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Server.Module.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Server.Module.dll": {}
+        }
+      },
       "Shared.CFGData/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -765,6 +778,11 @@
       "path": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
       "msbuildProject": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
     },
+    "Server.Module/1.0.0": {
+      "type": "project",
+      "path": "../Server.Module/Server.Module.csproj",
+      "msbuildProject": "../Server.Module/Server.Module.csproj"
+    },
     "Shared.CFGData/1.0.0": {
       "type": "project",
       "path": "../../Shared/CFGData/Shared.CFGData.csproj",
@@ -799,6 +817,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "Microsoft.NETCore.App >= 2.2.0",
+      "Server.Module >= 1.0.0",
       "Shared.CFGData >= 1.0.0",
       "Shared.ConstData >= 1.0.0",
       "Shared.Frame >= 1.0.0"
@@ -834,6 +853,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "D:\\GitHub\\EcsProject\\Server\\Server.Module\\Server.Module.csproj": {
+              "projectPath": "D:\\GitHub\\EcsProject\\Server\\Server.Module\\Server.Module.csproj"
+            },
             "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
               "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj"
             },

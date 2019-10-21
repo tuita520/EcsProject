@@ -1,5 +1,7 @@
-﻿using Frame.Core.Base;
+﻿using Client.Module;
+using Frame.Core.Base;
 using Frame.Core.Network;
+using RDHelper;
 
 namespace Client
 {
@@ -9,7 +11,8 @@ namespace Client
         {
             App.Inst.Init();
             App.Inst.AddDll(DLLType.Frame,typeof(App).Assembly);
-            App.Inst.AddComponent<NetworkComponent,NetworkProtocol,NetworkType,string,bool>(NetworkProtocol.TCP ,NetworkType.Connector,"127.0.0.1:50000",true);
+            App.Inst.AddDll(DLLType.Module,DllHelper.GetClientModuleAssembly());
+            App.Inst.AddComponent<ServerManager>();
             App.Inst.Run();
         }
     }

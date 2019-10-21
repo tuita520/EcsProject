@@ -30,6 +30,18 @@
             </e>
           </e>
         </e>
+        <e p="Module" t="IncludeRecursive">
+          <e p="Client.Module.csproj" t="IncludeRecursive" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp2.2" t="Include">
+                <e p="Client.Module.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Server.cs" t="Include" />
+          <e p="ServerManager.cs" t="Include" />
+        </e>
       </e>
       <e p="EcsProject.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
@@ -128,6 +140,19 @@
             </e>
           </e>
           <e p="Server.Message.csproj" t="IncludeRecursive" />
+        </e>
+        <e p="Server.Module" t="IncludeRecursive">
+          <e p="Client.cs" t="Include" />
+          <e p="ClientManager.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp2.2" t="Include">
+                <e p="Server.Module.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Player.cs" t="Include" />
+          <e p="Server.Module.csproj" t="IncludeRecursive" />
         </e>
       </e>
       <e p="Shared" t="Include">
@@ -255,6 +280,7 @@
           <e p="Shared.Frame.csproj" t="IncludeRecursive" />
         </e>
         <e p="Helper" t="IncludeRecursive">
+          <e p="DllHelper.cs" t="Include" />
           <e p="IdGenerateHelper.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">

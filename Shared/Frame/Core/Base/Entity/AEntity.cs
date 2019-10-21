@@ -6,6 +6,7 @@ namespace Frame.Core.Base
 {
     public abstract class AEntity:AComponent
     {
+        public long Key { get; private set; }
         Dictionary<Type,AComponent> componentDict = new Dictionary<Type, AComponent>();
 
 //        public ACompenent AddCompenent(ACompenent compenent)

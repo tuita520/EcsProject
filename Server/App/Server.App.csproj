@@ -17,6 +17,7 @@
       <ProjectReference Include="..\..\Shared\CFGData\Shared.CFGData.csproj" />
       <ProjectReference Include="..\..\Shared\ConstData\Shared.ConstData.csproj" />
       <ProjectReference Include="..\..\Shared\Frame\Shared.Frame.csproj" />
+      <ProjectReference Include="..\Server.Module\Server.Module.csproj" />
     </ItemGroup>
 
 </Project>

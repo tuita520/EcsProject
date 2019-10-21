@@ -19,6 +19,9 @@
     "frameworks": {
       "netcoreapp2.2": {
         "projectReferences": {
+          "D:\\GitHub\\EcsProject\\Client\\Module\\Client.Module.csproj": {
+            "projectPath": "D:\\GitHub\\EcsProject\\Client\\Module\\Client.Module.csproj"
+          },
           "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
             "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
           }

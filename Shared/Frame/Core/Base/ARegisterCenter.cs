@@ -5,34 +5,25 @@ using Frame.Core.Register;
 
 namespace Frame.Core.Base
 {
+    /// <summary>
+    /// 注册中心，已经通过验证的session会存储在这里
+    /// 这是个抽象类，需要具体实现，重写 OnConnect 和 OnDisConnect ，来实现连接和断开后的不同注册逻辑。
+    /// </summary>
     public abstract class ARegisterCenter : AEntity
     {
-        private bool needRegister { get; set; }
-
-        private Dictionary<string, AEntity> _entitys = new Dictionary<string, AEntity>();
-
-        public ARegisterCenter()
-        {
-            needRegister = false;
-        }
-        
-        public void Awake(bool needRegister = false)
-        {
-            this.needRegister = needRegister;
-        }
-
-        public void Add(AServer entity)
+        private Dictionary<long, AEntity> _entitys = new Dictionary<long, AEntity>();
+        public void Add(AEntity entity)
         {
             _entitys.Add(entity.Key, entity);
         }
 
-        public AEntity Get(string key)
+        public AEntity Get(long key)
         {
             _entitys.TryGetValue(key, out var entity);
             return entity;
         }
 
-        public void Remove(string key)
+        public void Remove(long key)
         {
             _entitys.Remove(key);
         }
@@ -50,24 +41,22 @@ namespace Frame.Core.Base
             {
                 actor.Dispose();
             }
-
         }
 
-        public void SendRegisterMsg(Session session)
-        {
-            if (needRegister)
-            {
-                App.Inst.Zone.SendActorRegisterMsg(session);
-            }
-        }
+        public abstract void OnDisConnect(Session session);
+
+        public abstract void OnConnect(Session session);
+
+        public abstract void Awake();
     }
 
     [System]
-    public class RegisterCenterAwakeSystem : AAwakeSystem<ARegisterCenter, bool>
+    public class RegisterCenterAwakeSystem : AAwakeSystem<ARegisterCenter>
     {
-        protected override void Awake(ARegisterCenter self, bool needRegister)
+        protected override void Awake(ARegisterCenter self)
         {
-            self.Awake(needRegister);
+            self.Awake();
         }
     }
+
 }

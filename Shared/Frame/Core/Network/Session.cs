@@ -10,7 +10,7 @@ using RDLog;
 
 namespace Frame.Core.Network
 {
-    public sealed class Session : AEntity
+    public class Session : AEntity
     {
         public AChannel Channel { get;  private set;}
 
@@ -117,6 +117,8 @@ namespace Frame.Core.Network
 
 
     }
+
+
 
     [System]
     public class SessionAwakeSystem : AAwakeSystem<Session, AChannel>

@@ -45,17 +45,20 @@ namespace Frame.Core.Network
             var session = ComponentFactory.Create<Session, AChannel>(this, channel);
             AddSession(session);
             session.Start();
-            Log.Info($"connection success! (local:{session.Channel.LocalAddress}  remote:{session.Channel.RemoteAddress}");
-            if (_type.Equals(NetworkType.Connector))
-            {
-                (Parent as ARegisterCenter)?.SendRegisterMsg(session);
-            }
+            
+            Log.Info($"connection success! (local:{session.Channel.LocalAddress}  remote:{session.Channel.RemoteAddress}"); 
+            (Parent as ARegisterCenter)?.OnConnect(session);
         }
 
         public void OnDisConnect(Session session)
         {
+            var sessionId = session.Id;
+            RemoveSession(sessionId);
+       
             Log.Info($"disconnect !(local:{session.Channel.LocalAddress}  remote:{session.Channel.RemoteAddress})");
-            RemoveSession(session.Id);
+
+            (Parent as ARegisterCenter)?.OnDisConnect(session);
+            
             if (_needReconnect)
             {
                 (_service as TcpService)?.ReconnectAsync();

@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Shared\Frame\Shared.Frame.csproj" />
+      <ProjectReference Include="..\Module\Client.Module.csproj" />
     </ItemGroup>
 
 </Project>

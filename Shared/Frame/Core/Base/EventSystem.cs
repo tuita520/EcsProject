@@ -15,6 +15,7 @@ namespace Frame.Core.Base
         Frame,
         Hotfix,
         Editor,
+        Module
     }
     
     public sealed class EventSystem

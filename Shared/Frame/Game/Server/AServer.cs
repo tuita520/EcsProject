@@ -1,4 +1,5 @@
 ﻿using Frame.Core.Base;
+using Frame.Core.Network;
 using Frame.Core.Server;
 using Frame.Core.Network.Helper;
 
@@ -18,6 +19,11 @@ namespace Frame.Core.Register
             SubId = subId;
             Key=ComponentKeyHelper.GetServerKey(serverType, areaId, subId);
         }
-        
+
+        public void SendActorRegisterMsg(Session session)
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
 }
