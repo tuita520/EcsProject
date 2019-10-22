@@ -2,18 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
+        <RootNamespace>EnumData</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>..\..\Bin\Client\</OutputPath>
+      <OutputPath>..\..\Bin\SharedLib\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <OutputPath>..\..\Bin\Client\</OutputPath>
+      <OutputPath>..\..\Bin\SharedLib\</OutputPath>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\Shared\Frame\Shared.Frame.csproj" />
-    </ItemGroup>
 
 </Project>

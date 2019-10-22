@@ -33,8 +33,8 @@
               "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
                 "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj"
               },
-              "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj": {
-                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj"
+              "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj"
               },
               "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
                 "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
@@ -135,14 +135,14 @@
         }
       }
     },
-    "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj": {
+    "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
-        "projectName": "Shared.ConstData",
-        "projectPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\Shared.ConstData.csproj",
+        "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj",
+        "projectName": "Shared.EnumData",
+        "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj",
         "packagesPath": "C:\\Users\\WanXin\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\EcsProject\\Shared\\ConstData\\obj\\",
+        "outputPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -218,6 +218,9 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
+              "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj": {
+                "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj"
+              },
               "D:\\GitHub\\EcsProject\\Shared\\Helper\\Shared.Helper.csproj": {
                 "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Helper\\Shared.Helper.csproj"
               },

@@ -29,7 +29,7 @@ namespace Server
 
                 App.Inst.Init();
                 App.Inst.AddDll(DLLType.Frame,typeof(App).Assembly);
-//                App.Inst.AddDll(DLLType.Module,DllHelper.GetServerModuleAssembly());
+                App.Inst.AddDll(DLLType.Module,DllHelper.GetServerModuleAssembly());
 //                Options options = App.Inst.AddComponent<OptionComponent, string[]>(args).Options;
                 App.Inst.AddComponent<ClientManager>();
 

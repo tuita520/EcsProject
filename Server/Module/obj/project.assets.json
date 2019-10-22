@@ -218,11 +218,22 @@
           "bin/placeholder/Google.Protobuf.dll": {}
         }
       },
+      "Shared.EnumData/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Shared.EnumData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.EnumData.dll": {}
+        }
+      },
       "Shared.Frame/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "Google.Protobuf": "3.6.0",
+          "Shared.EnumData": "1.0.0",
           "Shared.Helper": "1.0.0",
           "Shared.Log": "1.0.0",
           "Shared.Utils": "1.0.0"
@@ -740,6 +751,11 @@
       "type": "project",
       "path": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
       "msbuildProject": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
+    },
+    "Shared.EnumData/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/EnumData/Shared.EnumData.csproj",
+      "msbuildProject": "../../Shared/EnumData/Shared.EnumData.csproj"
     },
     "Shared.Frame/1.0.0": {
       "type": "project",

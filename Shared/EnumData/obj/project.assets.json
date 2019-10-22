@@ -207,87 +207,6 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
-      },
-      "Google.Protobuf/3.6.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/Google.Protobuf.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Google.Protobuf.dll": {}
-        }
-      },
-      "Shared.CFGData/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "dependencies": {
-          "Shared.Log": "1.0.0",
-          "Shared.Utils": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Shared.CFGData.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.CFGData.dll": {}
-        }
-      },
-      "Shared.EnumData/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/Shared.EnumData.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.EnumData.dll": {}
-        }
-      },
-      "Shared.Frame/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "dependencies": {
-          "Google.Protobuf": "3.6.0",
-          "Shared.EnumData": "1.0.0",
-          "Shared.Helper": "1.0.0",
-          "Shared.Log": "1.0.0",
-          "Shared.Utils": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Shared.Frame.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.Frame.dll": {}
-        }
-      },
-      "Shared.Helper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/Shared.Helper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.Helper.dll": {}
-        }
-      },
-      "Shared.Log/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/Shared.Log.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.Log.dll": {}
-        }
-      },
-      "Shared.Utils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/Shared.Utils.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Shared.Utils.dll": {}
-        }
       }
     }
   },
@@ -760,49 +679,11 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
-    },
-    "Google.Protobuf/3.6.0": {
-      "type": "project",
-      "path": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
-      "msbuildProject": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
-    },
-    "Shared.CFGData/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/CFGData/Shared.CFGData.csproj",
-      "msbuildProject": "../../Shared/CFGData/Shared.CFGData.csproj"
-    },
-    "Shared.EnumData/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/EnumData/Shared.EnumData.csproj",
-      "msbuildProject": "../../Shared/EnumData/Shared.EnumData.csproj"
-    },
-    "Shared.Frame/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/Frame/Shared.Frame.csproj",
-      "msbuildProject": "../../Shared/Frame/Shared.Frame.csproj"
-    },
-    "Shared.Helper/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/Helper/Shared.Helper.csproj",
-      "msbuildProject": "../../Shared/Helper/Shared.Helper.csproj"
-    },
-    "Shared.Log/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/Log/Shared.Log.csproj",
-      "msbuildProject": "../../Shared/Log/Shared.Log.csproj"
-    },
-    "Shared.Utils/1.0.0": {
-      "type": "project",
-      "path": "../../Shared/Utils/Shared.Utils.csproj",
-      "msbuildProject": "../../Shared/Utils/Shared.Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Microsoft.NETCore.App >= 2.2.0",
-      "Shared.CFGData >= 1.0.0",
-      "Shared.EnumData >= 1.0.0",
-      "Shared.Frame >= 1.0.0"
+      "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
   "packageFolders": {
@@ -812,11 +693,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\EcsProject\\Server\\App\\Server.App.csproj",
-      "projectName": "Server.App",
-      "projectPath": "D:\\GitHub\\EcsProject\\Server\\App\\Server.App.csproj",
+      "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj",
+      "projectName": "Shared.EnumData",
+      "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj",
       "packagesPath": "C:\\Users\\WanXin\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\EcsProject\\Server\\App\\obj\\",
+      "outputPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -834,17 +715,7 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {
-            "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
-              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj"
-            },
-            "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj": {
-              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj"
-            },
-            "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
-              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

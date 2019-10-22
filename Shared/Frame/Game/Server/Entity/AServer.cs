@@ -1,7 +1,7 @@
-﻿using Frame.Core.Base;
+﻿using EnumData;
+using Frame.Core.Base;
 using Frame.Core.Network;
 using Frame.Core.Network.Helper;
-using Game.Module.Enumerate;
 
 namespace Game.Module.Server
 {

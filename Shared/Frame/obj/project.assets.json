@@ -218,6 +218,16 @@
           "bin/placeholder/Google.Protobuf.dll": {}
         }
       },
+      "Shared.EnumData/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/Shared.EnumData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.EnumData.dll": {}
+        }
+      },
       "Shared.Helper/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -725,6 +735,11 @@
       "path": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
       "msbuildProject": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj"
     },
+    "Shared.EnumData/1.0.0": {
+      "type": "project",
+      "path": "../EnumData/Shared.EnumData.csproj",
+      "msbuildProject": "../EnumData/Shared.EnumData.csproj"
+    },
     "Shared.Helper/1.0.0": {
       "type": "project",
       "path": "../Helper/Shared.Helper.csproj",
@@ -745,6 +760,7 @@
     ".NETCoreApp,Version=v2.2": [
       "Google.Protobuf >= 3.6.0",
       "Microsoft.NETCore.App >= 2.2.0",
+      "Shared.EnumData >= 1.0.0",
       "Shared.Helper >= 1.0.0",
       "Shared.Log >= 1.0.0",
       "Shared.Utils >= 1.0.0"
@@ -780,6 +796,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj": {
+              "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj"
+            },
             "D:\\GitHub\\EcsProject\\Shared\\Helper\\Shared.Helper.csproj": {
               "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Helper\\Shared.Helper.csproj"
             },

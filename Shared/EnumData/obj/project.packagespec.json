@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\GitHub\\EcsProject\\Server\\App\\Server.App.csproj",
-    "projectName": "Server.App",
-    "projectPath": "D:\\GitHub\\EcsProject\\Server\\App\\Server.App.csproj",
-    "outputPath": "D:\\GitHub\\EcsProject\\Server\\App\\obj\\",
+    "projectUniqueName": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj",
+    "projectName": "Shared.EnumData",
+    "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj",
+    "outputPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -18,17 +18,7 @@
     },
     "frameworks": {
       "netcoreapp2.2": {
-        "projectReferences": {
-          "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\CFGData\\Shared.CFGData.csproj"
-          },
-          "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj"
-          },
-          "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
-            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
-          }
-        }
+        "projectReferences": {}
       }
     },
     "warningProperties": {

@@ -19,6 +19,9 @@
     "frameworks": {
       "netcoreapp2.2": {
         "projectReferences": {
+          "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj": {
+            "projectPath": "D:\\GitHub\\EcsProject\\Shared\\EnumData\\Shared.EnumData.csproj"
+          },
           "D:\\GitHub\\EcsProject\\Shared\\Helper\\Shared.Helper.csproj": {
             "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Helper\\Shared.Helper.csproj"
           },

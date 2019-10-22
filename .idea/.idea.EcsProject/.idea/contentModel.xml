@@ -39,6 +39,7 @@
               </e>
             </e>
           </e>
+          <e p="ServerManagerAwakeSystem.cs" t="Include" />
         </e>
       </e>
       <e p="EcsProject.sln" t="IncludeFlat" />
@@ -140,6 +141,7 @@
           <e p="Server.Message.csproj" t="IncludeRecursive" />
         </e>
         <e p="Module" t="IncludeRecursive">
+          <e p="ClientManagerAwakeSystem.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
               <e p="netcoreapp2.2" t="Include">
@@ -169,16 +171,17 @@
           <e p="Shared.CFGData.csproj" t="IncludeRecursive" />
           <e p="XmlParser.cs" t="Include" />
         </e>
-        <e p="ConstData" t="IncludeRecursive">
+        <e p="EnumData" t="IncludeRecursive">
           <e p="CommonConst.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
               <e p="netcoreapp2.2" t="Include">
-                <e p="Shared.ConstData.AssemblyInfo.cs" t="Include" />
+                <e p="Shared.EnumData.AssemblyInfo.cs" t="Include" />
               </e>
             </e>
           </e>
-          <e p="Shared.ConstData.csproj" t="IncludeRecursive" />
+          <e p="ServerType.cs" t="Include" />
+          <e p="Shared.EnumData.csproj" t="IncludeRecursive" />
         </e>
         <e p="Frame" t="IncludeRecursive">
           <e p="Config" t="Include">
@@ -259,15 +262,10 @@
             <e p="Client" t="Include">
               <e p="Component" t="Include" />
               <e p="Entity" t="Include">
-                <e p="Server.cs" t="Include" />
-                <e p="ServerManager.cs" t="Include" />
+                <e p="Client.cs" t="Include" />
+                <e p="ClientManager.cs" t="Include" />
               </e>
-              <e p="system" t="Include">
-                <e p="ServerManagerAwakeSystem.cs" t="Include" />
-              </e>
-            </e>
-            <e p="Enumerate" t="Include">
-              <e p="ServerType.cs" t="Include" />
+              <e p="system" t="Include" />
             </e>
             <e p="Player" t="Include">
               <e p="APlayer.cs" t="Include" />
@@ -278,8 +276,8 @@
               <e p="Component" t="Include" />
               <e p="Entity" t="Include">
                 <e p="AServer.cs" t="Include" />
-                <e p="Client.cs" t="Include" />
-                <e p="ClientManager.cs" t="Include" />
+                <e p="Server.cs" t="Include" />
+                <e p="ServerManager.cs" t="Include" />
               </e>
               <e p="system" t="Include" />
             </e>

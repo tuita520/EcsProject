@@ -19,7 +19,7 @@ namespace Message
 //            p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
 //            p.StartInfo.RedirectStandardError = true;//重定向标准错误输出
 //            p.StartInfo.CreateNoWindow = true;//不显示程序窗口
-//            p.StartInfo.Arguments = $@"dotnet {FolderManager.Inst.CurrentDirectory}\{ConstData.PROTOCOLGENERATOR} {FolderManager.Inst.CodeFilesDir}";
+//            p.StartInfo.Arguments = $@"dotnet {FolderManager.Inst.CurrentDirectory}\{Shared.EnumData.PROTOCOLGENERATOR} {FolderManager.Inst.CodeFilesDir}";
 //            p.Start();
 //            p.StandardInput.WriteLine("exit");
 //            //获取cmd窗口的输出信息

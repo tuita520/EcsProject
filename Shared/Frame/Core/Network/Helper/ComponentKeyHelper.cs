@@ -1,5 +1,5 @@
-﻿using Game.Module;
-using Game.Module.Enumerate;
+﻿using EnumData;
+using Game.Module;
 
 namespace Frame.Core.Network.Helper
 {
