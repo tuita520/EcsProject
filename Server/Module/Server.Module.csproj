@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <RootNamespace>Server.Module</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <OutputPath>..\..\Bin\Server\</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <OutputPath>..\..\Bin\Server\</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\Frame\Shared.Frame.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="..\..\Shared\Frame\Game\Server\Component">
+        <Link>Component</Link>
+      </Folder>
+      <Folder Include="..\..\Shared\Frame\Game\Server\System">
+        <Link>System</Link>
+      </Folder>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\..\Shared\Frame\Game\Server\Entity\AServer.cs">
+        <Link>Entity\AServer.cs</Link>
+      </Compile>
+      <Compile Include="..\..\Shared\Frame\Game\Server\Entity\Client.cs">
+        <Link>Entity\Client.cs</Link>
+      </Compile>
+      <Compile Include="..\..\Shared\Frame\Game\Server\Entity\ClientManager.cs">
+        <Link>Entity\ClientManager.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+</Project>

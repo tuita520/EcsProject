@@ -87,8 +87,8 @@ namespace Frame.Core.Base
 
 				switch (obj)
 				{
-					case IAwakeSystem objectSystem:
-						this.awakeSystems.Add(objectSystem.Type(), objectSystem);
+					case IAwakeSystem awakeSystem:
+						this.awakeSystems.Add(awakeSystem.Type(), awakeSystem);
 						break;
 					case IUpdateSystem updateSystem:
 						this.updateSystems.Add(updateSystem.Type(), updateSystem);
@@ -141,28 +141,28 @@ namespace Frame.Core.Base
 
         public void AddSystem<T>()
         {
-                object obj = Activator.CreateInstance(typeof(T));
+            object obj = Activator.CreateInstance(typeof(T));
 
-                switch (obj)
-                {
-                    case IAwakeSystem objectSystem:
-                        this.awakeSystems.Add(objectSystem.Type(), objectSystem);
-                        break;
-                    case IUpdateSystem updateSystem:
-                        this.updateSystems.Add(updateSystem.Type(), updateSystem);
-                        break;
-                    case ILateUpdateSystem lateUpdateSystem:
-                        this.lateUpdateSystems.Add(lateUpdateSystem.Type(), lateUpdateSystem);
-                        break;
-                    case IStartSystem startSystem:
-                        this.startSystems.Add(startSystem.Type(), startSystem);
-                        break;
-                    case IDestroySystem destroySystem:
-                        this.destroySystems.Add(destroySystem.Type(), destroySystem);
-                        break;
-                    case ILoadSystem loadSystem:
-                        this.loadSystems.Add(loadSystem.Type(), loadSystem);
-                        break;
+            switch (obj)
+            {
+                case IAwakeSystem objectSystem:
+                    this.awakeSystems.Add(objectSystem.Type(), objectSystem);
+                    break;
+                case IUpdateSystem updateSystem:
+                    this.updateSystems.Add(updateSystem.Type(), updateSystem);
+                    break;
+                case ILateUpdateSystem lateUpdateSystem:
+                    this.lateUpdateSystems.Add(lateUpdateSystem.Type(), lateUpdateSystem);
+                    break;
+                case IStartSystem startSystem:
+                    this.startSystems.Add(startSystem.Type(), startSystem);
+                    break;
+                case IDestroySystem destroySystem:
+                    this.destroySystems.Add(destroySystem.Type(), destroySystem);
+                    break;
+                case ILoadSystem loadSystem:
+                    this.loadSystems.Add(loadSystem.Type(), loadSystem);
+                    break;
             }
 
             this.Load();

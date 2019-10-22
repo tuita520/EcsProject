@@ -16,4 +16,22 @@
       <ProjectReference Include="..\..\Shared\Frame\Shared.Frame.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="..\..\Shared\Frame\Game\Client\Component">
+        <Link>Component</Link>
+      </Folder>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\..\Shared\Frame\Game\Client\Entity\Server.cs">
+        <Link>Entity\Server.cs</Link>
+      </Compile>
+      <Compile Include="..\..\Shared\Frame\Game\Client\Entity\ServerManager.cs">
+        <Link>Entity\ServerManager.cs</Link>
+      </Compile>
+      <Compile Include="..\..\Shared\Frame\Game\Client\System\ServerManagerAwakeSystem.cs">
+        <Link>System\ServerManagerAwakeSystem.cs</Link>
+      </Compile>
+    </ItemGroup>
+
 </Project>

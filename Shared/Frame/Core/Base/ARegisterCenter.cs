@@ -50,13 +50,13 @@ namespace Frame.Core.Base
         public abstract void Awake();
     }
 
-    [System]
-    public class RegisterCenterAwakeSystem : AAwakeSystem<ARegisterCenter>
-    {
-        protected override void Awake(ARegisterCenter self)
-        {
-            self.Awake();
-        }
-    }
+//    [System]
+//    public class RegisterCenterAwakeSystem : AAwakeSystem<ARegisterCenter>
+//    {
+//        protected override void Awake(ARegisterCenter self)
+//        {
+//            self.Awake();
+//        }
+//    }
 
 }

@@ -4,8 +4,6 @@ D:\GitHub\EcsProject\Shared\Utils\bin\Debug\netcoreapp2.2\Shared.Utils.pdb
 D:\GitHub\EcsProject\Bin\SharedLib\netcoreapp2.2\Shared.Utils.deps.json
 D:\GitHub\EcsProject\Bin\SharedLib\netcoreapp2.2\Shared.Utils.dll
 D:\GitHub\EcsProject\Bin\SharedLib\netcoreapp2.2\Shared.Utils.pdb
-D:\GitHub\EcsProject\Shared\Utils\obj\Debug\netcoreapp2.2\Shared.Utils.csprojAssemblyReference.cache
-D:\GitHub\EcsProject\Shared\Utils\obj\Debug\netcoreapp2.2\Shared.Utils.csproj.CoreCompileInputs.cache
 D:\GitHub\EcsProject\Shared\Utils\obj\Debug\netcoreapp2.2\Shared.Utils.AssemblyInfoInputs.cache
 D:\GitHub\EcsProject\Shared\Utils\obj\Debug\netcoreapp2.2\Shared.Utils.AssemblyInfo.cs
 D:\GitHub\EcsProject\Shared\Utils\obj\Debug\netcoreapp2.2\Shared.Utils.dll

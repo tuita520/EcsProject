@@ -1,9 +1,6 @@
-﻿using Frame.Core.Base;
-using Frame.Core.Network;
-using Frame.Core.Register;
-using Frame.Core.Server;
+﻿using Game.Module.Enumerate;
 
-namespace Client.Module
+namespace Game.Module.Server
 {
     public class Server:AServer
     {

@@ -208,19 +208,6 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Client.Module/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "dependencies": {
-          "Shared.Frame": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Client.Module.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Client.Module.dll": {}
-        }
-      },
       "Google.Protobuf/3.6.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -749,11 +736,6 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Client.Module/1.0.0": {
-      "type": "project",
-      "path": "../Module/Client.Module.csproj",
-      "msbuildProject": "../Module/Client.Module.csproj"
-    },
     "Google.Protobuf/3.6.0": {
       "type": "project",
       "path": "../../ThirdParty/Google.Protobuf/Google.Protobuf.csproj",
@@ -782,7 +764,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Client.Module >= 1.0.0",
       "Microsoft.NETCore.App >= 2.2.0",
       "Shared.Frame >= 1.0.0"
     ]
@@ -817,9 +798,6 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\GitHub\\EcsProject\\Client\\Module\\Client.Module.csproj": {
-              "projectPath": "D:\\GitHub\\EcsProject\\Client\\Module\\Client.Module.csproj"
-            },
             "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj": {
               "projectPath": "D:\\GitHub\\EcsProject\\Shared\\Frame\\Shared.Frame.csproj"
             }
@@ -843,7 +821,12 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true

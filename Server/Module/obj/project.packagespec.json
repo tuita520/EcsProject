@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\GitHub\\EcsProject\\Server\\Server.Module\\Server.Module.csproj",
+    "projectUniqueName": "D:\\GitHub\\EcsProject\\Server\\Module\\Server.Module.csproj",
     "projectName": "Server.Module",
-    "projectPath": "D:\\GitHub\\EcsProject\\Server\\Server.Module\\Server.Module.csproj",
-    "outputPath": "D:\\GitHub\\EcsProject\\Server\\Server.Module\\obj\\",
+    "projectPath": "D:\\GitHub\\EcsProject\\Server\\Module\\Server.Module.csproj",
+    "outputPath": "D:\\GitHub\\EcsProject\\Server\\Module\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -42,7 +42,12 @@
         }
       },
       "imports": [
-        "net461"
+        "net461",
+        "net462",
+        "net47",
+        "net471",
+        "net472",
+        "net48"
       ],
       "assetTargetFallback": true,
       "warn": true

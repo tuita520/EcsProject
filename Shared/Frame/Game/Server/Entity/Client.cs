@@ -1,8 +1,9 @@
 ﻿using System.Net;
 using Frame.Core.Base;
 using Frame.Core.Network;
+using Module;
 
-namespace Module
+namespace Game.Module
 {
     public class Client: AEntity
     {

@@ -1,9 +1,9 @@
 ﻿using Frame.Core.Base;
 using Frame.Core.Network;
-using Frame.Core.Server;
 using Frame.Core.Network.Helper;
+using Game.Module.Enumerate;
 
-namespace Frame.Core.Register
+namespace Game.Module.Server
 {
     public abstract class AServer:AEntity
     {

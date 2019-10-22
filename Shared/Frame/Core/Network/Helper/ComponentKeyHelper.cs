@@ -1,5 +1,5 @@
-﻿using System.Net;
-using Frame.Core.Server;
+﻿using Game.Module;
+using Game.Module.Enumerate;
 
 namespace Frame.Core.Network.Helper
 {

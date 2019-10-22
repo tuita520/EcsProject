@@ -2,7 +2,7 @@
 using Frame.Core.Base.Attributes;
 using Frame.Core.Network;
 
-namespace Module
+namespace Game.Module
 {
     public class ClientManager:ARegisterCenter
     {

@@ -1,4 +1,4 @@
-﻿namespace Frame.Core.Server
+﻿﻿namespace Game.Module.Enumerate
 {
     public enum ServerType
     {

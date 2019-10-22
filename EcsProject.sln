@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtocolGenerator", "Protoc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Module", "Client\Module\Client.Module.csproj", "{A2B0C34A-EC4F-4AD7-99C7-43C7C7095800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Module", "Server\Server.Module\Server.Module.csproj", "{789363FA-531B-4172-970B-223A4E8B7776}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Module", "Server\Module\Server.Module.csproj", "{789363FA-531B-4172-970B-223A4E8B7776}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

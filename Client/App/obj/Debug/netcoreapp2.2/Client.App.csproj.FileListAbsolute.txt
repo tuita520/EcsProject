@@ -9,7 +9,6 @@ D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.runtimeconfig.dev.json
 D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.dll
 D:\GitHub\EcsProject\Bin\Client\netcoreapp2.2\Client.App.pdb
 D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.csprojAssemblyReference.cache
-D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.csproj.CoreCompileInputs.cache
 D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.AssemblyInfoInputs.cache
 D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.AssemblyInfo.cs
 D:\GitHub\EcsProject\Client\App\obj\Debug\netcoreapp2.2\Client.App.csproj.CopyComplete
